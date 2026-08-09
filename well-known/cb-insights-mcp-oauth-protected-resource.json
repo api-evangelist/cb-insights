@@ -1,0 +1,1 @@
+{"resource":"https://mcp.cbinsights.com/","authorization_servers":["https://mcp.cbinsights.com/"],"scopes_supported":["openid","email","profile"],"bearer_methods_supported":["header"]}

@@ -1,0 +1,84 @@
+generated: '2026-08-09'
+method: searched
+source: >-
+  npm registry (registry.npmjs.org) + PyPI + GitHub org github.com/cbinsights +
+  https://api-docs.cbinsights.com/portal
+summary: >-
+  CB Insights ships no maintained client SDK in any language. The developer portal documents cURL
+  and hand-rolled Python `requests` calls only — there is no SDK page, no install snippet, and no
+  package badge anywhere in the docs. The one first-party package that exists on a registry is a
+  node client last published in 2016 whose source repository has since been deleted. Nothing in this
+  file should be treated as a supported integration path.
+official_sdk_count: 0
+maintained_sdk_count: 0
+packages:
+- name: cbinsights
+  registry: npm
+  url: https://www.npmjs.com/package/cbinsights
+  language: javascript
+  official: true
+  official_evidence: >-
+    Published by a @cbinsights.com author (Alexandre Testu, atestu@cbinsights.com) with the
+    repository under the company's own GitHub organization (github.com/cbinsights/cbi-node).
+  description: Simple module for using CB Insights's API in node.js
+  latest_version: 0.2.11
+  latest_published: '2016-07-18'
+  first_published: '2014-03-19'
+  status: abandoned
+  status_note: >-
+    No release in ten years, and the declared source repository github.com/cbinsights/cbi-node now
+    returns 404 — it has been deleted or made private. Predates both the v1 (2020) and v2 APIs, so
+    it cannot target the current surface.
+  license: none declared
+- name: cbi-mcp-server
+  registry: github
+  url: https://github.com/cbinsights/cbi-mcp-server
+  language: python
+  official: true
+  official_evidence: Published in the CB Insights GitHub organization.
+  description: >-
+    Reference self-hosted MCP server exposing one tool (ChatCBI) as a pass-through to
+    POST https://api.cbinsights.com/v2/chatcbi. Built on mcp.server.fastmcp; managed with uv.
+  status: deprecated
+  deprecated: '2026-01'
+  replacement: https://mcp.cbinsights.com
+  last_push: '2026-01-16'
+  distribution: source only — not published to PyPI
+third_party_packages:
+- name: cbi-php
+  registry: github
+  url: https://github.com/HenryLansang/cbi-php
+  language: php
+  official: false
+  description: Community CB Insights API PHP wrapper.
+  last_push: '2015-03-09'
+  status: abandoned
+registries_checked:
+- registry: npm
+  result: one first-party package (cbinsights), abandoned 2016
+- registry: PyPI
+  result: no package under cbinsights / cbi / cbinsights-api / cb-insights-api (all 404)
+- registry: Maven Central
+  result: none found
+- registry: NuGet
+  result: none found
+- registry: pkg.go.dev
+  result: none found
+- registry: RubyGems
+  result: none found
+- registry: Packagist
+  result: none found
+- registry: crates.io
+  result: none found
+github_org:
+  url: https://github.com/cbinsights
+  public_repos: 12
+  active_repos: 1 (cbi-mcp-server, itself deprecated)
+  note: >-
+    Ten of the twelve public repositories are archived forks of unrelated open-source projects
+    (gremlin, go-cache, react-native-*, elasticsearch-dsl-py, pytest-plugins, go-force,
+    gulp-modernizr, form-design-system, capiq-python). The organization is not used to distribute
+    client libraries.
+cross_links:
+  authentication: authentication/cb-insights-authentication.yml
+  mcp: mcp/cb-insights-mcp.yml

@@ -1,0 +1,108 @@
+generated: '2026-08-09'
+method: searched
+source: https://api-docs.cbinsights.com/docs/reference/
+docs:
+- https://api-docs.cbinsights.com/docs/reference/
+- https://api-docs.cbinsights.com/portal/docs/References/Taxonomy/
+summary: >-
+  CB Insights publishes a substantial set of controlled vocabularies as reference pages, and they
+  are not optional reading: almost every filter on the API is an integer *Id that resolves against
+  one of these lists, so the API is unusable without them. They are published as HTML tables only —
+  there is no downloadable CSV/JSON, no enum in the OpenAPI contract, and no versioning on any list.
+  Term counts below are row counts observed in the published tables on 2026-08-09.
+publication_format: HTML tables (Hugo-rendered on api-docs.cbinsights.com, Docusaurus on /portal)
+machine_readable: false
+versioned: false
+enumerated_in_spec: false
+enumerated_in_spec_note: >-
+  The Swagger contract references these lists by URL inside property descriptions (e.g. "CBI industry
+  IDs to match; see .../References/Taxonomy/industries") rather than declaring enum values, so a
+  generated client cannot validate a filter id.
+vocabularies:
+- name: Organization Status
+  filter_field: orgStatusIds / statusId
+  url: https://api-docs.cbinsights.com/docs/reference/org_status/
+  term_count: 7
+  terms:
+  - {id: 1, label: Alive / Active}
+  - {id: 2, label: Acquired}
+  - {id: 3, label: Assets Purchased}
+  - {id: 4, label: Dead / Inactive}
+  - {id: 5, label: IPO / Went public}
+  - {id: 6, label: Merged}
+  - {id: 7, label: Bankrupt}
+- name: Investor Types
+  filter_field: investorTypeIds / fundingInvestorTypeIds / investorCategoryId
+  url: https://api-docs.cbinsights.com/docs/reference/investor_type/
+  term_count: 34
+  sample_terms:
+  - {id: 1, label: Private}
+  - {id: 9, label: Angel Investor (Individual)}
+  - {id: 13, label: Corporate Venture}
+  - {id: 22, label: Incubator/Accelerator}
+  - {id: 29, label: Private Equity}
+  - {id: 33, label: Venture Capital}
+  - {id: 34, label: Sovereign Wealth Fund}
+  - {id: 35, label: Growth Equity}
+  - {id: 36, label: Equity Crowdfunding}
+  - {id: 37, label: SPAC}
+- name: Funding Types
+  filter_field: lastFundingRoundIds / roundId / roundCategoryId / roundTypeId
+  url: https://api-docs.cbinsights.com/docs/reference/funding_types/
+  term_count: 702
+  note: The largest deal-side vocabulary — round names mapped to round categories and types.
+- name: Taxonomy (Sector > Industry > Sub-industry)
+  filter_field: sectorIds / industryIds / subindustryIds
+  url: https://api-docs.cbinsights.com/docs/reference/taxonomy/
+  portal_url: https://api-docs.cbinsights.com/portal/docs/References/Taxonomy/industries
+  term_count: 747
+  note: The three-level industry classification applied to every organization profile.
+- name: People Titles
+  filter_field: titleIds
+  url: https://api-docs.cbinsights.com/docs/reference/person_titles/
+  term_count: 71
+- name: Stock Exchanges
+  filter_field: exchange (organization identifiers)
+  url: https://api-docs.cbinsights.com/docs/reference/stock_exchanges/
+  term_count: 69
+- name: Address (geography)
+  filter_field: continentIds / regionIds / countryIds / stateIds / cityIds
+  url: https://api-docs.cbinsights.com/docs/reference/address/
+  term_count: 56359
+  note: >-
+    A single 4.6 MB HTML page enumerating every continent, region, country, state/province and city
+    id. It is the largest reference artifact in the estate and the least practical to consume — an
+    integrator must scrape a multi-megabyte HTML table to resolve a city filter.
+- name: Business Models
+  filter_field: businessModelIds
+  url: https://api-docs.cbinsights.com/portal/docs/References/Taxonomy/business-models
+- name: Markets
+  filter_field: marketIds
+  url: https://api-docs.cbinsights.com/portal/docs/References/Taxonomy/markets
+- name: Technologies
+  filter_field: technologyIds
+  url: https://api-docs.cbinsights.com/portal/docs/References/Taxonomy/technologies
+- name: Awards and Spotlights
+  filter_field: awardsAndSpotlightsIds
+  url: https://api-docs.cbinsights.com/portal/docs/References/Taxonomy/awards-and-spotlights
+scoring_models:
+- name: Mosaic Score
+  url: https://api-docs.cbinsights.com/docs/reference/mosaic/
+  current_version: v2.1
+  note: >-
+    Proprietary composite health/growth score with sub-scores (momentum, money, market, management).
+    The mosaicScoreVersion request field is deprecated — only v2.1 is served.
+- name: Credit Model
+  url: https://api-docs.cbinsights.com/docs/reference/credit_model/
+  note: The metering vocabulary — which call/datapack combination costs how many credits.
+- name: Organization-based Credit Model
+  url: https://api-docs.cbinsights.com/docs/reference/org_credit_model/
+gaps:
+- No machine-readable form of any vocabulary (no CSV, JSON, SKOS, or API endpoint that returns the lists).
+- No enum declarations in the OpenAPI contract, so filter ids cannot be validated client-side.
+- No version or last-modified stamp on any reference list.
+- The taxonomy is split across two doc sites — legacy lists on api-docs.cbinsights.com/docs/reference/
+  and newer ones under /portal/docs/References/Taxonomy/ — with no single index.
+cross_links:
+  data_model: data-model/cb-insights-data-model.yml
+  conventions: conventions/cb-insights-conventions.yml

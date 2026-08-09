@@ -1,0 +1,97 @@
+generated: '2026-08-09'
+method: searched
+source: https://api-docs.cbinsights.com/docs/change_log/
+docs:
+- https://api-docs.cbinsights.com/docs/change_log/
+scheme: semver-per-release
+scope: CB Insights API v1
+current_version: v1.9.0
+current_version_date: '2024-07-26'
+summary: >-
+  A complete, dated release history for the v1 API — ten releases from the December 2020 early-access
+  beta through v1.9.0 in July 2024. Every entry names the version, the release date, and what
+  changed, and breaking-vs-additive is legible because every entry is additive (new endpoints, new
+  filters, new datapacks, new fields). No entry in the published history removes or breaks anything.
+  The current v2 API has no change log; this history stops when v2 shipped.
+breaking_changes_in_window: 0
+entries:
+- version: v1.9.0
+  date: '2024-07-26'
+  type: additive
+  highlights:
+  - >-
+    Organization identifiers added to the orgSummary datapack — stock tickers, ticker+exchange,
+    CUSIP, ISIN, FIGI (OpenFIGI), LEI, and a substantially expanded CIK dataset.
+  - ListOrganizations can now filter on those identifier fields.
+- version: v1.8.0
+  date: '2024-07-09'
+  type: additive
+  highlights:
+  - Historical headcount — 6-, 12- and 24-month percentage change in headcount added to the OrgKPIs datapack.
+  - ListOrganizations can now sort by those fields.
+- version: v1.7.0
+  date: '2023-07-11'
+  type: additive
+  highlights:
+  - Latest valuation exposed through the OrgKPIs datapack.
+  - ListOrganizations can filter by minimum/maximum valuation and sort by valuation.
+- version: v1.6.0
+  date: '2023-06-01'
+  type: additive
+  highlights:
+  - Current headcount exposed through the OrgKPIs datapack.
+- version: v1.5.0
+  date: '2022-02-10'
+  type: improvement
+  highlights:
+  - >-
+    LookupOrganizations (GET /v1/organizations/lookup) made more flexible and more relevant,
+    specifically for lookups by the orgName parameter.
+- version: v1.4.0
+  date: '2021-10-28'
+  type: additive
+  highlights:
+  - New Mosaic model — mosaicManagement, scoring the founding and management team at private tech companies, added to OrgKPIs.
+- version: v1.3.0
+  date: '2021-10-11'
+  type: additive
+  highlights:
+  - New orgCollections datapack (GET /v1/organizations?include=orgCollections) returning Expert Collection names and ids.
+- version: v1.2.0
+  date: '2021-06-14'
+  type: additive
+  highlights:
+  - New endpoint — Business Relationships (GET /v1/businessRelationships), with partner type and start date.
+  - >-
+    New lastUpdateTime filter across the organizations, deals, people and business-relationships
+    endpoints, plus lastUpdateTime fields in the datapack responses — the incremental-sync mechanism.
+  - New deal fields valuationIsEstimate, valuationSourceType, valuationSourceUrls.
+  - New organization fields revenueSourceType, revenueSourceUrls.
+- version: v1.1.0
+  date: '2021-05-03'
+  type: additive
+  highlights:
+  - New endpoint — People (GET /v1/people), returning work experience, board associations and education.
+- version: v1.0.0
+  date: '2021-03-17'
+  type: additive
+  highlights:
+  - First major release, building on the early-access beta.
+  - New endpoints — Deals (GET /v1/deals), Collections (GET /v1/collections), Credits (GET /v1/credits).
+  - New filters on the organizations endpoint — taxonomy, address, funding dates, collections.
+  - New orgRevenue datapack (GET /v1/organizations?include=orgRevenue).
+- version: v0.1.0
+  date: '2020-12-30'
+  type: initial
+  highlights:
+  - Early-access beta exposing organization datapacks.
+  - >-
+    Initial endpoints — GET /v1/authorize, GET /v1/organizations/lookup, GET /v1/organizations/{orgId},
+    GET /v1/organizations/{orgId}/fundings, GET /v1/organizations/{orgId}/investments,
+    GET /v1/organizations/{orgId}/portfolioExits.
+gaps:
+- No change log exists for the current v2 API — the published history covers v1 only and ends in July 2024.
+- No RSS/Atom or machine-readable feed for the change log; it is Hugo-rendered HTML only.
+- No release notes for the hosted MCP server or its tool surface.
+cross_links:
+  lifecycle: lifecycle/cb-insights-lifecycle.yml

@@ -1,0 +1,171 @@
+generated: '2026-08-09'
+method: searched
+source: >-
+  https://api-docs.cbinsights.com/portal/docs/CBI-API/cbi-api-overview +
+  https://api-docs.cbinsights.com/portal/docs/CBI-API/search-structure +
+  openapi/cb-insights-api-v2-openapi.json
+docs:
+- https://api-docs.cbinsights.com/portal/docs/CBI-API/cbi-api-overview
+- https://api-docs.cbinsights.com/portal/docs/CBI-API/search-structure
+- https://api-docs.cbinsights.com/docs/tutorials/paginating_through_resources/
+- https://api-docs.cbinsights.com/docs/tutorials/boolean_logic/
+- https://api-docs.cbinsights.com/docs/tutorials/last_update_time_filter/
+summary: >-
+  Cross-cutting request/response semantics for the CB Insights API. v2 is an all-POST "search body"
+  REST API: every operation, including the read-only ones, is a POST whose JSON body carries the
+  filter set, and results come back cursor-paginated. v1 is the opposite shape — all GET with query
+  parameters. Idempotency is NOT documented on either version, and there is no request-id or
+  correlation header, which are the two most notable gaps for agent use.
+transport:
+  protocol: https
+  base_url: https://api.cbinsights.com
+  media_type: application/json
+  request_style_v2: >-
+    POST-only. All 28 v2 operations are POST; reads are modelled as searches with a JSON request
+    body rather than GET with query parameters. Path parameters carry {orgId} on per-organization
+    operations.
+  request_style_v1: GET with query-string parameters on all 11 operations.
+authentication:
+  styles:
+  - bearer_jwt_header
+  - oauth2_for_mcp
+  header: 'Authorization: Bearer <token>'
+  token_lifetime: 24h
+  refresh: none — re-authorize with clientId/clientSecret
+  see: authentication/cb-insights-authentication.yml
+pagination:
+  style: opaque-cursor
+  request_fields:
+  - name: nextPageToken
+    description: Token echoed back from a previous response to fetch the next page.
+  - name: limit
+    description: Page size, range [1, 100], default 10 (v2 organization lookup).
+  v1_request_fields:
+  - pageSize
+  - pageToken
+  response_fields:
+  - name: nextPageToken
+    description: Cursor for the next page; null when the result set is exhausted.
+  - name: totalHits
+    description: Total number of matching records.
+  - name: totalHitsRelation
+    description: >-
+      'eq' when totalHits is exact, 'gte' when it is a floor — set to 'gte' once totalHits exceeds
+      10,000, meaning results beyond that depth are not enumerable.
+  cursor_format: base64 JSON (observed in spec examples as an encoded pagination_scheme/next_page_token pair)
+  notes: >-
+    Cursor tokens are opaque and must be treated as such. No offset/page-number parameter exists.
+filtering:
+  style: structured-json-body
+  boolean_logic: >-
+    v1 documents an explicit boolean-logic convention for filters (see the Boolean Logic tutorial);
+    v2 expresses filters as typed arrays in the request body, where values within one array are OR'd
+    and separate fields are AND'd.
+  identifier_filters:
+  - orgIds
+  - urls / names
+  - profileUrl (mutually exclusive with names and urls)
+  - ciks
+  - cusips
+  - isins
+  - figis
+  - leis
+  - stock tickers and exchanges
+  taxonomy_filters:
+  - industryIds
+  - sectorIds
+  - subindustryIds
+  - businessModelIds
+  - awardsAndSpotlightsIds
+  - collectionIds (Expert Collections)
+  geo_filters:
+  - continentIds
+  - regionIds
+  - countryIds
+  - stateIds
+  - cityIds
+  incremental_sync:
+    field: lastUpdateTime
+    available_on: organizations, deals, people, business relationships (v1 v1.2.0+)
+    description: >-
+      Request only records updated after a given timestamp — the supported mechanism for keeping a
+      local mirror in sync without re-pulling the corpus.
+    source: https://api-docs.cbinsights.com/docs/tutorials/last_update_time_filter/
+sorting:
+  style: object
+  shape: '{ "sort": { "field": "<field>", "direction": "asc|desc" } }'
+  notes: Available sort fields are enumerated per endpoint (e.g. orgName on organization lookup).
+field_expansion:
+  v1:
+    parameter: include
+    unit: datapack
+    description: >-
+      v1 uses named "datapacks" (orgSummary, orgKPIs, orgRevenue, orgCollections, ...) requested via
+      the `include` query parameter; an unknown datapack name returns 404. Datapack selection is
+      also what drives credit cost.
+  v2:
+    description: >-
+      v2 replaces datapacks with dedicated endpoints per data category (firmographics,
+      financialtransactions, managementandboard, outlook, revenuebyyear, ...). There is no sparse
+      fieldset parameter.
+idempotency:
+  documented: false
+  header: null
+  notes: >-
+    No idempotency-key mechanism is documented on either API version. In practice the v2 surface is
+    read-only — all 28 operations are retrieval or generation, none mutate CB Insights state — so a
+    repeated POST is semantically safe, BUT it is not free: every data call debits the credit
+    ledger, so a naive retry costs credits twice. Treat retries as billable and de-duplicate
+    client-side.
+metering:
+  model: per-call credit deduction
+  response_header: x-cbinsights-credits-call-consumed
+  exhaustion_status: 424
+  ledger_endpoint: GET /v1/credits
+  free_operations:
+  - POST /v2/organizations (organization lookup — "this endpoint never charges credits", documented
+    for matching your own records to CBI orgIds before spending credits)
+  see: rate-limits/cb-insights-rate-limits.yml
+rate_limit_signaling:
+  headers:
+  - ratelimit-limit
+  - ratelimit-remaining
+  - ratelimit-reset
+  status: 429
+  see: rate-limits/cb-insights-rate-limits.yml
+request_tracing:
+  request_id_header: null
+  documented: false
+  notes: No request-id / correlation-id header is documented on either version, so a client cannot cite an identifier when reporting a failed call.
+versioning:
+  style: path-segment
+  values:
+  - /v1
+  - /v2
+  semantic_version: >-
+    v1 additionally carries a semantic release version (v1.9.0) tracked in its change log; v2
+    publishes no release version.
+  see: lifecycle/cb-insights-lifecycle.yml
+error_envelope:
+  media_type: application/json
+  shape: '{ "error": "<string>" }'
+  rfc9457: false
+  see: errors/cb-insights-problem-types.yml
+streaming:
+  endpoints:
+  - POST /v2/organizations/{orgId}/scoutingreportstream
+  - POST /v2/chatcbichunked
+  notes: >-
+    Two operations exist specifically to stream/chunk long AI-generated output (scouting reports and
+    ChatCBI). The chunking protocol is not described in the Swagger contract.
+webhooks:
+  documented: false
+  notes: >-
+    No webhook, event, or push surface is published. Change detection is poll-based via the
+    lastUpdateTime filter.
+cross_links:
+  authentication: authentication/cb-insights-authentication.yml
+  errors: errors/cb-insights-problem-types.yml
+  rate_limits: rate-limits/cb-insights-rate-limits.yml
+  lifecycle: lifecycle/cb-insights-lifecycle.yml
+  data_model: data-model/cb-insights-data-model.yml

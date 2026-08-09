@@ -1,23 +1,226 @@
 aid: cb-insights
 name: CB Insights
-description: 'CB Insights is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  CB Insights (CB Information Services, Inc.) is a New York-based private-market intelligence platform
+  covering 12M+ private and public company profiles, funding deals, cap tables, M&A and IPO exits,
+  business relationships, management and board data, and proprietary predictive scores (Mosaic,
+  Commercial Maturity, Exit Probability, Competitor Score). The company exposes that data
+  programmatically through the CB Insights API v2 — a token-authenticated REST API at
+  api.cbinsights.com documented with a published Swagger 2.0 contract of 28 operations across
+  Firmographics, Financial Transactions, Business Relationships, Management & Board, Outlook,
+  Revenue, Strategy Map, Scouting Reports and the ChatCBI research LLM — plus a maintenance-mode v1
+  REST API, a hosted OAuth-protected MCP server at mcp.cbinsights.com listed in Claude, ChatGPT,
+  Perplexity and Microsoft Copilot connector directories, a Snowflake Marketplace data share with
+  Semantic Views and a Cortex Knowledge Extension, and Salesforce and Microsoft 365 Copilot
+  connectors. Access is credit-metered and credential-gated: clientId/clientSecret are issued by
+  CB Insights, exchanged for a 24-hour bearer token, and every data call debits an account credit
+  ledger.
+image: https://api-docs.cbinsights.com/portal/img/cbinsights-social-card.png
 url: https://raw.githubusercontent.com/api-evangelist/cb-insights/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-09'
 modified: '2026-08-09'
 tags:
 - Company
-apis: []
+- market-intelligence
+- private-company-data
+- venture-capital
+- funding-data
+- investor-data
+- company-data
+- people-data
+- business-relationships
+- predictive-scoring
+- mcp
+- agent-native
+- data-enrichment
+- snowflake
+apis:
+- name: CB Insights API v2
+  description: >-
+    Token-authenticated REST API over CB Insights private-market intelligence. 28 POST operations
+    across eight tags — Authorization, Organizations, Firmographics, FinancialTransactions,
+    BusinessRelationships, ManagementAndBoard, Outlook and ScoutingReports — plus the ChatCBI and
+    CBI RAG research endpoints. Search bodies are JSON; results are cursor-paginated with
+    nextPageToken/totalHits; every data call debits the account credit ledger.
+  humanURL: https://api-docs.cbinsights.com/portal/docs/api/
+  baseURL: https://api.cbinsights.com
+  tags:
+  - market-intelligence
+  - private-company-data
+  - funding-data
+  - investor-data
+  - company-data
+  - people-data
+  - business-relationships
+  - predictive-scoring
+  properties:
+  - type: OpenAPI
+    url: openapi/cb-insights-api-v2-openapi.json
+  - type: Documentation
+    url: https://api-docs.cbinsights.com/portal/docs/intro
+  - type: APIReference
+    url: https://api-docs.cbinsights.com/portal/docs/api/
+  - type: GettingStarted
+    url: https://api-docs.cbinsights.com/portal/docs/quick-start
+  - type: Authentication
+    url: authentication/cb-insights-authentication.yml
+  - type: Conventions
+    url: conventions/cb-insights-conventions.yml
+  - type: ErrorCatalog
+    url: errors/cb-insights-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/cb-insights-rate-limits.yml
+  - type: DataModel
+    url: data-model/cb-insights-data-model.yml
+  - type: Overlay
+    url: overlays/cb-insights-api-v2-overlay.yaml
+  - type: TermsOfService
+    url: https://api-docs.cbinsights.com/portal/api-terms-of-use
+  - type: SignUp
+    url: https://api-docs.cbinsights.com/portal/signup
+- name: CB Insights API v1
+  description: >-
+    The original CB Insights REST API — 11 documented GET operations over organizations, deals
+    (fundings, investments, portfolio exits), people, business relationships, expert collections and
+    the credit ledger, authenticated with a 24-hour JWT from /v1/authorize. Fully documented in a
+    static Hugo reference site with a dated change log through v1.9.0 (2024-07-26), but CB Insights
+    publishes no OpenAPI for it and directs new integrations to v2.
+  humanURL: https://api-docs.cbinsights.com/docs/endpoints/
+  baseURL: https://api.cbinsights.com
+  tags:
+  - market-intelligence
+  - private-company-data
+  - funding-data
+  - investor-data
+  - company-data
+  properties:
+  - type: Documentation
+    url: https://api-docs.cbinsights.com/
+  - type: APIReference
+    url: https://api-docs.cbinsights.com/docs/endpoints/
+  - type: GettingStarted
+    url: https://api-docs.cbinsights.com/docs/tutorials/authentication_flow/
+  - type: ChangeLog
+    url: https://api-docs.cbinsights.com/docs/change_log/
+  - type: RateLimits
+    url: https://api-docs.cbinsights.com/docs/reference/rate_limiting/
+  - type: ErrorCatalog
+    url: https://api-docs.cbinsights.com/docs/reference/error_codes/
+  x-spec-note: >-
+    No machine-readable contract exists for v1. The reference is fully public and richly documented
+    at api-docs.cbinsights.com, but CB Insights ships only Hugo-rendered HTML endpoint pages —
+    probes of /openapi.json, /openapi.yaml and /swagger.json on that host all returned 404 on
+    2026-08-09. The v2 contract in openapi/ does not cover these operations.
+- name: CB Insights MCP Server
+  description: >-
+    Hosted, remote Model Context Protocol server at mcp.cbinsights.com, offered as the supported
+    replacement for the deprecated self-hosted cbi-mcp-server reference implementation. Protected by
+    OAuth 2.1 with dynamic client registration, PKCE (S256) and RFC 9728 protected-resource
+    metadata; connected from Claude, ChatGPT, Perplexity, Microsoft Copilot (Chat, Researcher and
+    Excel) via each client's connector directory. Live tools/list is auth-gated.
+  humanURL: https://api-docs.cbinsights.com/portal/docs/Integrations/cbi-mcp-server
+  baseURL: https://mcp.cbinsights.com/
+  tags:
+  - mcp
+  - agent-native
+  - market-intelligence
+  - private-company-data
+  properties:
+  - type: MCPServer
+    url: mcp/cb-insights-mcp.yml
+  - type: MCPServer
+    url: https://mcp.cbinsights.com/
+  - type: ToolCrosswalk
+    url: mcp/cb-insights-tool-crosswalk.yml
+  - type: Documentation
+    url: https://api-docs.cbinsights.com/portal/docs/Integrations/cbi-mcp-server
+  - type: GettingStarted
+    url: https://api-docs.cbinsights.com/portal/docs/Integrations/cbi-mcp-server/quick-start
+  - type: WellKnown
+    url: well-known/cb-insights-well-known.yml
+  - type: SourceCode
+    url: https://github.com/cbinsights/cbi-mcp-server
+common:
+- type: DomainSecurity
+  url: security/cb-insights-domain-security.yml
+- type: Website
+  url: https://www.cbinsights.com/
+- type: DeveloperPortal
+  url: https://api-docs.cbinsights.com/portal
+- type: Documentation
+  url: https://api-docs.cbinsights.com/portal/docs/intro
+- type: APIReference
+  url: https://api-docs.cbinsights.com/portal/docs/api/
+- type: GettingStarted
+  url: https://api-docs.cbinsights.com/portal/docs/quick-start
+- type: Support
+  url: https://www.cbinsights.com/company/support
+- type: Blog
+  url: https://www.cbinsights.com/research/
+- type: GitHubOrganization
+  url: https://github.com/cbinsights
+- type: Pricing
+  url: https://www.cbinsights.com/pricing
+- type: SignUp
+  url: https://api-docs.cbinsights.com/portal/signup
+- type: Login
+  url: https://www.cbinsights.com/login
+- type: TermsOfService
+  url: https://api-docs.cbinsights.com/portal/api-terms-of-use
+- type: PrivacyPolicy
+  url: https://www.cbinsights.com/privacy-policy/
+- type: TrustCenter
+  url: security/cb-insights-trust-center.yml
+- type: TrustCenter
+  url: https://trust.cbinsights.com/
+- type: Compliance
+  url: conformance/cb-insights-conformance.yml
+- type: Compliance
+  url: https://www.cbinsights.com/security-and-privacy/
+- type: OpenAPI
+  url: openapi/cb-insights-api-v2-openapi.json
+- type: MCPServer
+  url: mcp/cb-insights-mcp.yml
+- type: ToolCrosswalk
+  url: mcp/cb-insights-tool-crosswalk.yml
+- type: Authentication
+  url: authentication/cb-insights-authentication.yml
+- type: Conventions
+  url: conventions/cb-insights-conventions.yml
+- type: ErrorCatalog
+  url: errors/cb-insights-problem-types.yml
+- type: RateLimits
+  url: rate-limits/cb-insights-rate-limits.yml
+- type: Lifecycle
+  url: lifecycle/cb-insights-lifecycle.yml
+- type: ChangeLog
+  url: changelog/cb-insights-changelog.yml
+- type: Conformance
+  url: conformance/cb-insights-conformance.yml
+- type: WellKnown
+  url: well-known/cb-insights-well-known.yml
+- type: DataModel
+  url: data-model/cb-insights-data-model.yml
+- type: Overlay
+  url: overlays/cb-insights-api-v2-overlay.yaml
+- type: Packages
+  url: packages/cb-insights-packages.yml
+- type: Vocabulary
+  url: vocabulary/cb-insights-vocabulary.yml
+- type: LLMsTxt
+  url: llms/cb-insights-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
-common:
-- type: Website
-  url: https://forgeglobal.com/cb-insights_stock/
+x-enrichment:
+  date: '2026-08-09'
+  status: enriched
+  artifacts_added: 25
+  pass: local-v1

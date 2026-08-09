@@ -1,0 +1,117 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enrichment overlay — CB Insights API v2
+  version: 1.0.0
+extends: ../openapi/cb-insights-api-v2-openapi.json
+x-provenance:
+  generated: '2026-08-09'
+  method: generated
+  source: >-
+    Enhancements authored by API Evangelist over the verbatim Swagger 2.0 contract harvested from
+    https://api-docs.cbinsights.com/v2/cbinsights_api_v2.json on 2026-08-09. The harvested spec is
+    never mutated; everything below is our addition, not a CB Insights claim.
+  note: >-
+    The single largest defect in the published contract is that NOT ONE of its 28 operations
+    declares an operationId. Without one there is no stable handle to bind an MCP tool, an Arazzo
+    step, an SDK method, or a crosswalk row to — which is exactly why
+    mcp/cb-insights-tool-crosswalk.yml has to address operations by METHOD+PATH. The actions below
+    propose an operationId for every operation, derived mechanically from the tag and the path.
+actions:
+- target: $.info
+  description: Record provenance and the harvest source on the document root.
+  update:
+    x-apievangelist-source: https://api-docs.cbinsights.com/v2/cbinsights_api_v2.json
+    x-apievangelist-harvested: '2026-08-09'
+    x-apievangelist-note: >-
+      Swagger 2.0. `basePath` carries a full absolute URL (https://api.cbinsights.com), which is not
+      valid Swagger 2.0 — basePath must be a path and the host belongs in `host`. Tools that follow
+      the spec strictly will resolve request URLs incorrectly.
+- target: $
+  description: Declare the tag that is used by an operation but missing from the top-level tags list.
+  update:
+    x-apievangelist-undeclared-tags:
+    - StrategyMap
+- target: $.paths['/v2/authorize'].post
+  update: {operationId: authorizeClient}
+- target: $.paths['/v2/organizations'].post
+  update:
+    operationId: listOrganizations
+    x-apievangelist-metering: free — this operation never charges credits
+- target: $.paths['/v2/firmographics'].post
+  update: {operationId: listFirmographics}
+- target: $.paths['/v2/businessrelationships'].post
+  update: {operationId: listBusinessRelationships}
+- target: $.paths['/v2/organizations/{orgId}/businessrelationships'].post
+  update: {operationId: getOrganizationBusinessRelationships}
+- target: $.paths['/v2/financialtransactions/fundings'].post
+  update: {operationId: listFundings}
+- target: $.paths['/v2/financialtransactions/investments'].post
+  update: {operationId: listInvestments}
+- target: $.paths['/v2/financialtransactions/portfolioexits'].post
+  update: {operationId: listPortfolioExits}
+- target: $.paths['/v2/organizations/{orgId}/financialtransactions/fundings'].post
+  update: {operationId: getOrganizationFundings}
+- target: $.paths['/v2/organizations/{orgId}/financialtransactions/investments'].post
+  update: {operationId: getOrganizationInvestments}
+- target: $.paths['/v2/organizations/{orgId}/financialtransactions/portfolioexits'].post
+  update: {operationId: getOrganizationPortfolioExits}
+- target: $.paths['/v2/managementandboard'].post
+  update: {operationId: listManagementAndBoard}
+- target: $.paths['/v2/organizations/{orgId}/managementandboard'].post
+  update: {operationId: getOrganizationManagementAndBoard}
+- target: $.paths['/v2/outlook'].post
+  update: {operationId: listOutlook}
+- target: $.paths['/v2/organizations/{orgId}/outlook'].post
+  update: {operationId: getOrganizationOutlook}
+- target: $.paths['/v2/organizations/{orgId}/mosaichistory'].post
+  update: {operationId: getOrganizationMosaicHistory}
+- target: $.paths['/v2/organizations/{orgId}/commercialmaturityhistory'].post
+  update: {operationId: getOrganizationCommercialMaturityHistory}
+- target: $.paths['/v2/organizations/{orgId}/exitprobabilityhistory'].post
+  update: {operationId: getOrganizationExitProbabilityHistory}
+- target: $.paths['/v2/outlook/fundingwindow'].post
+  update: {operationId: listFundingWindow}
+- target: $.paths['/v2/organizations/{orgId}/fundingwindow'].post
+  update: {operationId: getOrganizationFundingWindow}
+- target: $.paths['/v2/revenuebyyear'].post
+  update: {operationId: listRevenueByYear}
+- target: $.paths['/v2/organizations/{orgId}/revenuebyyear'].post
+  update: {operationId: getOrganizationRevenueByYear}
+- target: $.paths['/v2/organizations/{orgId}/scoutingreport'].post
+  update: {operationId: generateOrganizationScoutingReport}
+- target: $.paths['/v2/organizations/{orgId}/scoutingreportstream'].post
+  update: {operationId: streamOrganizationScoutingReport}
+- target: $.paths['/v2/organizations/{orgId}/strategymap'].post
+  update: {operationId: getOrganizationStrategyMap}
+- target: $.paths['/v2/chatcbi'].post
+  update:
+    operationId: chatCBI
+    x-apievangelist-mcp-tool: ChatCBI
+- target: $.paths['/v2/chatcbichunked'].post
+  update: {operationId: chatCBIChunked}
+- target: $.paths['/v2/cbirag'].post
+  update: {operationId: cbiRag}
+- target: $.paths[*][*].responses
+  description: >-
+    Record the two production statuses the contract omits. 429 (rate limit) and its ratelimit-*
+    headers are documented in the v1 reference and enforced platform-wide; 404 is documented for
+    unknown datapacks. Neither is declared on any v2 operation.
+  update:
+    x-apievangelist-undeclared-statuses:
+      '429':
+        description: >-
+          Too Many Requests — the 100 requests/second limit was exceeded. Response carries
+          ratelimit-limit, ratelimit-remaining and ratelimit-reset.
+        source: https://api-docs.cbinsights.com/docs/reference/rate_limiting/
+      '404':
+        description: Not Found — part of the request could not be identified (e.g. an unknown datapack).
+        source: https://api-docs.cbinsights.com/docs/reference/error_codes/
+x-apievangelist-gaps:
+- No operationId on any of 28 operations.
+- basePath is an absolute URL; host and schemes are absent.
+- Tag StrategyMap used but not declared in tags[].
+- 429 undeclared despite an enforced, documented rate limit.
+- Error schema common.ErrorWithCode exposes only a free-text `error` string — no enumerated code.
+- No security scheme applied at the document root; each operation repeats both a `security` entry
+  and a redundant required `Authorization` header parameter.
+- No examples on responses (request-body examples are present on many properties).

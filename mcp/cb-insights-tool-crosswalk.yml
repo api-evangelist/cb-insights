@@ -1,0 +1,148 @@
+generated: '2026-08-09'
+method: derived
+source: >-
+  openapi/cb-insights-api-v2-openapi.json (28 operations) +
+  https://github.com/cbinsights/cbi-mcp-server (server.py) +
+  probe of https://mcp.cbinsights.com/ tools/list (401 invalid_token, 2026-08-09)
+summary: >-
+  CB Insights ships both an OpenAPI-described REST surface and a hosted MCP server, but the two
+  cannot be reconciled from public artifacts: the live tools/list is OAuth-gated and the docs
+  tools-reference page renders client-side with no reachable data file. Exactly ONE tool is
+  confirmed by name — ChatCBI, from CB Insights' own (now deprecated) reference server — and it
+  binds cleanly to POST /v2/chatcbi. Everything else in this file is recorded as REST-only: 27
+  documented operations with no publicly confirmed tool behind them. Nothing here asserts a tool
+  that CB Insights has not published.
+surfaces:
+  openapi:
+    path: openapi/cb-insights-api-v2-openapi.json
+    spec: Swagger 2.0
+    operations: 28
+    base_url: https://api.cbinsights.com
+    gated: false
+    note: >-
+      The contract declares NO operationId on any operation, so crosswalk rows reference operations
+      by METHOD + PATH. That absence is itself the blocker for tool binding: there is no stable
+      identifier to bind a tool to.
+  graphql:
+    present: false
+  mcp:
+    url: https://mcp.cbinsights.com/
+    gated: true
+    probe_status: 401
+    probe_date: '2026-08-09'
+    note: tools/list requires an OAuth bearer token obtained via the server's own authorization endpoint.
+crosswalk:
+- tool: ChatCBI
+  category: research
+  rest:
+  - POST /v2/chatcbi
+  binding: direct
+  confidence: high
+  note: >-
+    Confirmed from CB Insights' own reference server source (server.py: @mcp.tool name="ChatCBI",
+    API_BASE https://api.cbinsights.com/v2, POST to /chatcbi). Tool inputs message + chat_id map to
+    the v2ChatCBI.ChatCBIRequest body fields message + chatID; the response carries chatID, message,
+    relatedContent, sources, suggestions, title. Annotated readOnlyHint + openWorldHint.
+    Confirmed for the deprecated self-hosted server; presence on the hosted server is likely but
+    unverified.
+mcp_only: []
+mcp_only_note: >-
+  Cannot be determined. Establishing MCP-only capability requires reading the hosted server's tool
+  list, which is auth-gated.
+rest_only:
+- operation: POST /v2/authorize
+  tag: Authorization
+  reason: >-
+    Credential exchange. Would not surface as a tool — the MCP server performs it internally (the
+    reference implementation calls it before every tool invocation).
+- operation: POST /v2/organizations
+  tag: Organizations
+  reason: No publicly confirmed tool. Free (never charges credits) — the intended entity-resolution step before spending credits.
+- operation: POST /v2/firmographics
+  tag: Firmographics
+  reason: No publicly confirmed tool.
+- operation: POST /v2/businessrelationships
+  tag: BusinessRelationships
+  reason: No publicly confirmed tool.
+- operation: POST /v2/organizations/{orgId}/businessrelationships
+  tag: BusinessRelationships
+  reason: No publicly confirmed tool.
+- operation: POST /v2/financialtransactions/fundings
+  tag: FinancialTransactions
+  reason: No publicly confirmed tool.
+- operation: POST /v2/financialtransactions/investments
+  tag: FinancialTransactions
+  reason: No publicly confirmed tool.
+- operation: POST /v2/financialtransactions/portfolioexits
+  tag: FinancialTransactions
+  reason: No publicly confirmed tool.
+- operation: POST /v2/organizations/{orgId}/financialtransactions/fundings
+  tag: FinancialTransactions
+  reason: No publicly confirmed tool.
+- operation: POST /v2/organizations/{orgId}/financialtransactions/investments
+  tag: FinancialTransactions
+  reason: No publicly confirmed tool.
+- operation: POST /v2/organizations/{orgId}/financialtransactions/portfolioexits
+  tag: FinancialTransactions
+  reason: No publicly confirmed tool.
+- operation: POST /v2/managementandboard
+  tag: ManagementAndBoard
+  reason: No publicly confirmed tool.
+- operation: POST /v2/organizations/{orgId}/managementandboard
+  tag: ManagementAndBoard
+  reason: No publicly confirmed tool.
+- operation: POST /v2/outlook
+  tag: Outlook
+  reason: No publicly confirmed tool.
+- operation: POST /v2/organizations/{orgId}/outlook
+  tag: Outlook
+  reason: No publicly confirmed tool.
+- operation: POST /v2/organizations/{orgId}/mosaichistory
+  tag: Outlook
+  reason: No publicly confirmed tool.
+- operation: POST /v2/organizations/{orgId}/commercialmaturityhistory
+  tag: Outlook
+  reason: No publicly confirmed tool.
+- operation: POST /v2/organizations/{orgId}/exitprobabilityhistory
+  tag: Outlook
+  reason: No publicly confirmed tool.
+- operation: POST /v2/outlook/fundingwindow
+  tag: Outlook
+  reason: No publicly confirmed tool.
+- operation: POST /v2/organizations/{orgId}/fundingwindow
+  tag: Outlook
+  reason: No publicly confirmed tool.
+- operation: POST /v2/revenuebyyear
+  tag: Revenue
+  reason: No publicly confirmed tool.
+- operation: POST /v2/organizations/{orgId}/revenuebyyear
+  tag: Revenue
+  reason: No publicly confirmed tool.
+- operation: POST /v2/organizations/{orgId}/scoutingreport
+  tag: ScoutingReports
+  reason: No publicly confirmed tool.
+- operation: POST /v2/organizations/{orgId}/scoutingreportstream
+  tag: ScoutingReports
+  reason: Streaming variant; no publicly confirmed tool.
+- operation: POST /v2/organizations/{orgId}/strategymap
+  tag: StrategyMap
+  reason: No publicly confirmed tool. Note the StrategyMap tag is undeclared in the spec's top-level tags[] list.
+- operation: POST /v2/cbirag
+  tag: ChatCBI
+  reason: >-
+    RAG-over-CBI-data endpoint returning structured results. Adjacent to ChatCBI but a distinct
+    operation; no confirmed tool.
+- operation: POST /v2/chatcbichunked
+  tag: ChatCBI
+  reason: Chunked/streaming variant of chatcbi; no confirmed tool.
+coverage:
+  rest_operations: 28
+  tools_confirmed: 1
+  bound: 1
+  mcp_only: unknown
+  rest_only: 27
+  bound_percent_of_rest: 3.6
+  note: >-
+    "27 rest_only" measures what is PUBLICLY VERIFIABLE, not what the hosted server lacks. The
+    honest reading is that CB Insights ships an agent surface whose capability list cannot be
+    discovered without first buying a subscription and completing an OAuth flow.

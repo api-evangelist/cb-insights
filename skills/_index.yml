@@ -1,0 +1,65 @@
+generated: '2026-08-09'
+method: generated
+source: >-
+  Authored by API Evangelist from openapi/cb-insights-api-v2-openapi.json and the CB Insights
+  developer portal. CB Insights publishes no skills, AGENTS.md, or agent operating instructions of
+  its own — probed for /llms.txt (404/403 across all hosts), /.well-known/agent-card.json (404) and
+  a machine-readable MCP tool list (401, auth-gated).
+api: CB Insights API v2
+base_url: https://api.cbinsights.com
+note: >-
+  Every step in these skills is grounded in a real path and method from the published contract.
+  The contract declares NO operationIds on any of its 28 operations, so operations are referenced
+  by METHOD + PATH rather than by id — see overlays/cb-insights-api-v2-overlay.yaml, which proposes
+  an operationId for each.
+skills:
+- name: cb-insights-resolve-organizations
+  file: skills/cb-insights-resolve-organizations.md
+  description: >-
+    Match names/domains you hold to CB Insights orgIds using the free organization-lookup operation.
+    The mandatory first step for every other flow.
+  operations:
+  - POST /v2/authorize
+  - POST /v2/organizations
+- name: cb-insights-funding-history
+  file: skills/cb-insights-funding-history.md
+  description: >-
+    Pull fundings received, investments made and portfolio exits for a company or cohort, with
+    investors, valuations, terms and source provenance.
+  operations:
+  - POST /v2/financialtransactions/fundings
+  - POST /v2/financialtransactions/investments
+  - POST /v2/financialtransactions/portfolioexits
+  - POST /v2/organizations/{orgId}/financialtransactions/fundings
+  - POST /v2/organizations/{orgId}/financialtransactions/investments
+  - POST /v2/organizations/{orgId}/financialtransactions/portfolioexits
+- name: cb-insights-company-outlook
+  file: skills/cb-insights-company-outlook.md
+  description: >-
+    Read Mosaic Score, Commercial Maturity and Exit Probability (current and historical), the
+    predicted funding window, and generate a scouting report or strategy map.
+  operations:
+  - POST /v2/outlook
+  - POST /v2/organizations/{orgId}/outlook
+  - POST /v2/organizations/{orgId}/mosaichistory
+  - POST /v2/organizations/{orgId}/commercialmaturityhistory
+  - POST /v2/organizations/{orgId}/exitprobabilityhistory
+  - POST /v2/outlook/fundingwindow
+  - POST /v2/organizations/{orgId}/fundingwindow
+  - POST /v2/organizations/{orgId}/scoutingreport
+  - POST /v2/organizations/{orgId}/scoutingreportstream
+  - POST /v2/organizations/{orgId}/strategymap
+cross_cutting_rules:
+- Authenticate once per 24 hours; there is no refresh token.
+- Resolve orgIds with POST /v2/organizations first — it is the one operation that never charges credits.
+- No idempotency key exists and every data call debits the credit ledger, so a retry is billable.
+  De-duplicate client-side.
+- 424 Failed Dependency means credits are exhausted — stop, do not retry.
+- 403 usually means the 24-hour token expired — re-authorize and retry once.
+- Rate limit is 100 requests/second across the whole API; pace with ratelimit-remaining / ratelimit-reset.
+cross_links:
+  conventions: conventions/cb-insights-conventions.yml
+  errors: errors/cb-insights-problem-types.yml
+  rate_limits: rate-limits/cb-insights-rate-limits.yml
+  data_model: data-model/cb-insights-data-model.yml
+  vocabulary: vocabulary/cb-insights-vocabulary.yml

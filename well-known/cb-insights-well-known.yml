@@ -1,0 +1,89 @@
+generated: '2026-08-09'
+method: probed
+source: >-
+  Anonymous GET of /.well-known/* across every CB Insights host discovered in this pass:
+  www.cbinsights.com, api.cbinsights.com, api-docs.cbinsights.com, docs.cbinsights.com and
+  mcp.cbinsights.com.
+summary: >-
+  CB Insights publishes no security.txt and no api-catalog anywhere. The only populated
+  /.well-known/ surface in the estate belongs to the hosted MCP server at mcp.cbinsights.com,
+  which serves RFC 9728 protected-resource metadata, RFC 8414 authorization-server metadata and
+  an OpenID-Connect-shaped discovery document. api.cbinsights.com answers EVERY path — including
+  /.well-known/* — with 401 "Permission denied for given authorization token", so nothing can be
+  read there anonymously.
+hosts:
+  - host: mcp.cbinsights.com
+    paths:
+      - path: /.well-known/oauth-protected-resource
+        status: 200
+        content_type: application/json
+        file: well-known/cb-insights-mcp-oauth-protected-resource.json
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        content_type: application/json
+        file: well-known/cb-insights-mcp-oauth-authorization-server.json
+      - path: /.well-known/openid-configuration
+        status: 200
+        content_type: application/json
+        file: well-known/cb-insights-mcp-openid-configuration.json
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /.well-known/security.txt
+        status: 404
+  - host: www.cbinsights.com
+    paths:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /llms.txt
+        status: 404
+  - host: api.cbinsights.com
+    paths:
+      - path: /.well-known/security.txt
+        status: 401
+        note: Host returns 401 "Permission denied for given authorization token" on every path.
+      - path: /.well-known/openid-configuration
+        status: 401
+      - path: /.well-known/oauth-authorization-server
+        status: 401
+      - path: /.well-known/oauth-protected-resource
+        status: 401
+      - path: /.well-known/agent-card.json
+        status: 401
+      - path: /.well-known/agent.json
+        status: 401
+  - host: api-docs.cbinsights.com
+    paths:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /llms.txt
+        status: 404
+  - host: docs.cbinsights.com
+    paths:
+      - path: /llms.txt
+        status: 403
+findings:
+  security_txt: absent
+  api_catalog: absent
+  openid_configuration: present (MCP host only)
+  oauth_authorization_server: present (MCP host only)
+  oauth_protected_resource: present (MCP host only)
+  ai_plugin: absent
+  agent_card: absent
+cross_links:
+  authentication: authentication/cb-insights-authentication.yml
+  conformance: conformance/cb-insights-conformance.yml
+  mcp: mcp/cb-insights-mcp.yml

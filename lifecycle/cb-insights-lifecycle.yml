@@ -1,0 +1,96 @@
+generated: '2026-08-09'
+method: searched
+source: >-
+  https://api-docs.cbinsights.com/docs/change_log/ + openapi/cb-insights-api-v2-openapi.json +
+  https://github.com/cbinsights/cbi-mcp-server
+docs:
+- https://api-docs.cbinsights.com/docs/change_log/
+- https://api-docs.cbinsights.com/portal/docs/api/
+- https://github.com/cbinsights/cbi-mcp-server
+versioning:
+  scheme: path-segment + semantic release
+  major_versions:
+  - version: v1
+    path_prefix: /v1
+    release_version: v1.9.0
+    last_release_date: '2024-07-26'
+    status: >-
+      Still documented and still reachable, but it has received no published release since
+      2024-07-26 and the developer portal directs all new integration at v2. CB Insights publishes
+      no formal deprecation or sunset date for v1.
+    docs: https://api-docs.cbinsights.com/
+  - version: v2
+    path_prefix: /v2
+    release_version: null
+    status: current
+    docs: https://api-docs.cbinsights.com/portal/docs/api/
+    notes: >-
+      v2 carries no release version and no change log of its own — the Swagger `info.version` is
+      "2.0", which is the Swagger spec version, not an API release. There is no way to tell from the
+      published contract when v2 last changed.
+changelog:
+  url: https://api-docs.cbinsights.com/docs/change_log/
+  scope: v1 only
+  artifact: changelog/cb-insights-changelog.yml
+  entries_published: 10
+  first_entry: '2020-12-30'
+  latest_entry: '2024-07-26'
+  quality: >-
+    Genuinely good for a v1 change log — every release carries a date, a semantic version, and a
+    prose description of new endpoints, filters, datapacks and data points. The gap is that it stops
+    at v1: the current API has no change log at all.
+status_page:
+  published: false
+  probed:
+  - url: https://status.cbinsights.com/
+    result: DNS does not resolve
+  - url: https://cbinsights.statuspage.io/
+    result: redirects to Statuspage login (not a public status page)
+  notes: No public status/uptime page was found on any host.
+deprecation:
+  policy_documented: false
+  sunset_header: not documented
+  rfc8594: false
+  notes: >-
+    CB Insights publishes no deprecation or sunset policy, no notice period, and no Deprecation /
+    Sunset headers. What it does do is mark individual fields deprecated inline in the v2 contract,
+    and it retired its own reference MCP implementation with a dated notice naming the replacement —
+    so the practice exists without a policy behind it.
+  observed_deprecations:
+  - target: request field mosaicScoreVersion
+    scope: v2Outlook.OutlookRequest, v2Outlook.OutlookListRequest, v2Outlook.MosaicHistoryRequest,
+      v2ManagementAndBoard.ManagementAndBoardRequestBody, v2ManagementAndBoard.ManagementAndBoardListRequestBody
+    note: '"Deprecated. Only Mosaic v2.1 is served."'
+    source: openapi/cb-insights-api-v2-openapi.json
+  - target: response field revenueSignalId
+    scope: v2Revenue
+    note: '"This has been deprecated and will always return null."'
+    source: openapi/cb-insights-api-v2-openapi.json
+  - target: github.com/cbinsights/cbi-mcp-server (self-hosted reference MCP server)
+    date: '2026-01'
+    replacement: https://mcp.cbinsights.com
+    note: >-
+      "This repository, serving as an example implementation of a simple self-hosted MCP server that
+      acts as a pass-through to the CB Insights API, is deprecated as of January 2026. CB Insights
+      is pleased to offer a fully supported MCP server at mcp.cbinsights.com."
+    source: https://github.com/cbinsights/cbi-mcp-server
+sla:
+  documented: false
+  notes: >-
+    No public SLA, uptime commitment, or support-response target. The API Terms of Use are published
+    (api-docs.cbinsights.com/portal/api-terms-of-use) and incorporate the master subscription
+    agreement at legal.cbinsights.com, but carry no availability commitment.
+support:
+  model: named CSM / account representative
+  channels:
+  - Customer Success Manager (credential issuance, credit refills, escalation)
+  - info@cbinsights.com
+  - https://www.cbinsights.com/company/support
+  notes: >-
+    Every documented failure path — obtaining credentials, refilling credits after a 424, SSO test
+    failures — routes to a human CSM rather than a self-serve control. There is no developer support
+    forum or community channel.
+cross_links:
+  changelog: changelog/cb-insights-changelog.yml
+  conventions: conventions/cb-insights-conventions.yml
+  errors: errors/cb-insights-problem-types.yml

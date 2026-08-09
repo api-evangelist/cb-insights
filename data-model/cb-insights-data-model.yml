@@ -1,0 +1,257 @@
+generated: '2026-08-09'
+method: derived
+source: >-
+  openapi/cb-insights-api-v2-openapi.json (115 definitions, $ref graph + id-reference fields),
+  cross-checked against https://api-docs.cbinsights.com/portal/docs/CBI-API/cbi-api-overview
+summary: >-
+  A single-hub model. CB Insights states it outright in its own overview — "the Organization entity
+  serves as the fundamental building block of our data model, with all other entities linked to it
+  directly or indirectly" — and the contract bears it out: orgId appears in 18 of 115 definitions
+  and is the only identifier accepted by every non-search operation. Every integration therefore has
+  the same shape: resolve your universe to orgIds first (via the free organization-lookup
+  operation), then fan out per data category. Deals and business relationships are the only entities
+  that link organizations to each other.
+primary_key:
+  name: orgId
+  type: integer
+  description: CB Insights organization identifier. The hub key for the entire model.
+  obtained_from:
+  - POST /v2/organizations (lookup by name, url, or profileUrl — never charges credits)
+  - POST /v2/firmographics (full search)
+  note: >-
+    All other data endpoints except ChatCBI require an orgId that has already been resolved. There is
+    no way to address an organization by domain or name on the category endpoints.
+entities:
+- name: Organization
+  schema: v2Firmographics.Org
+  id: orgId
+  description: >-
+    A company, investor, or other entity. Carries summary (name, aliases, legal names, url,
+    additionalUrls, profileUrl, description, foundedYear, status, stage, vcBacked, investorCategory,
+    address), taxonomy, identifiers, financials, headcount, businessModels, expertCollections,
+    competitors, parentOrgs and childOrgs.
+- name: OrganizationLookup
+  schema: v2OrganizationLookup.Org
+  id: orgId
+  description: Thin projection of Organization — just enough to confirm identity and obtain the orgId.
+- name: Identifiers
+  schema: v2Firmographics.Identifiers
+  description: >-
+    External security/entity identifiers on an organization — stock tickers and exchanges, CUSIP,
+    ISIN, FIGI (OpenFIGI), LEI, SEC CIK. These are the join keys to outside reference data.
+- name: FinancialTransaction
+  schema: v2FinancialTransactions.Transaction
+  id: dealId
+  description: >-
+    A funding round, investment, or exit. Carries date, amountInMillions, valuationInMillions,
+    round/roundCategory/roundId, investors, recipient, revenue range and multiple, isExit, sources
+    and AI-generated insights.
+- name: CapTable
+  schema: v2FinancialTransactions.CapTable
+  description: Capitalization history attached to funding transactions, including preference terms.
+- name: Terms
+  schema: v2FinancialTransactions.Terms
+  description: >-
+    Deal terms — antiDilutionProvisionId, dividendPreferenceId, liquidationPreferenceId,
+    participationRightsId.
+- name: Investor
+  schema: v2FinancialTransactions.Investor
+  description: An organization acting in the investor role on a transaction.
+- name: BusinessRelationship
+  schema: v2BusinessRelationships.BusinessRelationship
+  id: relationshipId
+  description: >-
+    A partnership, client/vendor, or licensing tie between two or more organizations. Carries
+    partners, startDate, lastUpdateTime, news snippets, sources and AI-generated insights.
+- name: Person
+  schema: v2ManagementAndBoard.Person
+  id: personId
+  description: >-
+    A management-team or board member — givenName, middleName, surname, email, linkedInUrl,
+    workExperience, education, boardAssociations.
+- name: Outlook
+  schema: v2Outlook.OrgOutlookResponse
+  description: >-
+    The proprietary score bundle for an organization — mosaicScore, commercialMaturity,
+    exitProbability. Each has a history variant and a signals/insights breakdown.
+- name: MosaicScore
+  schema: v2Outlook.MosaicScore
+  description: Composite health/growth score with sub-scores; only Mosaic v2.1 is served.
+- name: CommercialMaturity
+  schema: v2Outlook.CommercialMaturity
+  description: Maturity level plus supporting signals.
+- name: ExitProbability
+  schema: v2Outlook.CurrentExitProbability
+  description: Exit likelihood broken out with exit signals.
+- name: FundingWindow
+  schema: v2Outlook.FundingWindowOrg
+  description: Predicted funding-window data for an organization.
+- name: RevenueYear
+  schema: v2Revenue.RevenueYear
+  description: Revenue by year with source metadata; revenueSignalId is deprecated and always null.
+- name: ScoutingReport
+  schema: v2ScoutingReports.ScoutingReportResponse
+  description: >-
+    On-demand AI-generated report for an organization, returned as both reportJson and
+    reportMarkdown, with an orgInfo header. A streaming variant exists.
+- name: StrategyMap
+  schema: v2StrategyMap.StrategyMapResponse
+  description: >-
+    Categorised map of an organization's strategy — categories, companies, connections, financial
+    events and business relationships, plus insights.
+- name: Taxonomy
+  schema: v2Firmographics.Taxonomy
+  description: Sector > Industry > Sub-industry classification, plus markets and technologies.
+- name: BusinessModel
+  schema: v2Firmographics.BusinessModel
+  id: businessModelId
+  description: Controlled business-model classification.
+- name: ExpertCollection
+  schema: v2Firmographics.ExpertCollection
+  id: collectionId
+  description: Analyst-curated list an organization belongs to.
+- name: Address
+  schema: v2Firmographics.Address
+  description: Geographic location keyed by continentId, countryId, stateProvinceId, cityId.
+- name: Competitor
+  schema: v2Firmographics.Competitor
+  description: A related organization with a Competitor Score.
+- name: ChatCBIConversation
+  schema: v2ChatCBI.ChatCBIResponse
+  id: chatID
+  description: >-
+    A conversation with the ChatCBI research LLM. Carries message, sources, relatedContent,
+    suggestions and title. The only stateful entity in the API — chatID threads turns together.
+relationships:
+- from: Organization
+  to: Organization
+  type: has_many
+  via: parentOrgs
+  label: parent organizations
+- from: Organization
+  to: Organization
+  type: has_many
+  via: childOrgs
+  label: subsidiaries
+- from: Organization
+  to: Competitor
+  type: has_many
+  via: competitors
+- from: Organization
+  to: Taxonomy
+  type: has_one
+  via: taxonomy
+- from: Organization
+  to: BusinessModel
+  type: has_many
+  via: businessModels
+- from: Organization
+  to: ExpertCollection
+  type: has_many
+  via: expertCollections
+- from: Organization
+  to: Identifiers
+  type: has_one
+  via: identifiers
+- from: Organization
+  to: Address
+  type: has_one
+  via: summary.address
+- from: Organization
+  to: FinancialTransaction
+  type: has_many
+  via: orgId (POST /v2/organizations/{orgId}/financialtransactions/*)
+  label: fundings received, investments made, portfolio exits
+- from: FinancialTransaction
+  to: Organization
+  type: belongs_to
+  via: recipient
+- from: FinancialTransaction
+  to: Investor
+  type: has_many
+  via: investors
+  label: investors are themselves Organizations
+- from: FinancialTransaction
+  to: CapTable
+  type: has_one
+  via: capTable
+- from: Organization
+  to: BusinessRelationship
+  type: has_many
+  via: orgId (POST /v2/organizations/{orgId}/businessrelationships)
+- from: BusinessRelationship
+  to: Organization
+  type: has_many
+  via: partners
+  label: the many-to-many edge between organizations
+- from: Organization
+  to: Person
+  type: has_many
+  via: orgId (POST /v2/organizations/{orgId}/managementandboard)
+- from: Person
+  to: Organization
+  type: has_many
+  via: workExperience / boardAssociations
+- from: Organization
+  to: Outlook
+  type: has_one
+  via: orgId (POST /v2/organizations/{orgId}/outlook)
+- from: Outlook
+  to: MosaicScore
+  type: has_one
+  via: mosaicScore
+- from: Outlook
+  to: CommercialMaturity
+  type: has_one
+  via: commercialMaturity
+- from: Outlook
+  to: ExitProbability
+  type: has_one
+  via: exitProbability
+- from: Organization
+  to: RevenueYear
+  type: has_many
+  via: orgId (POST /v2/organizations/{orgId}/revenuebyyear)
+- from: Organization
+  to: FundingWindow
+  type: has_one
+  via: orgId (POST /v2/organizations/{orgId}/fundingwindow)
+- from: Organization
+  to: ScoutingReport
+  type: has_many
+  via: orgId (POST /v2/organizations/{orgId}/scoutingreport)
+- from: Organization
+  to: StrategyMap
+  type: has_one
+  via: orgId (POST /v2/organizations/{orgId}/strategymap)
+id_domains:
+  orgId: CB Insights organization identifier (integer)
+  dealId: financial transaction identifier
+  relationshipId: business relationship identifier
+  personId: management/board person identifier
+  roundId / roundCategoryId / roundTypeId: funding round vocabulary
+  businessModelId: business model vocabulary
+  collectionId: Expert Collection identifier
+  sectorId / industryId / subindustryId: taxonomy hierarchy
+  marketIds / technologyIds: market and technology taxonomies
+  continentId / regionId / countryId / stateProvinceId / cityId: geography vocabulary
+  investorTypeId / investorCategoryId: investor classification
+  statusId / orgStatusIds: organization status vocabulary
+  titleIds: person title vocabulary
+  awardsAndSpotlightsId: awards and spotlights vocabulary
+  chatID: ChatCBI conversation identifier (string)
+  see: vocabulary/cb-insights-vocabulary.yml
+notes:
+- >-
+  Every *Id filter resolves against a published reference vocabulary rather than free text — the
+  data model is only usable in combination with the taxonomy reference pages.
+- >-
+  No entity carries a created/updated timestamp except BusinessRelationship (lastUpdateTime); v1
+  exposed lastUpdateTime across organizations, deals, people and business relationships as the
+  incremental-sync mechanism.
+- >-
+  The contract declares no operationIds, so entity operations can only be referenced by METHOD+PATH.
+cross_links:
+  openapi: openapi/cb-insights-api-v2-openapi.json
+  conventions: conventions/cb-insights-conventions.yml
+  vocabulary: vocabulary/cb-insights-vocabulary.yml

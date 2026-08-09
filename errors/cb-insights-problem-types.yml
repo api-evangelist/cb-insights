@@ -1,0 +1,118 @@
+generated: '2026-08-09'
+method: searched
+format: bespoke-json
+source: https://api-docs.cbinsights.com/docs/reference/error_codes/
+derived_from: openapi/cb-insights-api-v2-openapi.json
+docs:
+- https://api-docs.cbinsights.com/docs/reference/error_codes/
+- https://api-docs.cbinsights.com/portal/docs/api/
+rfc9457: false
+summary: >-
+  CB Insights does not use RFC 9457 application/problem+json. Every error on the v2 API is
+  application/json carrying a single-field object — `common.ErrorWithCode` with one string property,
+  `error`. Despite the schema name there is no machine-readable code member: the only structured
+  signal an agent gets is the HTTP status. The v1 docs publish a prose HTTP error-code reference
+  which is the source of the remediation text below; v2's spec declares the same status family plus
+  401.
+envelope:
+  media_type: application/json
+  schema: common.ErrorWithCode
+  shape: '{ "error": "<string>" }'
+  fields:
+  - name: error
+    type: string
+    required: false
+    description: Human-readable error message. No enumerated code, type URI, or field pointer.
+  note: >-
+    401 Unauthorized is the one exception in the v2 spec — it is declared with a bare `type: string`
+    body rather than the ErrorWithCode object. The api.cbinsights.com edge also returns the plain
+    text "Permission denied for given authorization token" (no JSON) for unauthenticated requests to
+    any path, so clients must tolerate a non-JSON 401.
+declared_coverage:
+  operations: 28
+  by_status:
+    '200': 28
+    '400': 28
+    '401': 24
+    '403': 23
+    '424': 23
+    '500': 23
+  note: >-
+    429 (rate limit) is documented in the v1 reference and enforced by the platform, but is NOT
+    declared on any operation in the v2 Swagger contract — a client generated from the spec alone
+    will not know to handle throttling.
+problems:
+- status: 400
+  title: Bad Request
+  media_type: application/json
+  schema: common.ErrorWithCode
+  meaning: The request is incorrectly formatted; the message field carries the detail.
+  remediation: >-
+    Read the `error` string. Common v2 causes are supplying no search parameter at all (search
+    bodies require at least one), or combining mutually exclusive parameters (e.g. `profileUrl` with
+    `names` or `urls` on the organization lookup).
+  declared_on: all 28 operations
+- status: 401
+  title: Unauthorized
+  media_type: application/json (string body) / text/plain at the edge
+  meaning: No bearer token, or the token is not recognised.
+  remediation: >-
+    Call POST /v2/authorize with clientId/clientSecret and resend with
+    `Authorization: Bearer <token>`.
+  declared_on: 24 of 28 operations
+- status: 403
+  title: Forbidden
+  media_type: application/json
+  schema: common.ErrorWithCode
+  meaning: >-
+    Documented in the v1 reference as "your request has not been properly authenticated — validate
+    you are using a fresh JWT token". In practice this is the expired-token status as well as the
+    not-entitled-for-this-dataset status.
+  remediation: Re-authorize to mint a fresh 24-hour token; if it persists, the account is not entitled to that dataset.
+  declared_on: 23 of 28 operations
+- status: 404
+  title: Not Found
+  meaning: >-
+    v1 only — "a portion of your request could not be identified (e.g. an invalid datapack was sent
+    in your request `include`)". Not declared anywhere in the v2 contract.
+  remediation: Check the datapack names in `include` against the v1 endpoint reference.
+  declared_on: v1 documentation only
+- status: 424
+  title: Failed Dependency (credit exhaustion)
+  media_type: application/json
+  schema: common.ErrorWithCode
+  meaning: >-
+    The request failed because a credit could not be deducted — the account credit balance is
+    exhausted. This is CB Insights' quota-exceeded signal, and it is the single most
+    integration-relevant error on the platform because the API is credit-metered per call.
+  remediation: >-
+    Check the remaining balance (v1 GET /v1/credits returns the ledger and `creditsRemaining`) and
+    contact the CSM to refill. Do not retry — a retry cannot succeed until the balance is topped up.
+  declared_on: 23 of 28 operations
+  see: https://api-docs.cbinsights.com/docs/reference/credit_model/
+- status: 429
+  title: Too Many Requests
+  meaning: The one-second, 100-request rate limit was exceeded.
+  remediation: >-
+    Back off using the `ratelimit-reset` response header (seconds remaining in the current window),
+    then retry. Documented in the v1 rate-limiting reference; undeclared in the v2 spec.
+  declared_on: v1 documentation only
+  see: rate-limits/cb-insights-rate-limits.yml
+- status: 500
+  title: Internal Server Error
+  media_type: application/json
+  schema: common.ErrorWithCode
+  meaning: A fault on the CB Insights side.
+  remediation: Retry the request; if it persists, contact the CSM or info@cbinsights.com.
+  declared_on: 23 of 28 operations
+gaps:
+- No enumerated, stable error-code vocabulary — `error` is free text, so agents cannot branch on
+  anything finer than the HTTP status.
+- No `type` URI, `instance`, or field-level pointer; a 400 cannot be attributed to a specific
+  request field programmatically.
+- 429 and 404 exist in production but are absent from the published v2 contract.
+- No published retry guidance beyond "retry" for 500, and no Retry-After header is documented.
+cross_links:
+  conventions: conventions/cb-insights-conventions.yml
+  rate_limits: rate-limits/cb-insights-rate-limits.yml
+  authentication: authentication/cb-insights-authentication.yml

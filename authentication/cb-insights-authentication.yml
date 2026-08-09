@@ -1,0 +1,144 @@
+generated: '2026-08-09'
+method: searched
+source: https://api-docs.cbinsights.com/portal/docs/CBI-API/cbi-authentication
+docs:
+- https://api-docs.cbinsights.com/portal/docs/CBI-API/cbi-authentication
+- https://api-docs.cbinsights.com/portal/docs/quick-start
+- https://api-docs.cbinsights.com/docs/tutorials/authentication_flow/
+- https://api-docs.cbinsights.com/docs/endpoints/authentication_endpoint/
+derived_from:
+- openapi/cb-insights-api-v2-openapi.json
+- well-known/cb-insights-mcp-oauth-authorization-server.json
+- well-known/cb-insights-mcp-oauth-protected-resource.json
+summary: >-
+  Three distinct authentication models across the CB Insights estate. The REST APIs (v1 and v2) both
+  use a CB-Insights-issued clientId/clientSecret pair exchanged at an /authorize endpoint for a
+  bearer JWT, which is then sent in the Authorization header of every data call; there is no refresh
+  token. The hosted MCP server is separate — it is a full OAuth 2.1 authorization server with
+  dynamic client registration and PKCE, which is what lets Claude/ChatGPT/Copilot connect with an
+  end-user login rather than an API credential. Credentials are never self-issued: clientId and
+  clientSecret come from a CB Insights representative or from the developer-portal trial sign-up.
+types:
+- apiKey
+- oauth2
+api_key_in:
+- header
+schemes:
+- name: BearerAuth
+  type: apiKey
+  in: header
+  parameter: Authorization
+  format: Bearer <JWT>
+  description: >-
+    Bearer JWT required on every v2 data operation. Declared in the published Swagger 2.0 contract as
+    an apiKey-in-header scheme (Swagger 2.0 has no bearer http type), and additionally declared as a
+    required `Authorization` header parameter on each operation.
+  applies_to: CB Insights API v2 (all 28 operations except POST /v2/authorize)
+  sources:
+  - openapi/cb-insights-api-v2-openapi.json
+  - https://api-docs.cbinsights.com/portal/docs/CBI-API/cbi-authentication
+- name: v2 client credentials exchange
+  type: custom-client-credentials
+  token_endpoint: https://api.cbinsights.com/v2/authorize
+  method: POST
+  request_body: '{"clientId": "...", "clientSecret": "..."}'
+  response_body: '{"token": "..."}'
+  notes: >-
+    Documented as a "client credentials flow" but it is NOT RFC 6749 — the request is a bespoke JSON
+    body against /v2/authorize rather than an OAuth token endpoint with grant_type. The quick-start
+    shows an `expiresIn` field alongside `token`; the authentication reference states the token is
+    valid 24 hours and that there is no refresh-token mechanism (re-authorize on expiry).
+  sources:
+  - https://api-docs.cbinsights.com/portal/docs/CBI-API/cbi-authentication
+  - https://api-docs.cbinsights.com/portal/docs/quick-start
+- name: v1 JWT authorize
+  type: custom-client-credentials
+  token_endpoint: https://api.cbinsights.com/v1/authorize
+  method: GET
+  request: query parameters clientId + clientSecret
+  response_body: '{"token": "..."}'
+  token_lifetime: 24h
+  notes: >-
+    The v1 flow passes the client secret as a URL query parameter on a GET request, which puts the
+    long-lived secret into proxy, browser and server access logs. v2 moved this to a POST body.
+  sources:
+  - https://api-docs.cbinsights.com/docs/tutorials/authentication_flow/
+  - https://api-docs.cbinsights.com/docs/endpoints/authentication_endpoint/
+- name: MCP OAuth 2.1
+  type: oauth2
+  applies_to: CB Insights MCP Server (https://mcp.cbinsights.com/)
+  issuer: https://mcp.cbinsights.com/
+  authorization_endpoint: https://mcp.cbinsights.com/authorize
+  token_endpoint: https://mcp.cbinsights.com/token
+  registration_endpoint: https://mcp.cbinsights.com/register
+  grant_types:
+  - authorization_code
+  - refresh_token
+  - client_credentials
+  response_types:
+  - code
+  pkce:
+  - S256
+  token_endpoint_auth_methods:
+  - none
+  - client_secret_post
+  - client_secret_basic
+  scopes_supported:
+  - openid
+  - email
+  - profile
+  bearer_methods_supported:
+  - header
+  discovery:
+    oauth_authorization_server: well-known/cb-insights-mcp-oauth-authorization-server.json
+    oauth_protected_resource: well-known/cb-insights-mcp-oauth-protected-resource.json
+    openid_configuration: well-known/cb-insights-mcp-openid-configuration.json
+  notes: >-
+    Dynamic client registration is open (registration_endpoint present, token_endpoint_auth_methods
+    includes "none"), which is what makes one-click connector setup work in Claude/ChatGPT/Copilot.
+    The three scopes advertised are identity scopes only — no data-permission scopes are published,
+    so authorization granularity is not expressed in the token.
+  sources:
+  - https://mcp.cbinsights.com/.well-known/oauth-authorization-server
+  - https://mcp.cbinsights.com/.well-known/oauth-protected-resource
+credential_issuance:
+  self_serve: partial
+  detail: >-
+    A trial clientId/clientSecret is issued through the developer-portal sign-up form after email
+    validation (25 companies, 5 scouting reports, 5 ChatCBI messages). Production credentials are
+    issued by a CB Insights representative / CSM — there is no self-serve production key.
+  sign_up: https://api-docs.cbinsights.com/portal/signup
+enterprise_identity:
+  saml_sso:
+    supported: true
+    initiation: SP-initiated only (IdP-initiated SSO is explicitly not supported)
+    idps_documented:
+    - Okta (Okta Integration Network app)
+    - Azure AD
+    docs: https://docs.cbinsights.com/docs/sso/index.html
+  scim:
+    supported: true
+    version_documented: SCIM (version not stated)
+    operations:
+    - create users
+    - update user attributes
+    - deactivate users
+    primary_identifier: email mapped to SCIM userName
+    credential: SCIM API key generated in Account Settings > Single Sign-On
+    docs: https://docs.cbinsights.com/docs/scim/index.html
+  mfa:
+    supported: true
+    source: https://www.cbinsights.com/security-and-privacy/
+gaps:
+- No RFC 6749 / RFC 8414 conformance on the REST token endpoint — the "client credentials flow" is a
+  bespoke JSON exchange, so standard OAuth clients cannot be pointed at it.
+- No refresh token on the REST APIs; every 24 hours the client must resend the long-lived secret.
+- v1 transmits clientSecret in a URL query string.
+- No token revocation, introspection, or key-rotation endpoint is documented.
+- The MCP authorization server advertises only openid/email/profile — no data scopes, so an agent
+  token cannot be narrowed to a subset of the data surface.
+cross_links:
+  conformance: conformance/cb-insights-conformance.yml
+  conventions: conventions/cb-insights-conventions.yml
+  well_known: well-known/cb-insights-well-known.yml
+  mcp: mcp/cb-insights-mcp.yml

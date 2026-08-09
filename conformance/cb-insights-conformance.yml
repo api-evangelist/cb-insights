@@ -1,0 +1,150 @@
+generated: '2026-08-09'
+method: searched
+source: >-
+  https://mcp.cbinsights.com/.well-known/oauth-authorization-server +
+  https://mcp.cbinsights.com/.well-known/oauth-protected-resource +
+  https://www.cbinsights.com/security-and-privacy/ +
+  https://docs.cbinsights.com/docs/scim/index.html +
+  openapi/cb-insights-api-v2-openapi.json
+summary: >-
+  CB Insights conforms strongly on the identity and agent-protocol side — a real OAuth 2.1
+  authorization server with DCR and PKCE fronting the MCP endpoint, SAML SSO and SCIM provisioning
+  for enterprise identity, and published SOC 2 Type II / GDPR posture. It conforms weakly on API
+  standards: the REST token exchange is not RFC 6749, errors are not RFC 9457, the contract is
+  Swagger 2.0 rather than OpenAPI 3.x and carries no operationIds, and there is no security.txt or
+  api-catalog anywhere in the estate.
+standards:
+- id: openapi
+  conforms: partial
+  evidence: >-
+    A real machine-readable contract is published at
+    https://api-docs.cbinsights.com/v2/cbinsights_api_v2.json (200, application/json) — but it is
+    Swagger 2.0, not OpenAPI 3.x. 28 operations, 115 definitions, all with summary + description +
+    tags. No operationId on any operation; no `host`/`schemes` (basePath carries a full URL, which
+    is not valid Swagger 2.0); `StrategyMap` is used as a tag but not declared in tags[].
+- id: openapi3
+  conforms: false
+  evidence: The published contract is swagger 2.0. No OpenAPI 3.x document is published for v1 or v2.
+- id: oauth2
+  conforms: partial
+  evidence: >-
+    True for the MCP surface — mcp.cbinsights.com publishes a full authorization-server metadata
+    document with authorization_code, refresh_token and client_credentials grants. NOT true for the
+    REST APIs: /v1/authorize and /v2/authorize are bespoke clientId/clientSecret exchanges that
+    return {"token": ...}, with no grant_type, no token_type, no scope, and no refresh token.
+- id: oauth2-pkce
+  conforms: true
+  evidence: code_challenge_methods_supported = ["S256"] on the MCP authorization server.
+- id: oauth2-dcr
+  conforms: true
+  evidence: >-
+    RFC 7591 dynamic client registration endpoint published at https://mcp.cbinsights.com/register,
+    with token_endpoint_auth_methods_supported including "none" — this is what enables one-click
+    connector setup in Claude/ChatGPT/Copilot.
+- id: rfc8414-authorization-server-metadata
+  conforms: true
+  evidence: https://mcp.cbinsights.com/.well-known/oauth-authorization-server returns 200 with valid metadata.
+- id: rfc9728-protected-resource-metadata
+  conforms: true
+  evidence: >-
+    https://mcp.cbinsights.com/.well-known/oauth-protected-resource returns 200; the 401 challenge
+    from the MCP endpoint also carries the resource_metadata parameter in WWW-Authenticate.
+- id: oidc-discovery
+  conforms: partial
+  evidence: >-
+    https://mcp.cbinsights.com/.well-known/openid-configuration returns 200 and advertises
+    openid/email/profile scopes, but the document is byte-identical to the oauth-authorization-server
+    metadata — it omits jwks_uri, userinfo_endpoint, subject_types_supported and
+    id_token_signing_alg_values_supported, all REQUIRED by OpenID Connect Discovery 1.0.
+- id: mcp
+  conforms: true
+  evidence: >-
+    Hosted Model Context Protocol server at https://mcp.cbinsights.com/ — POST of a JSON-RPC
+    tools/list envelope returns a 401 OAuth challenge (not a 404/405), and CB Insights documents
+    connector setup for Claude, ChatGPT, Perplexity and Microsoft Copilot. Reference implementation
+    published at github.com/cbinsights/cbi-mcp-server (deprecated 2026-01).
+- id: a2a
+  conforms: false
+  evidence: >-
+    The marketing site advertises "A2A & MCP support", but no agent card is served: 404 at
+    /.well-known/agent-card.json and /.well-known/agent.json on www.cbinsights.com,
+    api-docs.cbinsights.com and mcp.cbinsights.com; 401 on api.cbinsights.com. Claim without artifact.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    Errors are application/json with a single free-text `error` field (common.ErrorWithCode). No
+    application/problem+json, no type URI, no enumerated code.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on www.cbinsights.com, api-docs.cbinsights.com and mcp.cbinsights.com; 401 on api.cbinsights.com.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No Deprecation/Sunset headers and no deprecation policy published; individual fields are marked deprecated in prose inside the spec only.
+- id: rfc9116-api-catalog
+  conforms: false
+  evidence: /.well-known/api-catalog returns 404 on www.cbinsights.com.
+- id: scim
+  conforms: true
+  evidence: >-
+    SCIM provisioning documented at https://docs.cbinsights.com/docs/scim/index.html — create,
+    update and deactivate users, API-key authenticated, email mapped to SCIM userName, Okta
+    integration documented. SCIM version is not stated.
+- id: saml2
+  conforms: true
+  evidence: >-
+    SAML 2.0 SSO with customer-supplied IdP metadata, ACS URL and SP Entity ID; Okta Integration
+    Network application published. SP-initiated only — IdP-initiated SSO is explicitly unsupported.
+- id: soc2
+  conforms: true
+  evidence: >-
+    "SOC 2 Type II — our infrastructure is audited and certified to meet the most rigorous standards
+    for data security" (https://www.cbinsights.com/security-and-privacy/). A Vanta-hosted trust
+    center is published at https://trust.cbinsights.com/ (200), but its contents render client-side
+    and every path on that host returns the same SPA shell, so the certification list could not be
+    read there.
+- id: gdpr
+  conforms: true
+  evidence: '"We meet the strict requirements of the General Data Protection Regulation for data privacy and protection." (https://www.cbinsights.com/security-and-privacy/)'
+- id: ccpa
+  conforms: false
+  evidence: Listed as in-progress — "we're actively preparing to meet CCPA standards" (https://www.cbinsights.com/security-and-privacy/).
+- id: eu-ai-act
+  conforms: false
+  evidence: Listed as in-progress — "actively preparing to meet ... the EU AI Act for deployers" (https://www.cbinsights.com/security-and-privacy/).
+- id: iso27001
+  conforms: unknown
+  evidence: Not named on the public security page; the Vanta trust center that would list it is JS-rendered and unreadable.
+- id: tls
+  conforms: true
+  evidence: >-
+    "AES 256-bit at rest, TLS 1.2 in transit" (https://www.cbinsights.com/security-and-privacy/).
+    mcp.cbinsights.com returns Strict-Transport-Security: max-age=31536000.
+- id: pagination
+  conforms: true
+  evidence: Consistent opaque-cursor pagination — nextPageToken/limit in, nextPageToken/totalHits/totalHitsRelation out, across every list operation.
+- id: idempotency
+  conforms: false
+  evidence: No idempotency-key mechanism documented on either API version. Retries are billable against the credit ledger.
+- id: json-schema
+  conforms: partial
+  evidence: 115 Swagger 2.0 definitions with descriptions and examples, reused via $ref; Swagger 2.0 schema objects are a JSON Schema draft-4 subset, not a current JSON Schema dialect.
+certifications:
+- SOC 2 Type II
+- GDPR
+compliance_program:
+  trust_center: https://trust.cbinsights.com/
+  trust_center_platform: Vanta
+  public_page: https://www.cbinsights.com/security-and-privacy/
+  ai_data_use: '"Your data is never used to train the AI models we use. Period."'
+  security_controls_published:
+  - AES 256-bit encryption at rest
+  - TLS 1.2 in transit
+  - full audit trail of activity
+  - granular controls on AI features
+  - SSO, MFA, role-based access
+  - AI hallucination testing and observability
+cross_links:
+  authentication: authentication/cb-insights-authentication.yml
+  well_known: well-known/cb-insights-well-known.yml
+  mcp: mcp/cb-insights-mcp.yml
+  security: security/cb-insights-domain-security.yml

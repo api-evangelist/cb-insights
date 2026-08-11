@@ -38,56 +38,13 @@ tags:
 - data-enrichment
 - snowflake
 apis:
-- name: CB Insights API v2
-  description: >-
-    Token-authenticated REST API over CB Insights private-market intelligence. 28 POST operations
-    across eight tags — Authorization, Organizations, Firmographics, FinancialTransactions,
-    BusinessRelationships, ManagementAndBoard, Outlook and ScoutingReports — plus the ChatCBI and
-    CBI RAG research endpoints. Search bodies are JSON; results are cursor-paginated with
-    nextPageToken/totalHits; every data call debits the account credit ledger.
-  humanURL: https://api-docs.cbinsights.com/portal/docs/api/
-  baseURL: https://api.cbinsights.com
-  tags:
-  - market-intelligence
-  - private-company-data
-  - funding-data
-  - investor-data
-  - company-data
-  - people-data
-  - business-relationships
-  - predictive-scoring
-  properties:
-  - type: OpenAPI
-    url: openapi/cb-insights-api-v2-openapi.json
-  - type: Documentation
-    url: https://api-docs.cbinsights.com/portal/docs/intro
-  - type: APIReference
-    url: https://api-docs.cbinsights.com/portal/docs/api/
-  - type: GettingStarted
-    url: https://api-docs.cbinsights.com/portal/docs/quick-start
-  - type: Authentication
-    url: authentication/cb-insights-authentication.yml
-  - type: Conventions
-    url: conventions/cb-insights-conventions.yml
-  - type: ErrorCatalog
-    url: errors/cb-insights-problem-types.yml
-  - type: RateLimits
-    url: rate-limits/cb-insights-rate-limits.yml
-  - type: DataModel
-    url: data-model/cb-insights-data-model.yml
-  - type: Overlay
-    url: overlays/cb-insights-api-v2-overlay.yaml
-  - type: TermsOfService
-    url: https://api-docs.cbinsights.com/portal/api-terms-of-use
-  - type: SignUp
-    url: https://api-docs.cbinsights.com/portal/signup
 - name: CB Insights API v1
   description: >-
-    The original CB Insights REST API — 11 documented GET operations over organizations, deals
-    (fundings, investments, portfolio exits), people, business relationships, expert collections and
-    the credit ledger, authenticated with a 24-hour JWT from /v1/authorize. Fully documented in a
-    static Hugo reference site with a dated change log through v1.9.0 (2024-07-26), but CB Insights
-    publishes no OpenAPI for it and directs new integrations to v2.
+    The original CB Insights REST API — 11 documented GET operations over organizations, deals (fundings,
+    investments, portfolio exits), people, business relationships, expert collections and the credit ledger,
+    authenticated with a 24-hour JWT from /v1/authorize. Fully documented in a static Hugo reference site
+    with a dated change log through v1.9.0 (2024-07-26), but CB Insights publishes no OpenAPI for it and
+    directs new integrations to v2.
   humanURL: https://api-docs.cbinsights.com/docs/endpoints/
   baseURL: https://api.cbinsights.com
   tags:
@@ -110,17 +67,17 @@ apis:
   - type: ErrorCatalog
     url: https://api-docs.cbinsights.com/docs/reference/error_codes/
   x-spec-note: >-
-    No machine-readable contract exists for v1. The reference is fully public and richly documented
-    at api-docs.cbinsights.com, but CB Insights ships only Hugo-rendered HTML endpoint pages —
-    probes of /openapi.json, /openapi.yaml and /swagger.json on that host all returned 404 on
-    2026-08-09. The v2 contract in openapi/ does not cover these operations.
+    No machine-readable contract exists for v1. The reference is fully public and richly documented at
+    api-docs.cbinsights.com, but CB Insights ships only Hugo-rendered HTML endpoint pages — probes of
+    /openapi.json, /openapi.yaml and /swagger.json on that host all returned 404 on 2026-08-09. The v2
+    contract in openapi/ does not cover these operations.
 - name: CB Insights MCP Server
   description: >-
-    Hosted, remote Model Context Protocol server at mcp.cbinsights.com, offered as the supported
-    replacement for the deprecated self-hosted cbi-mcp-server reference implementation. Protected by
-    OAuth 2.1 with dynamic client registration, PKCE (S256) and RFC 9728 protected-resource
-    metadata; connected from Claude, ChatGPT, Perplexity, Microsoft Copilot (Chat, Researcher and
-    Excel) via each client's connector directory. Live tools/list is auth-gated.
+    Hosted, remote Model Context Protocol server at mcp.cbinsights.com, offered as the supported replacement
+    for the deprecated self-hosted cbi-mcp-server reference implementation. Protected by OAuth 2.1 with
+    dynamic client registration, PKCE (S256) and RFC 9728 protected-resource metadata; connected from
+    Claude, ChatGPT, Perplexity, Microsoft Copilot (Chat, Researcher and Excel) via each client's connector
+    directory. Live tools/list is auth-gated.
   humanURL: https://api-docs.cbinsights.com/portal/docs/Integrations/cbi-mcp-server
   baseURL: https://mcp.cbinsights.com/
   tags:
@@ -143,7 +100,354 @@ apis:
     url: well-known/cb-insights-well-known.yml
   - type: SourceCode
     url: https://github.com/cbinsights/cbi-mcp-server
+- aid: cb-insights:cb-insights-authorization-api
+  name: CB Insights Authorization API
+  description: The Authorization API from CB Insights — 1 operation(s) for authorization.
+  humanURL: https://api-docs.cbinsights.com/portal/docs/api/
+  baseURL: https://api.cbinsights.com
+  tags:
+  - Authorization
+  properties:
+  - type: OpenAPI
+    url: openapi/cb-insights-authorization-api-openapi.yml
+  - type: Documentation
+    url: https://api-docs.cbinsights.com/portal/docs/intro
+  - type: APIReference
+    url: https://api-docs.cbinsights.com/portal/docs/api/
+  - type: GettingStarted
+    url: https://api-docs.cbinsights.com/portal/docs/quick-start
+  - type: Authentication
+    url: authentication/cb-insights-authentication.yml
+  - type: Conventions
+    url: conventions/cb-insights-conventions.yml
+  - type: ErrorCatalog
+    url: errors/cb-insights-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/cb-insights-rate-limits.yml
+  - type: DataModel
+    url: data-model/cb-insights-data-model.yml
+  - type: TermsOfService
+    url: https://api-docs.cbinsights.com/portal/api-terms-of-use
+  - type: SignUp
+    url: https://api-docs.cbinsights.com/portal/signup
+- aid: cb-insights:cb-insights-businessrelationships-api
+  name: CB Insights Business Relationships API
+  description: >-
+    This dataset contains information about partnerships, clients/vendors, licensing activity, and CBI-generated
+    insights to predict future M&As and shifts in strategy.
+  humanURL: https://api-docs.cbinsights.com/portal/docs/api/
+  baseURL: https://api.cbinsights.com
+  tags:
+  - BusinessRelationships
+  properties:
+  - type: OpenAPI
+    url: openapi/cb-insights-businessrelationships-api-openapi.yml
+  - type: Documentation
+    url: https://api-docs.cbinsights.com/portal/docs/intro
+  - type: APIReference
+    url: https://api-docs.cbinsights.com/portal/docs/api/
+  - type: GettingStarted
+    url: https://api-docs.cbinsights.com/portal/docs/quick-start
+  - type: Authentication
+    url: authentication/cb-insights-authentication.yml
+  - type: Conventions
+    url: conventions/cb-insights-conventions.yml
+  - type: ErrorCatalog
+    url: errors/cb-insights-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/cb-insights-rate-limits.yml
+  - type: DataModel
+    url: data-model/cb-insights-data-model.yml
+  - type: TermsOfService
+    url: https://api-docs.cbinsights.com/portal/api-terms-of-use
+  - type: SignUp
+    url: https://api-docs.cbinsights.com/portal/signup
+- aid: cb-insights:cb-insights-chatcbi-api
+  name: CB Insights Chat CBI API
+  description: The ChatCBI API from CB Insights — 3 operation(s) for chatcbi.
+  humanURL: https://api-docs.cbinsights.com/portal/docs/api/
+  baseURL: https://api.cbinsights.com
+  tags:
+  - ChatCBI
+  properties:
+  - type: OpenAPI
+    url: openapi/cb-insights-chatcbi-api-openapi.yml
+  - type: Documentation
+    url: https://api-docs.cbinsights.com/portal/docs/intro
+  - type: APIReference
+    url: https://api-docs.cbinsights.com/portal/docs/api/
+  - type: GettingStarted
+    url: https://api-docs.cbinsights.com/portal/docs/quick-start
+  - type: Authentication
+    url: authentication/cb-insights-authentication.yml
+  - type: Conventions
+    url: conventions/cb-insights-conventions.yml
+  - type: ErrorCatalog
+    url: errors/cb-insights-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/cb-insights-rate-limits.yml
+  - type: DataModel
+    url: data-model/cb-insights-data-model.yml
+  - type: TermsOfService
+    url: https://api-docs.cbinsights.com/portal/api-terms-of-use
+  - type: SignUp
+    url: https://api-docs.cbinsights.com/portal/signup
+- aid: cb-insights:cb-insights-financialtransactions-api
+  name: CB Insights Financial Transactions API
+  description: >-
+    This dataset contains information about funding deals, cap table history, M&As, IPOs, and CBI-generated
+    insights that extract key themes.
+  humanURL: https://api-docs.cbinsights.com/portal/docs/api/
+  baseURL: https://api.cbinsights.com
+  tags:
+  - FinancialTransactions
+  properties:
+  - type: OpenAPI
+    url: openapi/cb-insights-financialtransactions-api-openapi.yml
+  - type: Documentation
+    url: https://api-docs.cbinsights.com/portal/docs/intro
+  - type: APIReference
+    url: https://api-docs.cbinsights.com/portal/docs/api/
+  - type: GettingStarted
+    url: https://api-docs.cbinsights.com/portal/docs/quick-start
+  - type: Authentication
+    url: authentication/cb-insights-authentication.yml
+  - type: Conventions
+    url: conventions/cb-insights-conventions.yml
+  - type: ErrorCatalog
+    url: errors/cb-insights-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/cb-insights-rate-limits.yml
+  - type: DataModel
+    url: data-model/cb-insights-data-model.yml
+  - type: TermsOfService
+    url: https://api-docs.cbinsights.com/portal/api-terms-of-use
+  - type: SignUp
+    url: https://api-docs.cbinsights.com/portal/signup
+- aid: cb-insights:cb-insights-firmographics-api
+  name: CB Insights Firmographics API
+  description: >-
+    This dataset contains profiles on private companies, public companies, and investors. Includes general
+    information like location, headcount, and industry, as well as proprietary data like business models,
+    Competitor Scores, and Expert Collections.
+  humanURL: https://api-docs.cbinsights.com/portal/docs/api/
+  baseURL: https://api.cbinsights.com
+  tags:
+  - Firmographics
+  properties:
+  - type: OpenAPI
+    url: openapi/cb-insights-firmographics-api-openapi.yml
+  - type: Documentation
+    url: https://api-docs.cbinsights.com/portal/docs/intro
+  - type: APIReference
+    url: https://api-docs.cbinsights.com/portal/docs/api/
+  - type: GettingStarted
+    url: https://api-docs.cbinsights.com/portal/docs/quick-start
+  - type: Authentication
+    url: authentication/cb-insights-authentication.yml
+  - type: Conventions
+    url: conventions/cb-insights-conventions.yml
+  - type: ErrorCatalog
+    url: errors/cb-insights-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/cb-insights-rate-limits.yml
+  - type: DataModel
+    url: data-model/cb-insights-data-model.yml
+  - type: TermsOfService
+    url: https://api-docs.cbinsights.com/portal/api-terms-of-use
+  - type: SignUp
+    url: https://api-docs.cbinsights.com/portal/signup
+- aid: cb-insights:cb-insights-managementandboard-api
+  name: CB Insights Management And Board API
+  description: >-
+    This dataset includes leadership teams, board members, and the Management factor of the Mosaic Score
+    — our proprietary algorithm which evaluates leadership teams based on past achievements.
+  humanURL: https://api-docs.cbinsights.com/portal/docs/api/
+  baseURL: https://api.cbinsights.com
+  tags:
+  - ManagementAndBoard
+  properties:
+  - type: OpenAPI
+    url: openapi/cb-insights-managementandboard-api-openapi.yml
+  - type: Documentation
+    url: https://api-docs.cbinsights.com/portal/docs/intro
+  - type: APIReference
+    url: https://api-docs.cbinsights.com/portal/docs/api/
+  - type: GettingStarted
+    url: https://api-docs.cbinsights.com/portal/docs/quick-start
+  - type: Authentication
+    url: authentication/cb-insights-authentication.yml
+  - type: Conventions
+    url: conventions/cb-insights-conventions.yml
+  - type: ErrorCatalog
+    url: errors/cb-insights-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/cb-insights-rate-limits.yml
+  - type: DataModel
+    url: data-model/cb-insights-data-model.yml
+  - type: TermsOfService
+    url: https://api-docs.cbinsights.com/portal/api-terms-of-use
+  - type: SignUp
+    url: https://api-docs.cbinsights.com/portal/signup
+- aid: cb-insights:cb-insights-organizations-api
+  name: CB Insights Organizations API
+  description: The Organizations API from CB Insights — 1 operation(s) for organizations.
+  humanURL: https://api-docs.cbinsights.com/portal/docs/api/
+  baseURL: https://api.cbinsights.com
+  tags:
+  - Organizations
+  properties:
+  - type: OpenAPI
+    url: openapi/cb-insights-organizations-api-openapi.yml
+  - type: Documentation
+    url: https://api-docs.cbinsights.com/portal/docs/intro
+  - type: APIReference
+    url: https://api-docs.cbinsights.com/portal/docs/api/
+  - type: GettingStarted
+    url: https://api-docs.cbinsights.com/portal/docs/quick-start
+  - type: Authentication
+    url: authentication/cb-insights-authentication.yml
+  - type: Conventions
+    url: conventions/cb-insights-conventions.yml
+  - type: ErrorCatalog
+    url: errors/cb-insights-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/cb-insights-rate-limits.yml
+  - type: DataModel
+    url: data-model/cb-insights-data-model.yml
+  - type: TermsOfService
+    url: https://api-docs.cbinsights.com/portal/api-terms-of-use
+  - type: SignUp
+    url: https://api-docs.cbinsights.com/portal/signup
+- aid: cb-insights:cb-insights-outlook-api
+  name: CB Insights Outlook API
+  description: "This dataset contains proprietary data science analysis including Mosaic Score, Commercial\
+    \ Maturity, and Exit Probability. Proven to predict winners better than top VCs.\n \n More about these\
+    \ proprietary datasets and methodology: https://support.cbinsights.com/hc/en-us/sections/360008544011-Proprietary-Datasets"
+  humanURL: https://api-docs.cbinsights.com/portal/docs/api/
+  baseURL: https://api.cbinsights.com
+  tags:
+  - Outlook
+  properties:
+  - type: OpenAPI
+    url: openapi/cb-insights-outlook-api-openapi.yml
+  - type: Documentation
+    url: https://api-docs.cbinsights.com/portal/docs/intro
+  - type: APIReference
+    url: https://api-docs.cbinsights.com/portal/docs/api/
+  - type: GettingStarted
+    url: https://api-docs.cbinsights.com/portal/docs/quick-start
+  - type: Authentication
+    url: authentication/cb-insights-authentication.yml
+  - type: Conventions
+    url: conventions/cb-insights-conventions.yml
+  - type: ErrorCatalog
+    url: errors/cb-insights-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/cb-insights-rate-limits.yml
+  - type: DataModel
+    url: data-model/cb-insights-data-model.yml
+  - type: TermsOfService
+    url: https://api-docs.cbinsights.com/portal/api-terms-of-use
+  - type: SignUp
+    url: https://api-docs.cbinsights.com/portal/signup
+- aid: cb-insights:cb-insights-revenue-api
+  name: CB Insights Revenue API
+  description: The Revenue API from CB Insights — 2 operation(s) for revenue.
+  humanURL: https://api-docs.cbinsights.com/portal/docs/api/
+  baseURL: https://api.cbinsights.com
+  tags:
+  - Revenue
+  properties:
+  - type: OpenAPI
+    url: openapi/cb-insights-revenue-api-openapi.yml
+  - type: Documentation
+    url: https://api-docs.cbinsights.com/portal/docs/intro
+  - type: APIReference
+    url: https://api-docs.cbinsights.com/portal/docs/api/
+  - type: GettingStarted
+    url: https://api-docs.cbinsights.com/portal/docs/quick-start
+  - type: Authentication
+    url: authentication/cb-insights-authentication.yml
+  - type: Conventions
+    url: conventions/cb-insights-conventions.yml
+  - type: ErrorCatalog
+    url: errors/cb-insights-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/cb-insights-rate-limits.yml
+  - type: DataModel
+    url: data-model/cb-insights-data-model.yml
+  - type: TermsOfService
+    url: https://api-docs.cbinsights.com/portal/api-terms-of-use
+  - type: SignUp
+    url: https://api-docs.cbinsights.com/portal/signup
+- aid: cb-insights:cb-insights-scoutingreports-api
+  name: CB Insights Scouting Reports API
+  description: >-
+    A CB Insights scouting report for a private company provides a comprehensive analysis of a business,
+    including its market position, competitive landscape, and growth potential to offer a clear understanding
+    of its strategic positioning. These reports are valuable for investors, partners, and stakeholders
+    to make informed decisions based on detailed insights into the company's operations and market dynamics.
+  humanURL: https://api-docs.cbinsights.com/portal/docs/api/
+  baseURL: https://api.cbinsights.com
+  tags:
+  - ScoutingReports
+  properties:
+  - type: OpenAPI
+    url: openapi/cb-insights-scoutingreports-api-openapi.yml
+  - type: Documentation
+    url: https://api-docs.cbinsights.com/portal/docs/intro
+  - type: APIReference
+    url: https://api-docs.cbinsights.com/portal/docs/api/
+  - type: GettingStarted
+    url: https://api-docs.cbinsights.com/portal/docs/quick-start
+  - type: Authentication
+    url: authentication/cb-insights-authentication.yml
+  - type: Conventions
+    url: conventions/cb-insights-conventions.yml
+  - type: ErrorCatalog
+    url: errors/cb-insights-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/cb-insights-rate-limits.yml
+  - type: DataModel
+    url: data-model/cb-insights-data-model.yml
+  - type: TermsOfService
+    url: https://api-docs.cbinsights.com/portal/api-terms-of-use
+  - type: SignUp
+    url: https://api-docs.cbinsights.com/portal/signup
+- aid: cb-insights:cb-insights-strategymap-api
+  name: CB Insights Strategy Map API
+  description: The StrategyMap API from CB Insights — 1 operation(s) for strategymap.
+  humanURL: https://api-docs.cbinsights.com/portal/docs/api/
+  baseURL: https://api.cbinsights.com
+  tags:
+  - StrategyMap
+  properties:
+  - type: OpenAPI
+    url: openapi/cb-insights-strategymap-api-openapi.yml
+  - type: Documentation
+    url: https://api-docs.cbinsights.com/portal/docs/intro
+  - type: APIReference
+    url: https://api-docs.cbinsights.com/portal/docs/api/
+  - type: GettingStarted
+    url: https://api-docs.cbinsights.com/portal/docs/quick-start
+  - type: Authentication
+    url: authentication/cb-insights-authentication.yml
+  - type: Conventions
+    url: conventions/cb-insights-conventions.yml
+  - type: ErrorCatalog
+    url: errors/cb-insights-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/cb-insights-rate-limits.yml
+  - type: DataModel
+    url: data-model/cb-insights-data-model.yml
+  - type: TermsOfService
+    url: https://api-docs.cbinsights.com/portal/api-terms-of-use
+  - type: SignUp
+    url: https://api-docs.cbinsights.com/portal/signup
 common:
+- type: IssueTracker
+  url: https://github.com/cbinsights/cbi-mcp-server/issues
 - type: DomainSecurity
   url: security/cb-insights-domain-security.yml
 - type: Website
@@ -181,7 +485,7 @@ common:
 - type: Compliance
   url: https://www.cbinsights.com/security-and-privacy/
 - type: OpenAPI
-  url: openapi/cb-insights-api-v2-openapi.json
+  url: openapi/_original/cb-insights-api-v2-openapi.json
 - type: MCPServer
   url: mcp/cb-insights-mcp.yml
 - type: ToolCrosswalk

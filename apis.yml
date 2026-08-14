@@ -21,7 +21,7 @@ x-type: company
 x-source: harvest:secondary-market
 specificationVersion: '0.20'
 created: '2026-08-09'
-modified: '2026-08-09'
+modified: '2026-08-14'
 tags:
 - Company
 - market-intelligence
@@ -518,13 +518,17 @@ common:
   url: llms/cb-insights-llms.txt
 - type: AgentSkill
   url: skills/_index.yml
+- type: Plans
+  url: plans/cb-insights-plans-pricing.yml
+- type: OAuthScopes
+  url: scopes/cb-insights-scopes.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 x-enrichment:
-  date: '2026-08-09'
+  date: '2026-08-14'
   status: enriched
-  artifacts_added: 25
+  artifacts_added: 2
   pass: local-v1

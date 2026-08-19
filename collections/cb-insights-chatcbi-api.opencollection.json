@@ -1,0 +1,99 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CB Insights Chat CBI API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ChatCBI",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Perform a RAG across CB Insights data and gets relevant structured data back in response to a query",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cbinsights.com/v2/cbirag",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint uses generative AI and may make mistakes. Always verify pertinent information."
+        },
+        {
+          "info": {
+            "name": "Converse with the beta version of our AI chatbot ChatCBI",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cbinsights.com/v2/chatcbi",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "See https://api-docs.cbinsights.com/portal/docs/CBI-API/ChatCBI for more information and usage details. This endpoint uses generative AI and may make mistakes. Always verify pertinent information."
+        },
+        {
+          "info": {
+            "name": "Converse with the beta version of our AI chatbot ChatCBI, which responds via incremental chunks",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cbinsights.com/v2/chatcbichunked",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Response is a series of incremental chunks. See https://api-docs.cbinsights.com/portal/docs/CBI-API/ChatCBI for more information and usage details. This endpoint uses generative AI and may make mistakes. Always verify pertinent information."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

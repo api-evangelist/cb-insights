@@ -1,0 +1,200 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CB Insights Financial Transactions API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "FinancialTransactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List of funding information for one or more organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cbinsights.com/v2/financialtransactions/fundings",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a list of funding information for organizations based on the Org IDs provided, plus AI-generated insights that extract key themes."
+        },
+        {
+          "info": {
+            "name": "List of investments rounds for one or more organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cbinsights.com/v2/financialtransactions/investments",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a list of investment rounds in which the requested Org IDs participated in, plus AI-generated insights that extract key themes."
+        },
+        {
+          "info": {
+            "name": "List of portfolio exits for one or more organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cbinsights.com/v2/financialtransactions/portfolioexits",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a list of exit rounds for companies in which the requested Org IDs invested prior to the exit, plus AI-generated insights that extract key themes."
+        },
+        {
+          "info": {
+            "name": "List funding transactions for a single organization.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cbinsights.com/v2/organizations/:orgId/financialtransactions/fundings",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "CB Insights organization ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieved data includes details about funding received by an organization, plus AI-generated insights that extract key themes."
+        },
+        {
+          "info": {
+            "name": "List investment rounds for a single organization.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cbinsights.com/v2/organizations/:orgId/financialtransactions/investments",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "CB Insights unique identifier of an organization"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves all transactions in which the selected organization invested in another organization, plus AI-generated insights that extract key themes."
+        },
+        {
+          "info": {
+            "name": "List portfolio exits for a single organization.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cbinsights.com/v2/organizations/:orgId/financialtransactions/portfolioexits",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "CB Insights unique identifier of an organization"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves exit rounds for companies in which the selected organization invested prior to the exit, plus AI-generated insights that extract key themes."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

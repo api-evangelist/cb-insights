@@ -1,0 +1,182 @@
+openapi: 3.2.0
+info:
+  description: "# Introduction\n\nThe CB Insights API offers market data and insights you won't find anywhere else. Use our API to build trading platforms, media content, and market indexes, or integrate our proprietary scores into your workflows, algorithms, or LLMs. \n\n# CB Insights API v2 compared to v1\n\nThe new CB Insights API v2 offers new datasets and additional data points that were not available in v1. v2 follows the same REST architectural style and has a new structure for you to retrieve the information you need as conveniently as possible.\n\nThis first set of data includes:\n\n- **Firmographics**. Profiles on private companies, public companies, and investors. Includes general information like location, headcount, and industry, as well as proprietary data like business models, Competitor Scores, and Expert Collections.\n- **Financial Transactions**. Funding deals, cap table history, M&As, and IPOs, plus AI-generated insights that extract key themes.\n- **Business Relationships**. Partnerships, clients/vendors, and licensing activity, plus AI-generated insights to predict future M&As and shifts in strategy.\n- **Management and Board**. Leadership teams, board members, and the Management factor of the Mosaic Score — our proprietary algorithm which evaluates leadership teams based on past achievements.\n- **Outlook**. Proprietary data science analysis including Mosaic Score, Commercial Maturity, and Exit Probability. Proven to predict winners better than top VCs.\n- **Scouting Reports**. On-demand, AI-generated insights into business model, market position, strengths, and opportunities for private companies.\n"
+  title: CB Insights Organizations API
+  contact: {}
+  version: '2.0'
+  x-logo:
+    altText: CB Insights logo
+    backgroundColor: '#FFFFFF'
+    href: https://api-docs.cbinsights.com/v2/
+    url: https://api-docs.cbinsights.com/images/CBI_Logo_Color.svg
+servers:
+- url: https://api.cbinsights.com
+tags:
+- name: Organizations
+paths:
+  /v2/organizations:
+    post:
+      security:
+      - BearerAuth: []
+      description: Returns a list of organizations with basic information about those organizations, based on the parameters defined in the request body. This endpoint never charges credits. You can use this endpoint to match CBI organizations with your own data prior to spending credits on them.
+      tags:
+      - Organizations
+      summary: List basic organization information.
+      parameters:
+      - description: Authorization
+        name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v2OrganizationLookup.OrgLookupResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '424':
+          description: Failed Dependency
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v2OrganizationLookup.OrgLookupRequestBody'
+        description: Search parameters to request organization information. You must pass at least one search parameter.
+        required: true
+components:
+  schemas:
+    common.ErrorWithCode:
+      type: object
+      properties:
+        error:
+          type: string
+    v2OrganizationLookup.Org:
+      type: object
+      properties:
+        aliases:
+          description: Aliases of the organization.
+          type: array
+          items:
+            type: string
+          example:
+          - Red Apple Stores Inc.
+        description:
+          description: Description of the organization.
+          type: string
+          example: UBIO's Robotic Transaction Automation can automate any online process. UBIO powers direct transactions for insurance, loans, flight and travel booking, and more on behalf of customers.
+        name:
+          description: Organization name.
+          type: string
+          example: UBIO
+        orgId:
+          description: CB Insights organization ID.
+          type: integer
+          example: 129410
+        urls:
+          description: URLs associated with the organization.
+          type: array
+          items:
+            type: string
+          example:
+          - cbinsights.com
+    v2OrganizationLookup.OrgLookupResponse:
+      type: object
+      properties:
+        nextPageToken:
+          description: Token to fetch the next page of results. If the value is null, then there are no more results to page through.
+          type: string
+          example: eyJwYWdpbmF0aW9uX3NjaGVtZSI6MiwibmV4dF9wYWdlX3Rva2VuIjoxMjk0MTB9Cg==
+        orgs:
+          description: A list of organization profiles, includes general information for each organization.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2OrganizationLookup.Org'
+        totalHits:
+          description: Total number of organizations matching the request parameters.
+          type: integer
+          example: 10
+        totalHitsRelation:
+          description: Indicates whether totalHits is equal to ('eq'), or greater than or equal to ('gte') the number of organizations which can be fetched. Will be set to 'gte' if totalHits exceeds 10,000.
+          type: string
+          example: gte
+    v2OrganizationLookup.OrgLookupRequestBody:
+      description: Search parameters to lookup a list of organization profiles. You must pass at least one search parameter.
+      type: object
+      properties:
+        limit:
+          description: The maximum number of organizations to be returned in a single response. Must be in the range [1, 100]. Defaults to 10.
+          type: integer
+          example: 10
+        names:
+          description: Names to look up.
+          type: array
+          items:
+            type: string
+          example:
+          - CB Insights
+        nextPageToken:
+          description: Token to fetch the next page of results; provided in a previous response.
+          type: string
+          example: ''
+        profileUrl:
+          description: 'Returns the corresponding organization profile. Note: This is mutually exclusive with the names and urls fields; an error will be returned if there are values for profileUrl and names or urls.'
+          type: string
+          example: https://app.cbinsights.com/profiles/c/jp3o4
+        sort:
+          description: The order in which the results will be returned.
+          type: object
+          properties:
+            direction:
+              description: The order in which the results will be returned. Available sort orders are asc and desc.
+              type: string
+              example: desc
+            field:
+              description: The field to be used to sort returned results. Available sort fields are orgName.
+              type: string
+              example: orgName
+        urls:
+          description: URLs to look up.
+          type: array
+          items:
+            type: string
+          example:
+          - cbinsights.com
+  securitySchemes:
+    BearerAuth:
+      description: Type "Bearer" followed by a space and JWT token.
+      type: apiKey
+      name: Authorization
+      in: header
+externalDocs:
+  description: CBI API v1 reference
+  url: https://api-docs.cbinsights.com/

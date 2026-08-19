@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CB Insights Firmographics API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Firmographics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List profiles of companies.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cbinsights.com/v2/firmographics",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve a list of profiles on private companies, public companies, and investors based on the parameters defined in the request body."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

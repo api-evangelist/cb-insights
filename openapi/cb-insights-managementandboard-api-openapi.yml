@@ -1,0 +1,331 @@
+openapi: 3.2.0
+info:
+  description: "# Introduction\n\nThe CB Insights API offers market data and insights you won't find anywhere else. Use our API to build trading platforms, media content, and market indexes, or integrate our proprietary scores into your workflows, algorithms, or LLMs. \n\n# CB Insights API v2 compared to v1\n\nThe new CB Insights API v2 offers new datasets and additional data points that were not available in v1. v2 follows the same REST architectural style and has a new structure for you to retrieve the information you need as conveniently as possible.\n\nThis first set of data includes:\n\n- **Firmographics**. Profiles on private companies, public companies, and investors. Includes general information like location, headcount, and industry, as well as proprietary data like business models, Competitor Scores, and Expert Collections.\n- **Financial Transactions**. Funding deals, cap table history, M&As, and IPOs, plus AI-generated insights that extract key themes.\n- **Business Relationships**. Partnerships, clients/vendors, and licensing activity, plus AI-generated insights to predict future M&As and shifts in strategy.\n- **Management and Board**. Leadership teams, board members, and the Management factor of the Mosaic Score — our proprietary algorithm which evaluates leadership teams based on past achievements.\n- **Outlook**. Proprietary data science analysis including Mosaic Score, Commercial Maturity, and Exit Probability. Proven to predict winners better than top VCs.\n- **Scouting Reports**. On-demand, AI-generated insights into business model, market position, strengths, and opportunities for private companies.\n"
+  title: CB Insights Management And Board API
+  contact: {}
+  version: '2.0'
+  x-logo:
+    altText: CB Insights logo
+    backgroundColor: '#FFFFFF'
+    href: https://api-docs.cbinsights.com/v2/
+    url: https://api-docs.cbinsights.com/images/CBI_Logo_Color.svg
+servers:
+- url: https://api.cbinsights.com
+tags:
+- description: This dataset includes leadership teams, board members, and the Management factor of the Mosaic Score — our proprietary algorithm which evaluates leadership teams based on past achievements.
+  name: ManagementAndBoard
+paths:
+  /v2/managementandboard:
+    post:
+      security:
+      - BearerAuth: []
+      description: Retrieved data includes information about leadership team, board members, and Management Mosaic score — CB Insights proprietary algorithm evaluating leadership teams based on past achievements.
+      tags:
+      - ManagementAndBoard
+      summary: Retrieve details about management and board for a list of organizations
+      parameters:
+      - description: Authorization
+        name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v2ManagementAndBoard.ManagementAndBoardListResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '424':
+          description: Failed Dependency
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v2ManagementAndBoard.ManagementAndBoardListRequestBody'
+        description: Search parameters
+        required: true
+  /v2/organizations/{orgId}/managementandboard:
+    post:
+      security:
+      - BearerAuth: []
+      description: Retrieved data includes information about leadership team, board members, and Management Mosaic score — CB Insights proprietary algorithm evaluating leadership teams based on past achievements.
+      tags:
+      - ManagementAndBoard
+      summary: Retrieve details about management and board for an organization.
+      parameters:
+      - description: Authorization
+        name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      - description: CB Insights organization ID
+        name: orgId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v2ManagementAndBoard.ManagementAndBoardResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '424':
+          description: Failed Dependency
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v2ManagementAndBoard.ManagementAndBoardRequestBody'
+        description: Search parameters
+        required: true
+components:
+  schemas:
+    common.ErrorWithCode:
+      type: object
+      properties:
+        error:
+          type: string
+    v2ManagementAndBoard.Experience:
+      type: object
+      properties:
+        endDate:
+          description: The date when the individual ended this work experience, if applicable, in the format YYYY-MM-DD.
+          type: string
+          example: '2000-01-01'
+        isCurrent:
+          description: Indicates whether the individual currently occupies this position.
+          type: boolean
+          example: false
+        orgId:
+          description: The CBI organization ID of the organization for this work experience.
+          type: integer
+          example: 32423
+        orgName:
+          description: The name of the organization for this work experience.
+          type: string
+          example: ABC Corp
+        startDate:
+          description: The date when the individual started this work experience, in the format YYYY-MM-DD.
+          type: string
+          example: '1996-01-01'
+        title:
+          description: The individual's title during this work experience.
+          type: string
+          example: Consultant
+        titleId:
+          description: The CBI ID of the individual's title during this work experience; see https://api-docs.cbinsights.com/docs/reference/person_titles/
+          type: integer
+          example: 4637
+    v2ManagementAndBoard.ManagementAndBoardListResponse:
+      type: object
+      properties:
+        orgs:
+          description: List of Management and Board information for the requested Org IDs. If an Org ID has no data, it will be excluded from the response.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2ManagementAndBoard.ManagementAndBoardOrg'
+    v2ManagementAndBoard.ManagementAndBoardResponse:
+      type: object
+      properties:
+        mosaicManagement:
+          description: The Management factor of the Mosaic score that measures the pedigree, education, and work experience of the leaders of the company. https://support.cbinsights.com/hc/en-us/articles/360042055171-About-Mosaic-Health
+          type: integer
+          example: 400
+        people:
+          description: Individuals with general information about each individual and details about their education, work experience, and board associations.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2ManagementAndBoard.Person'
+    v2ManagementAndBoard.Education:
+      type: object
+      properties:
+        degree:
+          description: The type of degree that the person received at this insitution.
+          type: string
+          example: Bachelor's Degree
+        degreeId:
+          description: The CBI ID of the degree type.
+          type: integer
+          example: 2327
+        fieldOfStudy:
+          description: The name of the field of study associated with the degree.
+          type: string
+          example: Economics
+        fieldOfStudyId:
+          description: The CBI ID of the field of study.
+          type: integer
+          example: 42426
+        graduationYear:
+          description: The year in which the individual graduated from this institution.
+          type: integer
+          example: 1996
+        institution:
+          description: The name of the educational institution.
+          type: string
+          example: Princeton University
+        institutionId:
+          description: The CBI ID of the institution.
+          type: integer
+          example: 4637
+    v2ManagementAndBoard.ManagementAndBoardOrg:
+      type: object
+      properties:
+        managementAndBoard:
+          description: People information and Management factor of the Mosaic score for the organization.
+          allOf:
+          - $ref: '#/components/schemas/v2ManagementAndBoard.ManagementAndBoardResponse'
+        orgId:
+          description: CB Insights Organization ID.
+          type: integer
+          example: 129410
+    v2ManagementAndBoard.Person:
+      type: object
+      properties:
+        boardAssociations:
+          description: Companies where the individual has been a board member.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2ManagementAndBoard.Experience'
+        education:
+          description: Information about degrees this individual has attained.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2ManagementAndBoard.Education'
+        email:
+          description: Email of the individual.
+          type: string
+          example: email@example.com
+        givenName:
+          description: First/given name of the individual.
+          type: string
+          example: Ryan
+        linkedInUrl:
+          description: LinkedIn profile URL.
+          type: string
+        middleName:
+          description: Middle name of theindividual.
+          type: string
+          example: J
+        personId:
+          description: CBI unique ID of the individual.
+          type: integer
+          example: 428025
+        surname:
+          description: Last name/surname of the individual.
+          type: string
+          example: Moore
+        workExperience:
+          description: Work history - positions this individual has occupied.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2ManagementAndBoard.Experience'
+    v2ManagementAndBoard.ManagementAndBoardRequestBody:
+      description: Search parameters to request available management and board information for one organization
+      type: object
+      properties:
+        mosaicScoreVersion:
+          description: Deprecated. Only Mosaic v2.1 is served.
+          type: string
+          example: v2.1
+        titleIds:
+          description: List of title IDs used to filter people; see https://api-docs.cbinsights.com/docs/reference/person_titles/
+          type: array
+          items:
+            type: integer
+          example:
+          - 50
+          - 75
+    v2ManagementAndBoard.ManagementAndBoardListRequestBody:
+      description: Search parameters to request available management and board information for one or more organizations
+      type: object
+      properties:
+        mosaicScoreVersion:
+          description: Deprecated. Only Mosaic v2.1 is served.
+          type: string
+          example: v2.1
+        orgIds:
+          description: List of Org IDs to look up, the request must contain 1 - 100 Org IDs.
+          type: array
+          items:
+            type: integer
+          example:
+          - 129410
+          - 1034157
+        titleIds:
+          description: List of title IDs used to filter people; see https://api-docs.cbinsights.com/docs/reference/person_titles/
+          type: array
+          items:
+            type: integer
+          example:
+          - 50
+          - 75
+  securitySchemes:
+    BearerAuth:
+      description: Type "Bearer" followed by a space and JWT token.
+      type: apiKey
+      name: Authorization
+      in: header
+externalDocs:
+  description: CBI API v1 reference
+  url: https://api-docs.cbinsights.com/

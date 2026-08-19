@@ -1,7 +1,7 @@
 generated: '2026-08-09'
 method: derived
 source: >-
-  openapi/cb-insights-api-v2-openapi.json (28 operations) +
+  openapi/_original/cb-insights-api-v2-openapi.json (28 operations) +
   https://github.com/cbinsights/cbi-mcp-server (server.py) +
   probe of https://mcp.cbinsights.com/ tools/list (401 invalid_token, 2026-08-09)
 summary: >-
@@ -14,7 +14,7 @@ summary: >-
   that CB Insights has not published.
 surfaces:
   openapi:
-    path: openapi/cb-insights-api-v2-openapi.json
+    path: openapi/_original/cb-insights-api-v2-openapi.json
     spec: Swagger 2.0
     operations: 28
     base_url: https://api.cbinsights.com

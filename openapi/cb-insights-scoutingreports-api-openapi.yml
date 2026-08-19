@@ -1,0 +1,338 @@
+openapi: 3.2.0
+info:
+  description: "# Introduction\n\nThe CB Insights API offers market data and insights you won't find anywhere else. Use our API to build trading platforms, media content, and market indexes, or integrate our proprietary scores into your workflows, algorithms, or LLMs. \n\n# CB Insights API v2 compared to v1\n\nThe new CB Insights API v2 offers new datasets and additional data points that were not available in v1. v2 follows the same REST architectural style and has a new structure for you to retrieve the information you need as conveniently as possible.\n\nThis first set of data includes:\n\n- **Firmographics**. Profiles on private companies, public companies, and investors. Includes general information like location, headcount, and industry, as well as proprietary data like business models, Competitor Scores, and Expert Collections.\n- **Financial Transactions**. Funding deals, cap table history, M&As, and IPOs, plus AI-generated insights that extract key themes.\n- **Business Relationships**. Partnerships, clients/vendors, and licensing activity, plus AI-generated insights to predict future M&As and shifts in strategy.\n- **Management and Board**. Leadership teams, board members, and the Management factor of the Mosaic Score — our proprietary algorithm which evaluates leadership teams based on past achievements.\n- **Outlook**. Proprietary data science analysis including Mosaic Score, Commercial Maturity, and Exit Probability. Proven to predict winners better than top VCs.\n- **Scouting Reports**. On-demand, AI-generated insights into business model, market position, strengths, and opportunities for private companies.\n"
+  title: CB Insights Scouting Reports API
+  contact: {}
+  version: '2.0'
+  x-logo:
+    altText: CB Insights logo
+    backgroundColor: '#FFFFFF'
+    href: https://api-docs.cbinsights.com/v2/
+    url: https://api-docs.cbinsights.com/images/CBI_Logo_Color.svg
+servers:
+- url: https://api.cbinsights.com
+tags:
+- description: A CB Insights scouting report for a private company provides a comprehensive analysis of a business, including its market position, competitive landscape, and growth potential to offer a clear understanding of its strategic positioning. These reports are valuable for investors, partners, and stakeholders to make informed decisions based on detailed insights into the company's operations and market dynamics.
+  name: ScoutingReports
+paths:
+  /v2/organizations/{orgId}/scoutingreport:
+    post:
+      security:
+      - BearerAuth: []
+      description: Due to the substantial processing involved in generating a Scouting Report, this call may take several minutes. If you'd like to stream the report as it's generated, please use the `/v2/organizations/{orgId}/scoutingreportstream` endpoint. When present, Mosaic scores always represent version 2.1 of the model.
+      tags:
+      - ScoutingReports
+      summary: Generates a Scouting Report for an organization.
+      parameters:
+      - description: Authorization
+        name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      - description: CB Insights organization ID; only active companies are eligible
+        name: orgId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v2ScoutingReports.ScoutingReportResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '424':
+          description: Failed Dependency
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+  /v2/organizations/{orgId}/scoutingreportstream:
+    post:
+      security:
+      - BearerAuth: []
+      description: Delivered as a series of chunks, where each chunk is a JSON object, with data progressively added in each new chunk. If a server-side error occurs mid-stream, an object will be written containing the key `"error"` and you will not be charged a credit. When present, Mosaic scores always represent version 2.1 of the model.
+      tags:
+      - ScoutingReports
+      summary: Generates a Scouting Report for an organization and delivers it as a stream.
+      parameters:
+      - description: Authorization
+        name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      - description: CB Insights organization ID; only active companies are eligible
+        name: orgId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v2ScoutingReports.ScoutingReportResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '424':
+          description: Failed Dependency
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+components:
+  schemas:
+    v2Firmographics.Region:
+      type: object
+      properties:
+        region:
+          description: The name of the region for this geographical location.
+          type: string
+          example: New York Metro
+        regionId:
+          description: The CBI ID of the region; see https://api-docs.cbinsights.com/docs/reference/address/
+          type: integer
+          example: 5
+    v2ScoutingReports.ScoutingReportResponse:
+      type: object
+      properties:
+        orgInfo:
+          description: Basic information & CB Insights proprietary metrics regarding the organization.
+          allOf:
+          - $ref: '#/components/schemas/v2ScoutingReports.OrgInfo'
+        reportJson:
+          description: Scouting Report for the organization in JSON format. Please note that citation links are currently not included in the JSON version. Example is an excerpt.
+          type: string
+          example: '{"achievements_metrics_milestones":["Merged with Chain Reaction Cycles in 2016, creating a combined entity with revenues exceeding £300 million [7]"}'
+        reportMarkdown:
+          description: Scouting Report for the organization in Markdown format (after parsing the JSON string). Includes citations. Example is an excerpt.
+          type: string
+          example: '# Wiggle Company Report
+
+            Wiggle is an online retailer specializing in cycling, running, and swimming gear.
+
+
+            ## Key Takeaways'
+    v2Outlook.MaturityLevel:
+      type: object
+      properties:
+        asOfDate:
+          description: The date at which the maturity level was calculated.
+          type: string
+          example: 02/21/2025
+        level:
+          description: The maturity level of the company.
+          type: integer
+          example: 5
+        stage:
+          description: The stage of the company.
+          type: string
+          example: Established
+        stageDescription:
+          description: Description of the stage of the company.
+          type: string
+          example: Major market presence
+    common.ErrorWithCode:
+      type: object
+      properties:
+        error:
+          type: string
+    v2Outlook.CurrentMosaicScore:
+      type: object
+      properties:
+        asOfDate:
+          description: Date at which the Mosaic Score was calculated.
+          type: string
+          example: '2025-02-15'
+        scoreInsights:
+          description: Insight into the Mosaic Score.
+          allOf:
+          - $ref: '#/components/schemas/v2Outlook.ScoreInsights'
+        scoreValue:
+          description: Value of the Mosaic Score.
+          type: number
+          example: 237
+    v2Outlook.PointChange:
+      type: object
+      properties:
+        baseDateForPointChange:
+          type: string
+        pointChange:
+          type: number
+    v2ScoutingReports.OrgInfo:
+      type: object
+      properties:
+        address:
+          description: The organization's geographical location.
+          allOf:
+          - $ref: '#/components/schemas/v2Firmographics.Address'
+        commercialMaturity:
+          description: The organization's current Commercial Maturity score.
+          allOf:
+          - $ref: '#/components/schemas/v2Outlook.MaturityLevel'
+        description:
+          description: A description regarding who they are and what they do.
+          type: string
+          example: 'Wiggle is an online cycling and tri-sports retailer. The company offers deals on mountain bikes, road bikes, bike parts, and cycle accessories.
+
+
+            On June 11, 2021, Wiggle was acquired by SIGNA Sports United. The terms of the transaction were not disclosed.'
+        foundedYear:
+          description: The year the organization was founded.
+          type: integer
+          example: 2007
+        headcount:
+          description: The current headcount of this organization.
+          type: integer
+          example: 201
+        id:
+          description: CB Insights organization ID.
+          type: integer
+          example: 22875
+        lastFundingDate:
+          description: The date of the most recent funding round, in the format YYYY-MM-DD.
+          type: string
+          example: '2024-06-30'
+        name:
+          description: The organization's name.
+          type: string
+          example: CB Insights
+        overallMosaicScore:
+          description: The organization's current overall Mosaic score.
+          allOf:
+          - $ref: '#/components/schemas/v2Outlook.CurrentMosaicScore'
+        stage:
+          description: The type of investment stage that most recently occurred.
+          type: string
+          example: Series A
+        totalFunding:
+          description: Total funding of any type raised by this organization, in millions of US dollars. This includes Grant, Accelerator, Debt, and other non-equity rounds.
+          type: number
+          example: 50.1
+        url:
+          description: The organization's website.
+          type: string
+          example: cbinsights.com
+    v2Firmographics.Address:
+      type: object
+      properties:
+        city:
+          description: The name of the city in which the organization is located.
+          type: string
+          example: New York
+        cityId:
+          description: The CBI city ID of the city in which the organization is located; see https://api-docs.cbinsights.com/docs/reference/address/
+          type: integer
+          example: 3033
+        continent:
+          description: The name of the continent in which the organization is located.
+          type: string
+          example: North America
+        continentId:
+          description: CBI continent ID of the continent in which the organization is located; see https://api-docs.cbinsights.com/docs/reference/address/
+          type: integer
+          example: 6
+        country:
+          description: The name of the country in which the organization is located.
+          type: string
+          example: United States
+        countryId:
+          description: The CBI country ID of the country in which the organization is located; see https://api-docs.cbinsights.com/docs/reference/address/
+          type: integer
+          example: 1
+        postalCode:
+          description: The postal code of the organization.
+          type: string
+          example: '10001'
+        regions:
+          description: The organization's geographical region, if applicable.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2Firmographics.Region'
+        stateProvince:
+          description: The name of the state or province in which the organization is located; also includes the constituent countries of the UK.
+          type: string
+          example: New York
+        stateProvinceId:
+          description: The CBI state/province ID of the state/province in which the organization is located; see https://api-docs.cbinsights.com/docs/reference/address/
+          type: integer
+          example: 32
+        streetAddress:
+          description: The street address of the organization.
+          type: string
+          example: 498 Seventh Avenue 12th Floor
+    v2Outlook.ScoreInsights:
+      type: object
+      properties:
+        negativeTags:
+          type: array
+          items:
+            type: string
+        percentile:
+          type: number
+        pointChange:
+          $ref: '#/components/schemas/v2Outlook.PointChange'
+        positiveTags:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    BearerAuth:
+      description: Type "Bearer" followed by a space and JWT token.
+      type: apiKey
+      name: Authorization
+      in: header
+externalDocs:
+  description: CBI API v1 reference
+  url: https://api-docs.cbinsights.com/

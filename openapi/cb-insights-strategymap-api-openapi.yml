@@ -1,0 +1,216 @@
+openapi: 3.2.0
+info:
+  description: "# Introduction\n\nThe CB Insights API offers market data and insights you won't find anywhere else. Use our API to build trading platforms, media content, and market indexes, or integrate our proprietary scores into your workflows, algorithms, or LLMs. \n\n# CB Insights API v2 compared to v1\n\nThe new CB Insights API v2 offers new datasets and additional data points that were not available in v1. v2 follows the same REST architectural style and has a new structure for you to retrieve the information you need as conveniently as possible.\n\nThis first set of data includes:\n\n- **Firmographics**. Profiles on private companies, public companies, and investors. Includes general information like location, headcount, and industry, as well as proprietary data like business models, Competitor Scores, and Expert Collections.\n- **Financial Transactions**. Funding deals, cap table history, M&As, and IPOs, plus AI-generated insights that extract key themes.\n- **Business Relationships**. Partnerships, clients/vendors, and licensing activity, plus AI-generated insights to predict future M&As and shifts in strategy.\n- **Management and Board**. Leadership teams, board members, and the Management factor of the Mosaic Score — our proprietary algorithm which evaluates leadership teams based on past achievements.\n- **Outlook**. Proprietary data science analysis including Mosaic Score, Commercial Maturity, and Exit Probability. Proven to predict winners better than top VCs.\n- **Scouting Reports**. On-demand, AI-generated insights into business model, market position, strengths, and opportunities for private companies.\n"
+  title: CB Insights Strategy Map API
+  contact: {}
+  version: '2.0'
+  x-logo:
+    altText: CB Insights logo
+    backgroundColor: '#FFFFFF'
+    href: https://api-docs.cbinsights.com/v2/
+    url: https://api-docs.cbinsights.com/images/CBI_Logo_Color.svg
+servers:
+- url: https://api.cbinsights.com
+tags:
+- name: StrategyMap
+paths:
+  /v2/organizations/{orgId}/strategymap:
+    post:
+      security:
+      - BearerAuth: []
+      description: Retrieved data includes companies related to the organization, grouped into industry categories, along with the business relationships, investments, and acquisitions that connect them, plus AI-generated insights.
+      tags:
+      - StrategyMap
+      summary: Retrieve the strategy map for an organization.
+      parameters:
+      - description: Authorization
+        name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      - description: CB Insights organization ID
+        name: orgId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v2StrategyMap.StrategyMapResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '424':
+          description: Failed Dependency
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+components:
+  schemas:
+    v2StrategyMap.BusinessRelationship:
+      type: object
+      properties:
+        insights:
+          description: CB Insights proprietary AI generated insights about this business relationship.
+          allOf:
+          - $ref: '#/components/schemas/v2StrategyMap.Insights'
+        partnerRole:
+          description: The role that this business partner plays in the relationship (Partner, Vendor, Client, Licensor, Licensee, Supplier, Distributor, Sponsor, Sponsored).
+          type: string
+          example: Partner
+        relationshipId:
+          description: A unique ID which identifies this business relationship.
+          type: integer
+          example: 1415468
+        startDate:
+          description: The date when this business relationship began (YYYY-MM-DD).
+          type: string
+          example: '2024-09-17'
+    v2StrategyMap.Connections:
+      type: object
+      properties:
+        acquisitions:
+          description: A list of acquisitions connecting this company to the organization.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2StrategyMap.FinancialEvent'
+        businessRelationships:
+          description: A list of business relationships connecting this company to the organization.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2StrategyMap.BusinessRelationship'
+        investments:
+          description: A list of investments connecting this company to the organization.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2StrategyMap.FinancialEvent'
+    v2StrategyMap.Company:
+      type: object
+      properties:
+        connections:
+          description: The business relationships, investments, and acquisitions connecting this company to the organization.
+          allOf:
+          - $ref: '#/components/schemas/v2StrategyMap.Connections'
+        logoUrl:
+          description: The URL of the related company's logo.
+          type: string
+          example: https://s3-us-west-2.amazonaws.com/cbi-image-service-prd/modified/82ffe27d-5f7a-4fef-bed5-a38cadecf3d3.png
+        name:
+          description: The name of the related company.
+          type: string
+          example: OpenAI
+        orgId:
+          description: The CB Insights organization ID of the related company.
+          type: integer
+          example: 422214
+    common.ErrorWithCode:
+      type: object
+      properties:
+        error:
+          type: string
+    v2StrategyMap.Category:
+      type: object
+      properties:
+        companies:
+          description: A list of companies related to the organization within this category.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2StrategyMap.Company'
+        name:
+          description: The name of the category.
+          type: string
+          example: AI & Machine Learning
+    v2StrategyMap.FinancialEvent:
+      type: object
+      properties:
+        date:
+          description: The date when the deal took place, in the format YYYY-MM-DD.
+          type: string
+          example: '2011-03-15'
+        dealId:
+          description: The unique deal ID for this transaction.
+          type: integer
+          example: 88456
+        insights:
+          description: CB Insights proprietary AI generated insights about the deal.
+          allOf:
+          - $ref: '#/components/schemas/v2StrategyMap.Insights'
+        round:
+          description: The name of the funding round type.
+          type: string
+          example: Seed VC - II
+    v2StrategyMap.StrategyMapResponse:
+      type: object
+      properties:
+        categories:
+          description: A list of industry categories grouping the organization's related companies.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2StrategyMap.Category'
+        logoUrl:
+          description: The URL of the organization's logo.
+          type: string
+          example: https://s3-us-west-2.amazonaws.com/cbi-image-service-prd/original/0b23a5e0-1dde-4a05-8a02-b4ad0a0fa327.png
+        orgName:
+          description: The organization's name.
+          type: string
+          example: Stripe
+    v2StrategyMap.Insights:
+      type: object
+      properties:
+        details:
+          description: The list of insights regarding this relationship.
+          type: array
+          items:
+            type: string
+          example:
+          - The funding round propelled Stripe's valuation to $3.5 billion
+          - Stripe's partnership with tech giants like Apple and Twitter for payment processing indicates strategic positioning for expanding its market share and influence in the digital economy.
+        headline:
+          description: The headline summarizing these insights.
+          type: string
+          example: Stripe's valuation swells with latest funding, bolstering its market position
+        sources:
+          description: A list of sources the insights are based on.
+          type: array
+          items:
+            type: string
+          example:
+          - http://www.vcnewsdaily.com/stripe/venture-capital-funding/sfbwyyxnvy
+          - http://techcrunch.com/2014/12/04/thrive-capital-bet-big-30-million-to-be-exact-on-stripe/?ncid=rss
+  securitySchemes:
+    BearerAuth:
+      description: Type "Bearer" followed by a space and JWT token.
+      type: apiKey
+      name: Authorization
+      in: header
+externalDocs:
+  description: CBI API v1 reference
+  url: https://api-docs.cbinsights.com/

@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CB Insights Revenue API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Revenue",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List revenue data by year for a single organization.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cbinsights.com/v2/organizations/:orgId/revenuebyyear",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "CB Insights organization ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns revenue by year for an organization."
+        },
+        {
+          "info": {
+            "name": "List revenue data by year for a list of organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cbinsights.com/v2/revenuebyyear",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns revenue by year for a list of organizations"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

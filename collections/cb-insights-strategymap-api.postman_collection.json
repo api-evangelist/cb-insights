@@ -1,0 +1,454 @@
+{
+  "item": [
+    {
+      "id": "c0567431-5f03-4948-a2d1-d2a5bac2b17f",
+      "name": "StrategyMap",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "af794bfc-bfab-4529-a394-d247f8c386f5",
+          "name": "Retrieve the strategy map for an organization.",
+          "request": {
+            "name": "Retrieve the strategy map for an organization.",
+            "description": {
+              "content": "Retrieved data includes companies related to the organization, grouped into industry categories, along with the business relationships, investments, and acquisitions that connect them, plus AI-generated insights.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "organizations",
+                ":orgId",
+                "strategymap"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "orgId",
+                  "description": "(Required) CB Insights organization ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "176af0d5-37dd-46c4-a74e-45ea47ed2939",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":orgId",
+                    "strategymap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "orgId",
+                      "description": "(Required) CB Insights organization ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"categories\": [\n    {\n      \"companies\": [\n        {\n          \"connections\": {\n            \"acquisitions\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"businessRelationships\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"investments\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"logoUrl\": \"https://s3-us-west-2.amazonaws.com/cbi-image-service-prd/modified/82ffe27d-5f7a-4fef-bed5-a38cadecf3d3.png\",\n          \"name\": \"OpenAI\",\n          \"orgId\": 422214\n        },\n        {\n          \"connections\": {\n            \"acquisitions\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"businessRelationships\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"investments\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"logoUrl\": \"https://s3-us-west-2.amazonaws.com/cbi-image-service-prd/modified/82ffe27d-5f7a-4fef-bed5-a38cadecf3d3.png\",\n          \"name\": \"OpenAI\",\n          \"orgId\": 422214\n        }\n      ],\n      \"name\": \"AI & Machine Learning\"\n    },\n    {\n      \"companies\": [\n        {\n          \"connections\": {\n            \"acquisitions\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"businessRelationships\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"investments\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"logoUrl\": \"https://s3-us-west-2.amazonaws.com/cbi-image-service-prd/modified/82ffe27d-5f7a-4fef-bed5-a38cadecf3d3.png\",\n          \"name\": \"OpenAI\",\n          \"orgId\": 422214\n        },\n        {\n          \"connections\": {\n            \"acquisitions\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"businessRelationships\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"investments\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"logoUrl\": \"https://s3-us-west-2.amazonaws.com/cbi-image-service-prd/modified/82ffe27d-5f7a-4fef-bed5-a38cadecf3d3.png\",\n          \"name\": \"OpenAI\",\n          \"orgId\": 422214\n        }\n      ],\n      \"name\": \"AI & Machine Learning\"\n    }\n  ],\n  \"logoUrl\": \"https://s3-us-west-2.amazonaws.com/cbi-image-service-prd/original/0b23a5e0-1dde-4a05-8a02-b4ad0a0fa327.png\",\n  \"orgName\": \"Stripe\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c913f5c-7685-4817-b3d1-f851c3bd347c",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":orgId",
+                    "strategymap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "orgId",
+                      "description": "(Required) CB Insights organization ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98187694-30b6-4e40-9b9a-db6a60820981",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":orgId",
+                    "strategymap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "orgId",
+                      "description": "(Required) CB Insights organization ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "739e8a2c-4a88-46e3-a847-3e56bd5c3433",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":orgId",
+                    "strategymap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "orgId",
+                      "description": "(Required) CB Insights organization ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "491f93d3-2138-471b-a199-4e7485c1dae0",
+              "name": "Failed Dependency",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":orgId",
+                    "strategymap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "orgId",
+                      "description": "(Required) CB Insights organization ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Failed Dependency (WebDAV) (RFC 4918)",
+              "code": 424,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac953cdd-95e4-4bf4-a8c8-82876334c950",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":orgId",
+                    "strategymap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "orgId",
+                      "description": "(Required) CB Insights organization ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.cbinsights.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5b8ad153-bc50-4b54-8b0b-f91c4c0794ee",
+    "name": "CB Insights Strategy Map API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Introduction\n\nThe CB Insights API offers market data and insights you won't find anywhere else. Use our API to build trading platforms, media content, and market indexes, or integrate our proprietary scores into your workflows, algorithms, or LLMs. \n\n# CB Insights API v2 compared to v1\n\nThe new CB Insights API v2 offers new datasets and additional data points that were not available in v1. v2 follows the same REST architectural style and has a new structure for you to retrieve the information you need as conveniently as possible.\n\nThis first set of data includes:\n\n- **Firmographics**. Profiles on private companies, public companies, and investors. Includes general information like location, headcount, and industry, as well as proprietary data like business models, Competitor Scores, and Expert Collections.\n- **Financial Transactions**. Funding deals, cap table history, M&As, and IPOs, plus AI-generated insights that extract key themes.\n- **Business Relationships**. Partnerships, clients/vendors, and licensing activity, plus AI-generated insights to predict future M&As and shifts in strategy.\n- **Management and Board**. Leadership teams, board members, and the Management factor of the Mosaic Score — our proprietary algorithm which evaluates leadership teams based on past achievements.\n- **Outlook**. Proprietary data science analysis including Mosaic Score, Commercial Maturity, and Exit Probability. Proven to predict winners better than top VCs.\n- **Scouting Reports**. On-demand, AI-generated insights into business model, market position, strengths, and opportunities for private companies.\n",
+      "type": "text/plain"
+    }
+  }
+}

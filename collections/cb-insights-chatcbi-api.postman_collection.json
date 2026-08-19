@@ -1,0 +1,1271 @@
+{
+  "item": [
+    {
+      "id": "7a899c00-5423-4fdd-a8d4-dddabbef72a6",
+      "name": "ChatCBI",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6a8b3bf9-2130-4775-b5eb-962f8fdc55be",
+          "name": "Perform a RAG across CB Insights data and gets relevant structured data back in response to a query",
+          "request": {
+            "name": "Perform a RAG across CB Insights data and gets relevant structured data back in response to a query",
+            "description": {
+              "content": "This endpoint uses generative AI and may make mistakes. Always verify pertinent information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "cbirag"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "87a01129-9491-4c1c-91db-baae0ecac0d2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "cbirag"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"Which emerging technology markets are seeing the highest equity funding growth right now?\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": \"{\\\"companySearch\\\": [\\\"{<escaped_json_result>}\\\"], \\\"dealSearch\\\": [\\\"{<escaped_json_result>}\\\"], \\\"webResults\\\": [\\\"{<escaped_json_result>}\\\"], \\\"analystInsights\\\": [\\\"{<escaped_json_result>}\\\"], \\\"cbiResearch\\\": [\\\"{<escaped_json_result>}\\\"], \\\"markets\\\": [\\\"{<escaped_json_result>}\\\"], \\\"profilesV2\\\": [\\\"{<escaped_json_result>}\\\"], \\\"scoutingReports\\\": [\\\"{<escaped_json_result>}\\\"], \\\"earningsCallInsights\\\": [\\\"{<escaped_json_result>}\\\"], \\\"businessRelationships\\\": [\\\"{<escaped_json_result>}\\\"], \\\"buyerInterviews\\\": [\\\"{<escaped_json_result>}\\\"], \\\"cbiSupport\\\": [\\\"{<escaped_json_result>}\\\"], \\\"corporateSearch\\\": [\\\"{<escaped_json_result>}\\\"], \\\"hiring\\\": [\\\"{<escaped_json_result>}\\\"], \\\"jobPostings\\\": [\\\"{<escaped_json_result>}\\\"], \\\"revenue\\\": [\\\"{<escaped_json_result>}\\\"], \\\"fundingSummaries\\\": [\\\"{<escaped_json_result>}\\\"], \\\"investments\\\": [\\\"{<escaped_json_result>}\\\"], \\\"keyDevelopments\\\": [\\\"{<escaped_json_result>}\\\"]}\",\n  \"guidance\": [\n    \"\\\"deal_search: Investment and acquisition deal search results including funding rounds\",\n    \" M&A transactions\",\n    \" and deal participants\\\"\",\n    \"\\\"cb_insights_research: CB Insights research articles and reports covering industry trends\",\n    \" market analysis\",\n    \" and company deep-dives\\\"\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3762e473-8f2a-4ead-8893-d0d9cfc2f9ed",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "cbirag"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"Which emerging technology markets are seeing the highest equity funding growth right now?\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "13d38237-7c83-40dc-8f43-7190fba8611f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "cbirag"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"Which emerging technology markets are seeing the highest equity funding growth right now?\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "afdd889a-307b-4672-9901-1f22ca261f54",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "cbirag"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"Which emerging technology markets are seeing the highest equity funding growth right now?\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86df7255-455f-4181-862a-92088c373104",
+              "name": "Failed Dependency",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "cbirag"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"Which emerging technology markets are seeing the highest equity funding growth right now?\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Failed Dependency (WebDAV) (RFC 4918)",
+              "code": 424,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac052fda-ee6b-4821-90ea-a7d5a2107521",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "cbirag"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"Which emerging technology markets are seeing the highest equity funding growth right now?\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5e00904f-969f-4896-855d-e564f671f8c5",
+          "name": "Converse with the beta version of our AI chatbot ChatCBI",
+          "request": {
+            "name": "Converse with the beta version of our AI chatbot ChatCBI",
+            "description": {
+              "content": "See https://api-docs.cbinsights.com/portal/docs/CBI-API/ChatCBI for more information and usage details. This endpoint uses generative AI and may make mistakes. Always verify pertinent information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "chatcbi"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chatID\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8522e85a-6818-452f-9f5c-093ef7936afd",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "chatcbi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chatID\": \"d5aa5a74-9334-4d92-aacf-e69577305b79\",\n  \"message\": \"Which emerging technology markets are seeing the highest equity funding growth right now?\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"chatID\": \"d5aa5a74-9334-4d92-aacf-e69577305b79\",\n  \"message\": \"# Emerging Technology Markets with Highest Equity Funding Growth\\n\\nBased on the latest data, several emerging technology markets are experiencing exceptional equity funding growth. Here's a breakdown of the markets showing the most significant year-over-year percentage increases:\",\n  \"relatedContent\": [\n    {\n      \"date\": \"09/18/2024\",\n      \"thumbnailUrl\": \"https://s.yimg.com/cv/apiv2/cv/apiv2/social/images/yahoo-finance-default-logo.png\",\n      \"title\": \"Markets with Highest Percentage Equity Funding Growth\",\n      \"url\": \"https://app.cbinsights.com/markets?industry=Consumer+%26+Retail&tab=leaderboards\"\n    },\n    {\n      \"date\": \"09/18/2024\",\n      \"thumbnailUrl\": \"https://s.yimg.com/cv/apiv2/cv/apiv2/social/images/yahoo-finance-default-logo.png\",\n      \"title\": \"Markets with Highest Percentage Equity Funding Growth\",\n      \"url\": \"https://app.cbinsights.com/markets?industry=Consumer+%26+Retail&tab=leaderboards\"\n    }\n  ],\n  \"sources\": [\n    {\n      \"result\": {\n        \"date\": \"09/18/2024\",\n        \"thumbnailUrl\": \"https://s.yimg.com/cv/apiv2/cv/apiv2/social/images/yahoo-finance-default-logo.png\",\n        \"title\": \"Markets with Highest Percentage Equity Funding Growth\",\n        \"url\": \"https://app.cbinsights.com/markets?industry=Consumer+%26+Retail&tab=leaderboards\"\n      },\n      \"sourceIndex\": 1\n    },\n    {\n      \"result\": {\n        \"date\": \"09/18/2024\",\n        \"thumbnailUrl\": \"https://s.yimg.com/cv/apiv2/cv/apiv2/social/images/yahoo-finance-default-logo.png\",\n        \"title\": \"Markets with Highest Percentage Equity Funding Growth\",\n        \"url\": \"https://app.cbinsights.com/markets?industry=Consumer+%26+Retail&tab=leaderboards\"\n      },\n      \"sourceIndex\": 1\n    }\n  ],\n  \"suggestions\": [\n    \"How has the funding landscape for autonomous trucking evolved over the past 2-3 years?\",\n    \"Which specific companies are leading the digital twins market?\"\n  ],\n  \"title\": \"Emerging Tech Markets with Highest Funding Growth\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6cd5c62b-b20b-4777-99d6-d1b182df7fd8",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "chatcbi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chatID\": \"d5aa5a74-9334-4d92-aacf-e69577305b79\",\n  \"message\": \"Which emerging technology markets are seeing the highest equity funding growth right now?\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "30b32297-cdcc-40cb-aa21-8201a98e0bad",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "chatcbi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chatID\": \"d5aa5a74-9334-4d92-aacf-e69577305b79\",\n  \"message\": \"Which emerging technology markets are seeing the highest equity funding growth right now?\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1bf3c37-16c9-4001-ab25-da20b0438d14",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "chatcbi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chatID\": \"d5aa5a74-9334-4d92-aacf-e69577305b79\",\n  \"message\": \"Which emerging technology markets are seeing the highest equity funding growth right now?\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "89f05cb7-4848-424c-ab77-8322363fb2e5",
+              "name": "Failed Dependency",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "chatcbi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chatID\": \"d5aa5a74-9334-4d92-aacf-e69577305b79\",\n  \"message\": \"Which emerging technology markets are seeing the highest equity funding growth right now?\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Failed Dependency (WebDAV) (RFC 4918)",
+              "code": 424,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d33e2e23-6fd3-48cc-875c-a6eb89465fb1",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "chatcbi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chatID\": \"d5aa5a74-9334-4d92-aacf-e69577305b79\",\n  \"message\": \"Which emerging technology markets are seeing the highest equity funding growth right now?\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa629dc6-76bd-4864-aaa6-d3392a2804b9",
+          "name": "Converse with the beta version of our AI chatbot ChatCBI, which responds via incremental chunks",
+          "request": {
+            "name": "Converse with the beta version of our AI chatbot ChatCBI, which responds via incremental chunks",
+            "description": {
+              "content": "Response is a series of incremental chunks. See https://api-docs.cbinsights.com/portal/docs/CBI-API/ChatCBI for more information and usage details. This endpoint uses generative AI and may make mistakes. Always verify pertinent information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "chatcbichunked"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chatID\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "85bc404b-d212-4bb6-a360-448cf2b79444",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "chatcbichunked"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chatID\": \"d5aa5a74-9334-4d92-aacf-e69577305b79\",\n  \"message\": \"Which emerging technology markets are seeing the highest equity funding growth right now?\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"chatID\": \"d5aa5a74-9334-4d92-aacf-e69577305b79\",\n  \"message\": \"# Emerging Technology Markets with Highest Equity Funding Growth\\n\\nBased on the latest data, several emerging technology markets are experiencing exceptional equity funding growth. Here's a breakdown of the markets showing the most significant year-over-year percentage increases:\",\n  \"relatedContent\": [\n    {\n      \"date\": \"09/18/2024\",\n      \"thumbnailUrl\": \"https://s.yimg.com/cv/apiv2/cv/apiv2/social/images/yahoo-finance-default-logo.png\",\n      \"title\": \"Markets with Highest Percentage Equity Funding Growth\",\n      \"url\": \"https://app.cbinsights.com/markets?industry=Consumer+%26+Retail&tab=leaderboards\"\n    },\n    {\n      \"date\": \"09/18/2024\",\n      \"thumbnailUrl\": \"https://s.yimg.com/cv/apiv2/cv/apiv2/social/images/yahoo-finance-default-logo.png\",\n      \"title\": \"Markets with Highest Percentage Equity Funding Growth\",\n      \"url\": \"https://app.cbinsights.com/markets?industry=Consumer+%26+Retail&tab=leaderboards\"\n    }\n  ],\n  \"sources\": [\n    {\n      \"result\": {\n        \"date\": \"09/18/2024\",\n        \"thumbnailUrl\": \"https://s.yimg.com/cv/apiv2/cv/apiv2/social/images/yahoo-finance-default-logo.png\",\n        \"title\": \"Markets with Highest Percentage Equity Funding Growth\",\n        \"url\": \"https://app.cbinsights.com/markets?industry=Consumer+%26+Retail&tab=leaderboards\"\n      },\n      \"sourceIndex\": 1\n    },\n    {\n      \"result\": {\n        \"date\": \"09/18/2024\",\n        \"thumbnailUrl\": \"https://s.yimg.com/cv/apiv2/cv/apiv2/social/images/yahoo-finance-default-logo.png\",\n        \"title\": \"Markets with Highest Percentage Equity Funding Growth\",\n        \"url\": \"https://app.cbinsights.com/markets?industry=Consumer+%26+Retail&tab=leaderboards\"\n      },\n      \"sourceIndex\": 1\n    }\n  ],\n  \"suggestions\": [\n    \"How has the funding landscape for autonomous trucking evolved over the past 2-3 years?\",\n    \"Which specific companies are leading the digital twins market?\"\n  ],\n  \"title\": \"Emerging Tech Markets with Highest Funding Growth\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "514cc258-3a1e-415a-8896-73ffa1b83731",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "chatcbichunked"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chatID\": \"d5aa5a74-9334-4d92-aacf-e69577305b79\",\n  \"message\": \"Which emerging technology markets are seeing the highest equity funding growth right now?\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e5c34eeb-c81c-48e7-8765-1aaacd3d8bde",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "chatcbichunked"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chatID\": \"d5aa5a74-9334-4d92-aacf-e69577305b79\",\n  \"message\": \"Which emerging technology markets are seeing the highest equity funding growth right now?\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c2abe7f-9346-4696-9cca-c16db628d6bf",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "chatcbichunked"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chatID\": \"d5aa5a74-9334-4d92-aacf-e69577305b79\",\n  \"message\": \"Which emerging technology markets are seeing the highest equity funding growth right now?\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2aca4669-d661-43f7-a6ea-ac2ab86c8f71",
+              "name": "Failed Dependency",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "chatcbichunked"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chatID\": \"d5aa5a74-9334-4d92-aacf-e69577305b79\",\n  \"message\": \"Which emerging technology markets are seeing the highest equity funding growth right now?\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Failed Dependency (WebDAV) (RFC 4918)",
+              "code": 424,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e8a9fa4b-e84a-48e5-8a62-1b49c8804e85",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "chatcbichunked"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chatID\": \"d5aa5a74-9334-4d92-aacf-e69577305b79\",\n  \"message\": \"Which emerging technology markets are seeing the highest equity funding growth right now?\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.cbinsights.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "fa1b2c3e-9ca6-4cc5-910a-9f82635535d0",
+    "name": "CB Insights Chat CBI API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Introduction\n\nThe CB Insights API offers market data and insights you won't find anywhere else. Use our API to build trading platforms, media content, and market indexes, or integrate our proprietary scores into your workflows, algorithms, or LLMs. \n\n# CB Insights API v2 compared to v1\n\nThe new CB Insights API v2 offers new datasets and additional data points that were not available in v1. v2 follows the same REST architectural style and has a new structure for you to retrieve the information you need as conveniently as possible.\n\nThis first set of data includes:\n\n- **Firmographics**. Profiles on private companies, public companies, and investors. Includes general information like location, headcount, and industry, as well as proprietary data like business models, Competitor Scores, and Expert Collections.\n- **Financial Transactions**. Funding deals, cap table history, M&As, and IPOs, plus AI-generated insights that extract key themes.\n- **Business Relationships**. Partnerships, clients/vendors, and licensing activity, plus AI-generated insights to predict future M&As and shifts in strategy.\n- **Management and Board**. Leadership teams, board members, and the Management factor of the Mosaic Score — our proprietary algorithm which evaluates leadership teams based on past achievements.\n- **Outlook**. Proprietary data science analysis including Mosaic Score, Commercial Maturity, and Exit Probability. Proven to predict winners better than top VCs.\n- **Scouting Reports**. On-demand, AI-generated insights into business model, market position, strengths, and opportunities for private companies.\n",
+      "type": "text/plain"
+    }
+  }
+}

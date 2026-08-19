@@ -1,0 +1,445 @@
+{
+  "item": [
+    {
+      "id": "be6b8ebb-eda6-4980-8286-390362cd605a",
+      "name": "Firmographics",
+      "description": {
+        "content": "This dataset contains profiles on private companies, public companies, and investors. Includes general information like location, headcount, and industry, as well as proprietary data like business models, Competitor Scores, and Expert Collections.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "af36b053-c95e-4552-84b5-37290ba15a75",
+          "name": "List profiles of companies.",
+          "request": {
+            "name": "List profiles of companies.",
+            "description": {
+              "content": "Retrieve a list of profiles on private companies, public companies, and investors based on the parameters defined in the request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "firmographics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"awardsAndSpotlightsIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"businessModelIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"ciks\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"cityIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"collectionIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"continentIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"countryIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"cusips\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"figis\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fundingInvestorTypeIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"industryIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"investorOrgIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"investorTypeIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"isins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"keyword\": \"<string>\",\n  \"lastFundingRoundCategoryIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"lastFundingRoundIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"leis\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"limit\": \"<integer>\",\n  \"marketIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"marketNames\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"maxCurrentHeadcount\": \"<integer>\",\n  \"maxLastFundingDate\": \"<string>\",\n  \"maxTotalFundingInMillions\": \"<number>\",\n  \"maxValuationInMillions\": \"<number>\",\n  \"minCurrentHeadcount\": \"<integer>\",\n  \"minLastFundingDate\": \"<string>\",\n  \"minTotalFundingInMillions\": \"<number>\",\n  \"minValuationInMillions\": \"<number>\",\n  \"nextPageToken\": \"<string>\",\n  \"orgIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"orgNames\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"orgStatusIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"regionIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"sectorIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"sort\": {\n    \"direction\": \"<string>\",\n    \"field\": \"<string>\"\n  },\n  \"stateProvinceIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"subindustryIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"technologyIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"tickers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"urls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"vcBacked\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2f2dc122-cae0-4129-bdd9-565e35732186",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "firmographics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"awardsAndSpotlightsIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"businessModelIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"ciks\": [\n    \"320193\"\n  ],\n  \"cityIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"collectionIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"continentIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"countryIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"cusips\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"figis\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fundingInvestorTypeIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"industryIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"investorOrgIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"investorTypeIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"isins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"keyword\": \"<string>\",\n  \"lastFundingRoundCategoryIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"lastFundingRoundIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"leis\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"limit\": 10,\n  \"marketIds\": [\n    6,\n    95,\n    106\n  ],\n  \"marketNames\": [\n    \"Web3 wallets\",\n    \"Large language model (LLM) developers\",\n    \"Retail AI agents\",\n    \"AI\",\n    \"LLM\"\n  ],\n  \"maxCurrentHeadcount\": \"<integer>\",\n  \"maxLastFundingDate\": \"<string>\",\n  \"maxTotalFundingInMillions\": \"<number>\",\n  \"maxValuationInMillions\": \"<number>\",\n  \"minCurrentHeadcount\": \"<integer>\",\n  \"minLastFundingDate\": \"<string>\",\n  \"minTotalFundingInMillions\": \"<number>\",\n  \"minValuationInMillions\": \"<number>\",\n  \"nextPageToken\": \"\",\n  \"orgIds\": [\n    129410,\n    129411\n  ],\n  \"orgNames\": [\n    \"CB Insights\"\n  ],\n  \"orgStatusIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"regionIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"sectorIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"sort\": {\n    \"direction\": \"desc\",\n    \"field\": \"mosaicOverall\"\n  },\n  \"stateProvinceIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"subindustryIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"technologyIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"tickers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"urls\": [\n    \"cbinsights.com\"\n  ],\n  \"vcBacked\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"nextPageToken\": \"eyJwYWdpbmF0aW9uX3NjaGVtZSI6MiwibmV4dF9wYWdlX3Rva2VuIjoxMjk0MTB9Cg==\",\n  \"orgs\": [\n    {\n      \"businessModels\": [\n        {\n          \"businessModel\": \"SaaS\",\n          \"businessModelId\": 7\n        },\n        {\n          \"businessModel\": \"SaaS\",\n          \"businessModelId\": 7\n        }\n      ],\n      \"childOrgs\": [\n        {\n          \"name\": \"Blockdata\",\n          \"orgId\": 417006\n        },\n        {\n          \"name\": \"Blockdata\",\n          \"orgId\": 417006\n        }\n      ],\n      \"competitors\": [\n        {\n          \"name\": \"Xeler8\",\n          \"orgId\": 31509,\n          \"score\": 81.86949920654297\n        },\n        {\n          \"name\": \"Xeler8\",\n          \"orgId\": 31509,\n          \"score\": 81.86949920654297\n        }\n      ],\n      \"expertCollections\": [\n        {\n          \"collectionId\": 3285,\n          \"collectionName\": \"Market Research & Consumer Insights\"\n        },\n        {\n          \"collectionId\": 3285,\n          \"collectionName\": \"Market Research & Consumer Insights\"\n        }\n      ],\n      \"financials\": {\n        \"lastFundingDate\": \"2024-06-30\",\n        \"latestRevenueMultipleMax\": 0.20000000298023224,\n        \"latestRevenueMultipleMin\": 0.20000000298023224,\n        \"marketCap\": 3479762.37056,\n        \"revenueDate\": \"2024-06-30\",\n        \"revenueMax\": 85776998400,\n        \"revenueMin\": 85776998400,\n        \"stockLastClose\": 228.2,\n        \"totalEquityFunding\": 79.30000000447035,\n        \"totalFunding\": 0.7200000286102295,\n        \"valuation\": 1778\n      },\n      \"headcount\": {\n        \"currentHeadcount\": 300,\n        \"oneYearGrowth\": -15.254237174987793,\n        \"sixMonthGrowth\": -7.1207427978515625,\n        \"twoYearGrowth\": -35.622318267822266\n      },\n      \"identifiers\": {\n        \"ciks\": [\n          \"320193\"\n        ],\n        \"cusips\": [\n          \"string\",\n          \"string\"\n        ],\n        \"figis\": [\n          \"BBG000B9XRY4\"\n        ],\n        \"isins\": [\n          \"US0378331005\"\n        ],\n        \"leis\": [\n          \"HWUPKR0MPOU8FGXBT394\"\n        ],\n        \"tickers\": [\n          \"APC\"\n        ],\n        \"tickersWithExchanges\": [\n          \"APC:BE\",\n          \"APC:DU\"\n        ]\n      },\n      \"orgId\": 129410,\n      \"parentOrgs\": [\n        {\n          \"name\": \"Blockdata\",\n          \"orgId\": 417006\n        },\n        {\n          \"name\": \"Blockdata\",\n          \"orgId\": 417006\n        }\n      ],\n      \"summary\": {\n        \"additionalUrls\": [\n          \"cbicompany.com\",\n          \"cbinsights.org\"\n        ],\n        \"address\": {\n          \"city\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"cityId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"continent\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"continentId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"country\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"countryId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"postalCode\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"regions\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stateProvince\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stateProvinceId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"streetAddress\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"aliases\": [\n          \"CB Insight\",\n          \"CBI\"\n        ],\n        \"description\": \"CB is an AI super analyst specializing in market intelligence across various sectors. The company provides insights and analytics to help enterprises understand tech markets, anticipate competitor strategies, and connect with tech vendors. CB Insights offers a platform that includes a technology search engine, market analytics, and data science predictions to inform business strategies. It was founded in 2008 and is based in New York, New York.\",\n        \"foundedYear\": 7009,\n        \"investorCategory\": \"Corporation\",\n        \"investorCategoryId\": 14,\n        \"legalNames\": [\n          \"CB Information Services Inc.\",\n          \"CB Insights Holdings LLC\"\n        ],\n        \"name\": \"CB Insights\",\n        \"profileUrl\": \"https://app.cbinsights.com/profiles/c/jp3o4\",\n        \"stage\": \"Series A\",\n        \"status\": \"IPO / Went public\",\n        \"statusId\": 5,\n        \"url\": \"cbinsights.com\",\n        \"vcBacked\": true\n      },\n      \"taxonomy\": {\n        \"industry\": \"Personal Computers & Notebooks\",\n        \"industryId\": 144,\n        \"landscape\": {\n          \"awardsAndSpotlights\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"businessModels\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"technologies\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"marketIds\": [\n          6,\n          95,\n          106\n        ],\n        \"marketNames\": [\n          \"Web3 wallets\",\n          \"Large language model (LLM) developers\",\n          \"Retail AI agents\"\n        ],\n        \"sector\": \"Computer Hardware & Services\",\n        \"sectorId\": 4,\n        \"subindustry\": \"E-Commerce Enablement\",\n        \"subindustryId\": 87\n      }\n    },\n    {\n      \"businessModels\": [\n        {\n          \"businessModel\": \"SaaS\",\n          \"businessModelId\": 7\n        },\n        {\n          \"businessModel\": \"SaaS\",\n          \"businessModelId\": 7\n        }\n      ],\n      \"childOrgs\": [\n        {\n          \"name\": \"Blockdata\",\n          \"orgId\": 417006\n        },\n        {\n          \"name\": \"Blockdata\",\n          \"orgId\": 417006\n        }\n      ],\n      \"competitors\": [\n        {\n          \"name\": \"Xeler8\",\n          \"orgId\": 31509,\n          \"score\": 81.86949920654297\n        },\n        {\n          \"name\": \"Xeler8\",\n          \"orgId\": 31509,\n          \"score\": 81.86949920654297\n        }\n      ],\n      \"expertCollections\": [\n        {\n          \"collectionId\": 3285,\n          \"collectionName\": \"Market Research & Consumer Insights\"\n        },\n        {\n          \"collectionId\": 3285,\n          \"collectionName\": \"Market Research & Consumer Insights\"\n        }\n      ],\n      \"financials\": {\n        \"lastFundingDate\": \"2024-06-30\",\n        \"latestRevenueMultipleMax\": 0.20000000298023224,\n        \"latestRevenueMultipleMin\": 0.20000000298023224,\n        \"marketCap\": 3479762.37056,\n        \"revenueDate\": \"2024-06-30\",\n        \"revenueMax\": 85776998400,\n        \"revenueMin\": 85776998400,\n        \"stockLastClose\": 228.2,\n        \"totalEquityFunding\": 79.30000000447035,\n        \"totalFunding\": 0.7200000286102295,\n        \"valuation\": 1778\n      },\n      \"headcount\": {\n        \"currentHeadcount\": 300,\n        \"oneYearGrowth\": -15.254237174987793,\n        \"sixMonthGrowth\": -7.1207427978515625,\n        \"twoYearGrowth\": -35.622318267822266\n      },\n      \"identifiers\": {\n        \"ciks\": [\n          \"320193\"\n        ],\n        \"cusips\": [\n          \"string\",\n          \"string\"\n        ],\n        \"figis\": [\n          \"BBG000B9XRY4\"\n        ],\n        \"isins\": [\n          \"US0378331005\"\n        ],\n        \"leis\": [\n          \"HWUPKR0MPOU8FGXBT394\"\n        ],\n        \"tickers\": [\n          \"APC\"\n        ],\n        \"tickersWithExchanges\": [\n          \"APC:BE\",\n          \"APC:DU\"\n        ]\n      },\n      \"orgId\": 129410,\n      \"parentOrgs\": [\n        {\n          \"name\": \"Blockdata\",\n          \"orgId\": 417006\n        },\n        {\n          \"name\": \"Blockdata\",\n          \"orgId\": 417006\n        }\n      ],\n      \"summary\": {\n        \"additionalUrls\": [\n          \"cbicompany.com\",\n          \"cbinsights.org\"\n        ],\n        \"address\": {\n          \"city\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"cityId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"continent\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"continentId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"country\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"countryId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"postalCode\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"regions\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stateProvince\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stateProvinceId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"streetAddress\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"aliases\": [\n          \"CB Insight\",\n          \"CBI\"\n        ],\n        \"description\": \"CB is an AI super analyst specializing in market intelligence across various sectors. The company provides insights and analytics to help enterprises understand tech markets, anticipate competitor strategies, and connect with tech vendors. CB Insights offers a platform that includes a technology search engine, market analytics, and data science predictions to inform business strategies. It was founded in 2008 and is based in New York, New York.\",\n        \"foundedYear\": 186,\n        \"investorCategory\": \"Corporation\",\n        \"investorCategoryId\": 14,\n        \"legalNames\": [\n          \"CB Information Services Inc.\",\n          \"CB Insights Holdings LLC\"\n        ],\n        \"name\": \"CB Insights\",\n        \"profileUrl\": \"https://app.cbinsights.com/profiles/c/jp3o4\",\n        \"stage\": \"Series A\",\n        \"status\": \"IPO / Went public\",\n        \"statusId\": 5,\n        \"url\": \"cbinsights.com\",\n        \"vcBacked\": true\n      },\n      \"taxonomy\": {\n        \"industry\": \"Personal Computers & Notebooks\",\n        \"industryId\": 144,\n        \"landscape\": {\n          \"awardsAndSpotlights\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"businessModels\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"technologies\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"marketIds\": [\n          6,\n          95,\n          106\n        ],\n        \"marketNames\": [\n          \"Web3 wallets\",\n          \"Large language model (LLM) developers\",\n          \"Retail AI agents\"\n        ],\n        \"sector\": \"Computer Hardware & Services\",\n        \"sectorId\": 4,\n        \"subindustry\": \"E-Commerce Enablement\",\n        \"subindustryId\": 87\n      }\n    }\n  ],\n  \"totalHits\": 10,\n  \"totalHitsRelation\": \"gte\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be0acc4b-0a59-4d9e-8a29-848ad1537301",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "firmographics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"awardsAndSpotlightsIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"businessModelIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"ciks\": [\n    \"320193\"\n  ],\n  \"cityIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"collectionIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"continentIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"countryIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"cusips\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"figis\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fundingInvestorTypeIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"industryIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"investorOrgIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"investorTypeIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"isins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"keyword\": \"<string>\",\n  \"lastFundingRoundCategoryIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"lastFundingRoundIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"leis\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"limit\": 10,\n  \"marketIds\": [\n    6,\n    95,\n    106\n  ],\n  \"marketNames\": [\n    \"Web3 wallets\",\n    \"Large language model (LLM) developers\",\n    \"Retail AI agents\",\n    \"AI\",\n    \"LLM\"\n  ],\n  \"maxCurrentHeadcount\": \"<integer>\",\n  \"maxLastFundingDate\": \"<string>\",\n  \"maxTotalFundingInMillions\": \"<number>\",\n  \"maxValuationInMillions\": \"<number>\",\n  \"minCurrentHeadcount\": \"<integer>\",\n  \"minLastFundingDate\": \"<string>\",\n  \"minTotalFundingInMillions\": \"<number>\",\n  \"minValuationInMillions\": \"<number>\",\n  \"nextPageToken\": \"\",\n  \"orgIds\": [\n    129410,\n    129411\n  ],\n  \"orgNames\": [\n    \"CB Insights\"\n  ],\n  \"orgStatusIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"regionIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"sectorIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"sort\": {\n    \"direction\": \"desc\",\n    \"field\": \"mosaicOverall\"\n  },\n  \"stateProvinceIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"subindustryIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"technologyIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"tickers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"urls\": [\n    \"cbinsights.com\"\n  ],\n  \"vcBacked\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb99e771-77ad-4e8b-9ca0-f5ce2b9fa090",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "firmographics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"awardsAndSpotlightsIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"businessModelIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"ciks\": [\n    \"320193\"\n  ],\n  \"cityIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"collectionIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"continentIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"countryIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"cusips\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"figis\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fundingInvestorTypeIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"industryIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"investorOrgIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"investorTypeIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"isins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"keyword\": \"<string>\",\n  \"lastFundingRoundCategoryIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"lastFundingRoundIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"leis\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"limit\": 10,\n  \"marketIds\": [\n    6,\n    95,\n    106\n  ],\n  \"marketNames\": [\n    \"Web3 wallets\",\n    \"Large language model (LLM) developers\",\n    \"Retail AI agents\",\n    \"AI\",\n    \"LLM\"\n  ],\n  \"maxCurrentHeadcount\": \"<integer>\",\n  \"maxLastFundingDate\": \"<string>\",\n  \"maxTotalFundingInMillions\": \"<number>\",\n  \"maxValuationInMillions\": \"<number>\",\n  \"minCurrentHeadcount\": \"<integer>\",\n  \"minLastFundingDate\": \"<string>\",\n  \"minTotalFundingInMillions\": \"<number>\",\n  \"minValuationInMillions\": \"<number>\",\n  \"nextPageToken\": \"\",\n  \"orgIds\": [\n    129410,\n    129411\n  ],\n  \"orgNames\": [\n    \"CB Insights\"\n  ],\n  \"orgStatusIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"regionIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"sectorIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"sort\": {\n    \"direction\": \"desc\",\n    \"field\": \"mosaicOverall\"\n  },\n  \"stateProvinceIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"subindustryIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"technologyIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"tickers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"urls\": [\n    \"cbinsights.com\"\n  ],\n  \"vcBacked\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c8efe9f-9509-4a43-8581-aee080fe6fcd",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "firmographics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"awardsAndSpotlightsIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"businessModelIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"ciks\": [\n    \"320193\"\n  ],\n  \"cityIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"collectionIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"continentIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"countryIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"cusips\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"figis\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fundingInvestorTypeIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"industryIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"investorOrgIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"investorTypeIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"isins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"keyword\": \"<string>\",\n  \"lastFundingRoundCategoryIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"lastFundingRoundIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"leis\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"limit\": 10,\n  \"marketIds\": [\n    6,\n    95,\n    106\n  ],\n  \"marketNames\": [\n    \"Web3 wallets\",\n    \"Large language model (LLM) developers\",\n    \"Retail AI agents\",\n    \"AI\",\n    \"LLM\"\n  ],\n  \"maxCurrentHeadcount\": \"<integer>\",\n  \"maxLastFundingDate\": \"<string>\",\n  \"maxTotalFundingInMillions\": \"<number>\",\n  \"maxValuationInMillions\": \"<number>\",\n  \"minCurrentHeadcount\": \"<integer>\",\n  \"minLastFundingDate\": \"<string>\",\n  \"minTotalFundingInMillions\": \"<number>\",\n  \"minValuationInMillions\": \"<number>\",\n  \"nextPageToken\": \"\",\n  \"orgIds\": [\n    129410,\n    129411\n  ],\n  \"orgNames\": [\n    \"CB Insights\"\n  ],\n  \"orgStatusIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"regionIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"sectorIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"sort\": {\n    \"direction\": \"desc\",\n    \"field\": \"mosaicOverall\"\n  },\n  \"stateProvinceIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"subindustryIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"technologyIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"tickers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"urls\": [\n    \"cbinsights.com\"\n  ],\n  \"vcBacked\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ceb221f-dba4-4c81-abe5-fb5189f12bbc",
+              "name": "Failed Dependency",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "firmographics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"awardsAndSpotlightsIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"businessModelIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"ciks\": [\n    \"320193\"\n  ],\n  \"cityIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"collectionIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"continentIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"countryIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"cusips\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"figis\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fundingInvestorTypeIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"industryIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"investorOrgIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"investorTypeIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"isins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"keyword\": \"<string>\",\n  \"lastFundingRoundCategoryIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"lastFundingRoundIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"leis\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"limit\": 10,\n  \"marketIds\": [\n    6,\n    95,\n    106\n  ],\n  \"marketNames\": [\n    \"Web3 wallets\",\n    \"Large language model (LLM) developers\",\n    \"Retail AI agents\",\n    \"AI\",\n    \"LLM\"\n  ],\n  \"maxCurrentHeadcount\": \"<integer>\",\n  \"maxLastFundingDate\": \"<string>\",\n  \"maxTotalFundingInMillions\": \"<number>\",\n  \"maxValuationInMillions\": \"<number>\",\n  \"minCurrentHeadcount\": \"<integer>\",\n  \"minLastFundingDate\": \"<string>\",\n  \"minTotalFundingInMillions\": \"<number>\",\n  \"minValuationInMillions\": \"<number>\",\n  \"nextPageToken\": \"\",\n  \"orgIds\": [\n    129410,\n    129411\n  ],\n  \"orgNames\": [\n    \"CB Insights\"\n  ],\n  \"orgStatusIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"regionIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"sectorIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"sort\": {\n    \"direction\": \"desc\",\n    \"field\": \"mosaicOverall\"\n  },\n  \"stateProvinceIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"subindustryIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"technologyIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"tickers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"urls\": [\n    \"cbinsights.com\"\n  ],\n  \"vcBacked\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Failed Dependency (WebDAV) (RFC 4918)",
+              "code": 424,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "625d935a-dd33-41c4-8888-f53904973344",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "firmographics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"awardsAndSpotlightsIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"businessModelIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"ciks\": [\n    \"320193\"\n  ],\n  \"cityIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"collectionIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"continentIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"countryIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"cusips\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"figis\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fundingInvestorTypeIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"industryIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"investorOrgIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"investorTypeIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"isins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"keyword\": \"<string>\",\n  \"lastFundingRoundCategoryIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"lastFundingRoundIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"leis\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"limit\": 10,\n  \"marketIds\": [\n    6,\n    95,\n    106\n  ],\n  \"marketNames\": [\n    \"Web3 wallets\",\n    \"Large language model (LLM) developers\",\n    \"Retail AI agents\",\n    \"AI\",\n    \"LLM\"\n  ],\n  \"maxCurrentHeadcount\": \"<integer>\",\n  \"maxLastFundingDate\": \"<string>\",\n  \"maxTotalFundingInMillions\": \"<number>\",\n  \"maxValuationInMillions\": \"<number>\",\n  \"minCurrentHeadcount\": \"<integer>\",\n  \"minLastFundingDate\": \"<string>\",\n  \"minTotalFundingInMillions\": \"<number>\",\n  \"minValuationInMillions\": \"<number>\",\n  \"nextPageToken\": \"\",\n  \"orgIds\": [\n    129410,\n    129411\n  ],\n  \"orgNames\": [\n    \"CB Insights\"\n  ],\n  \"orgStatusIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"regionIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"sectorIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"sort\": {\n    \"direction\": \"desc\",\n    \"field\": \"mosaicOverall\"\n  },\n  \"stateProvinceIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"subindustryIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"technologyIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"tickers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"urls\": [\n    \"cbinsights.com\"\n  ],\n  \"vcBacked\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.cbinsights.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b64c458e-e147-4ab2-a435-4d10355fabdb",
+    "name": "CB Insights Firmographics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Introduction\n\nThe CB Insights API offers market data and insights you won't find anywhere else. Use our API to build trading platforms, media content, and market indexes, or integrate our proprietary scores into your workflows, algorithms, or LLMs. \n\n# CB Insights API v2 compared to v1\n\nThe new CB Insights API v2 offers new datasets and additional data points that were not available in v1. v2 follows the same REST architectural style and has a new structure for you to retrieve the information you need as conveniently as possible.\n\nThis first set of data includes:\n\n- **Firmographics**. Profiles on private companies, public companies, and investors. Includes general information like location, headcount, and industry, as well as proprietary data like business models, Competitor Scores, and Expert Collections.\n- **Financial Transactions**. Funding deals, cap table history, M&As, and IPOs, plus AI-generated insights that extract key themes.\n- **Business Relationships**. Partnerships, clients/vendors, and licensing activity, plus AI-generated insights to predict future M&As and shifts in strategy.\n- **Management and Board**. Leadership teams, board members, and the Management factor of the Mosaic Score — our proprietary algorithm which evaluates leadership teams based on past achievements.\n- **Outlook**. Proprietary data science analysis including Mosaic Score, Commercial Maturity, and Exit Probability. Proven to predict winners better than top VCs.\n- **Scouting Reports**. On-demand, AI-generated insights into business model, market position, strengths, and opportunities for private companies.\n",
+      "type": "text/plain"
+    }
+  }
+}

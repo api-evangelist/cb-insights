@@ -1,0 +1,302 @@
+openapi: 3.2.0
+info:
+  description: "# Introduction\n\nThe CB Insights API offers market data and insights you won't find anywhere else. Use our API to build trading platforms, media content, and market indexes, or integrate our proprietary scores into your workflows, algorithms, or LLMs. \n\n# CB Insights API v2 compared to v1\n\nThe new CB Insights API v2 offers new datasets and additional data points that were not available in v1. v2 follows the same REST architectural style and has a new structure for you to retrieve the information you need as conveniently as possible.\n\nThis first set of data includes:\n\n- **Firmographics**. Profiles on private companies, public companies, and investors. Includes general information like location, headcount, and industry, as well as proprietary data like business models, Competitor Scores, and Expert Collections.\n- **Financial Transactions**. Funding deals, cap table history, M&As, and IPOs, plus AI-generated insights that extract key themes.\n- **Business Relationships**. Partnerships, clients/vendors, and licensing activity, plus AI-generated insights to predict future M&As and shifts in strategy.\n- **Management and Board**. Leadership teams, board members, and the Management factor of the Mosaic Score — our proprietary algorithm which evaluates leadership teams based on past achievements.\n- **Outlook**. Proprietary data science analysis including Mosaic Score, Commercial Maturity, and Exit Probability. Proven to predict winners better than top VCs.\n- **Scouting Reports**. On-demand, AI-generated insights into business model, market position, strengths, and opportunities for private companies.\n"
+  title: CB Insights Business Relationships API
+  contact: {}
+  version: '2.0'
+  x-logo:
+    altText: CB Insights logo
+    backgroundColor: '#FFFFFF'
+    href: https://api-docs.cbinsights.com/v2/
+    url: https://api-docs.cbinsights.com/images/CBI_Logo_Color.svg
+servers:
+- url: https://api.cbinsights.com
+tags:
+- description: This dataset contains information about partnerships, clients/vendors, licensing activity, and CBI-generated insights to predict future M&As and shifts in strategy.
+  name: BusinessRelationships
+paths:
+  /v2/businessrelationships:
+    post:
+      security:
+      - BearerAuth: []
+      description: Retrieved data includes partnerships, client/vendor relationships, and licensing activity, plus AI-generated insights to predict future M&As and shifts in strategy for each organization.
+      tags:
+      - BusinessRelationships
+      summary: Retrieve business relationships for multiple organizations.
+      parameters:
+      - description: Authorization
+        name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v2BusinessRelationships.MultipleOrganizationBusinessRelationshipsResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '424':
+          description: Failed Dependency
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v2BusinessRelationships.MultipleOrganizationBusinessRelationshipsRequest'
+        description: Search parameters to request business relationship information.
+        required: true
+  /v2/organizations/{orgId}/businessrelationships:
+    post:
+      security:
+      - BearerAuth: []
+      description: Retrieved data includes partnerships, client/vendor relationships, and licensing activity, plus AI-generated insights to predict future M&As and shifts in strategy.
+      tags:
+      - BusinessRelationships
+      summary: Retrieve business relationships for an organization.
+      parameters:
+      - description: Authorization
+        name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      - description: CB Insights organization ID
+        name: orgId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v2BusinessRelationships.BusinessRelationshipsResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '424':
+          description: Failed Dependency
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+components:
+  schemas:
+    v2BusinessRelationships.Insights:
+      type: object
+      properties:
+        details:
+          description: The list of insights regarding this relationship.
+          type: array
+          items:
+            type: string
+          example:
+          - The funding round propelled Stripe's valuation to $3.5 billion
+          - Stripe's partnership with tech giants like Apple and Twitter for payment processing indicates strategic positioning for expanding its market share and influence in the digital economy.
+        headline:
+          description: The headline summarizing these insights.
+          type: string
+          example: Stripe's valuation swells with latest funding, bolstering its market position
+        sources:
+          description: A list of sources the insights are based on.
+          type: array
+          items:
+            type: string
+          example:
+          - http://www.vcnewsdaily.com/stripe/venture-capital-funding/sfbwyyxnvy
+          - http://techcrunch.com/2014/12/04/thrive-capital-bet-big-30-million-to-be-exact-on-stripe/?ncid=rss
+    v2BusinessRelationships.Partner:
+      type: object
+      properties:
+        country:
+          description: The country where the partner's headquarters is located.
+          type: string
+          example: United States
+        name:
+          description: The name of the partner organization.
+          type: string
+          example: OpenAI
+        orgId:
+          description: The CB Insights organization ID of this partner.
+          type: integer
+          example: 422214
+        role:
+          description: The role that this business partner plays in the relationship (Partner, Vendor, Client, Licensor, Licensee, Supplier, Distributor, Sponsor, Sponsored).
+          type: string
+          example: Licensor
+    v2BusinessRelationships.MultipleOrganizationBusinessRelationshipsRequest:
+      description: Search parameters to request business relationship information one or more organizations
+      type: object
+      properties:
+        nextPageToken:
+          description: Token to fetch the next page of results; provided in a previous response.
+          type: string
+          example: ''
+        orgIds:
+          description: CB Insights organization IDs to return.
+          type: array
+          items:
+            type: integer
+          example:
+          - 129410
+          - 129411
+    common.ErrorWithCode:
+      type: object
+      properties:
+        error:
+          type: string
+    v2BusinessRelationships.NewsSnippet:
+      type: object
+      properties:
+        content:
+          description: A small portion of the news article about this business relationship.
+          type: string
+          example: MLB and Google are also collaborating on original content programming showing how baseball fans are enhancing their League Championship Series experiences using the Assistant wherever they are.
+        title:
+          description: The title of the news article about this business relationship.
+          type: string
+          example: Stripe's partnership with tech giants like Apple and Twitter for payment processing indicates strategic positioning for expanding its market share and influence in the digital economy.
+        url:
+          description: The URL of the news source about this business relationship.
+          type: string
+          example: https://www.macrumors.com/2024/08/21/apple-card-turns-5/
+    v2BusinessRelationships.BusinessRelationship:
+      type: object
+      properties:
+        insights:
+          description: CB Insights proprietary generated insights about this relationship.
+          allOf:
+          - $ref: '#/components/schemas/v2BusinessRelationships.Insights'
+        lastUpdateTime:
+          type: string
+          example: '2024-09-25 09:01:58'
+        newsSnippet:
+          description: A news snippet about this business relationship.
+          allOf:
+          - $ref: '#/components/schemas/v2BusinessRelationships.NewsSnippet'
+        partners:
+          description: A list of business partners involved.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2BusinessRelationships.Partner'
+        relationshipId:
+          description: A unique ID which identifies this relationship.
+          type: integer
+          example: 1415468
+        sources:
+          description: A list of sources of information about this business relationship.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2BusinessRelationships.Source'
+        startDate:
+          description: The date when this business relationship began (YYYY-MM-DD).
+          type: string
+          example: '2024-09-17'
+    v2BusinessRelationships.MultipleOrganizationBusinessRelationshipsResponse:
+      type: object
+      properties:
+        nextPageToken:
+          description: Token to fetch the next page of results. If the value is null, then there are no more results to page through.
+          type: string
+          example: eyJwYWdpbmF0aW9uX3NjaGVtZSI6MiwibmV4dF9wYWdlX3Rva2VuIjoxMjk0MTB9Cg==
+        orgs:
+          description: A list of organizations with their business relationship details included.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2BusinessRelationships.OrganizationBusinessRelationshipsResponse'
+    v2BusinessRelationships.OrganizationBusinessRelationshipsResponse:
+      type: object
+      properties:
+        businessRelationships:
+          description: A list of items containing details regarding a business relationship for a given organization.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2BusinessRelationships.BusinessRelationship'
+        orgId:
+          description: CB Insights organization ID.
+          type: integer
+          example: 129410
+    v2BusinessRelationships.BusinessRelationshipsResponse:
+      type: object
+      properties:
+        businessRelationships:
+          description: A list of items containing details regarding a business relationship for a given organization.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2BusinessRelationships.BusinessRelationship'
+    v2BusinessRelationships.Source:
+      type: object
+      properties:
+        date:
+          description: The date this source was published.
+          type: string
+          example: '2018-10-12'
+        title:
+          description: The title of this source.
+          type: string
+          example: Orange goes submarine with Google cable partnership
+        url:
+          description: The URL pointing to this source.
+          type: string
+          example: https://telecoms.com/492812/orange-goes-submarine-with-google-cable-partnership/
+  securitySchemes:
+    BearerAuth:
+      description: Type "Bearer" followed by a space and JWT token.
+      type: apiKey
+      name: Authorization
+      in: header
+externalDocs:
+  description: CBI API v1 reference
+  url: https://api-docs.cbinsights.com/

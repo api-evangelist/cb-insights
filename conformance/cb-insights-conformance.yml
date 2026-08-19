@@ -5,7 +5,7 @@ source: >-
   https://mcp.cbinsights.com/.well-known/oauth-protected-resource +
   https://www.cbinsights.com/security-and-privacy/ +
   https://docs.cbinsights.com/docs/scim/index.html +
-  openapi/cb-insights-api-v2-openapi.json
+  openapi/_original/cb-insights-api-v2-openapi.json
 summary: >-
   CB Insights conforms strongly on the identity and agent-protocol side — a real OAuth 2.1
   authorization server with DCR and PKCE fronting the MCP endpoint, SAML SSO and SCIM provisioning

@@ -1,0 +1,820 @@
+openapi: 3.2.0
+info:
+  description: "# Introduction\n\nThe CB Insights API offers market data and insights you won't find anywhere else. Use our API to build trading platforms, media content, and market indexes, or integrate our proprietary scores into your workflows, algorithms, or LLMs. \n\n# CB Insights API v2 compared to v1\n\nThe new CB Insights API v2 offers new datasets and additional data points that were not available in v1. v2 follows the same REST architectural style and has a new structure for you to retrieve the information you need as conveniently as possible.\n\nThis first set of data includes:\n\n- **Firmographics**. Profiles on private companies, public companies, and investors. Includes general information like location, headcount, and industry, as well as proprietary data like business models, Competitor Scores, and Expert Collections.\n- **Financial Transactions**. Funding deals, cap table history, M&As, and IPOs, plus AI-generated insights that extract key themes.\n- **Business Relationships**. Partnerships, clients/vendors, and licensing activity, plus AI-generated insights to predict future M&As and shifts in strategy.\n- **Management and Board**. Leadership teams, board members, and the Management factor of the Mosaic Score — our proprietary algorithm which evaluates leadership teams based on past achievements.\n- **Outlook**. Proprietary data science analysis including Mosaic Score, Commercial Maturity, and Exit Probability. Proven to predict winners better than top VCs.\n- **Scouting Reports**. On-demand, AI-generated insights into business model, market position, strengths, and opportunities for private companies.\n"
+  title: CB Insights Outlook API
+  contact: {}
+  version: '2.0'
+  x-logo:
+    altText: CB Insights logo
+    backgroundColor: '#FFFFFF'
+    href: https://api-docs.cbinsights.com/v2/
+    url: https://api-docs.cbinsights.com/images/CBI_Logo_Color.svg
+servers:
+- url: https://api.cbinsights.com
+tags:
+- description: " This dataset contains proprietary data science analysis including Mosaic Score, Commercial Maturity, and Exit Probability. Proven to predict winners better than top VCs.\n \n More about these proprietary datasets and methodology: https://support.cbinsights.com/hc/en-us/sections/360008544011-Proprietary-Datasets"
+  name: Outlook
+paths:
+  /v2/organizations/{orgId}/commercialmaturityhistory:
+    post:
+      security:
+      - BearerAuth: []
+      description: Get commercial maturity history for the org with orgId
+      tags:
+      - Outlook
+      summary: Retrieves historical commercial maturity scores.
+      parameters:
+      - description: Authorization
+        name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      - description: CB Insights organization ID
+        name: orgId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v2Outlook.CommercialMaturityHistoryResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v2Outlook.CommercialMaturityHistoryRequest'
+        description: Request body
+  /v2/organizations/{orgId}/exitprobabilityhistory:
+    post:
+      security:
+      - BearerAuth: []
+      description: Get exit probability history for the org with orgId
+      tags:
+      - Outlook
+      summary: Retrieves historical exit probability data.
+      parameters:
+      - description: Authorization
+        name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      - description: CB Insights organization ID
+        name: orgId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v2Outlook.ExitProbabilityHistoryResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v2Outlook.ExitProbabilityHistoryRequest'
+        description: Request body
+  /v2/organizations/{orgId}/fundingwindow:
+    post:
+      security:
+      - BearerAuth: []
+      description: Returns funding window for an organization.
+      tags:
+      - Outlook
+      summary: List funding window data for a single organization.
+      parameters:
+      - description: Authorization
+        name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      - description: CB Insights organization ID
+        name: orgId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v2Outlook.FundingWindowResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '424':
+          description: Failed Dependency
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+  /v2/organizations/{orgId}/mosaichistory:
+    post:
+      security:
+      - BearerAuth: []
+      description: Get mosaic history for the org with orgId
+      tags:
+      - Outlook
+      summary: Retrieves historical mosaic scores.
+      parameters:
+      - description: Authorization
+        name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      - description: CB Insights organization ID
+        name: orgId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v2Outlook.MosaicHistoryResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v2Outlook.MosaicHistoryRequest'
+        description: Request body
+  /v2/organizations/{orgId}/outlook:
+    post:
+      security:
+      - BearerAuth: []
+      description: 'Returns values for the current commercial maturity, health, and exit probability scores. Proven to predict winners better than top VCs. More about proprietary datasets: https://support.cbinsights.com/hc/en-us/sections/360008544011-Proprietary-Datasets.'
+      tags:
+      - Outlook
+      summary: Retrieve details about business outlook of an organization
+      parameters:
+      - description: Authorization
+        name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      - description: CB Insights organization ID
+        name: orgId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v2Outlook.OutlookResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v2Outlook.OutlookRequest'
+        description: Optional request parameters
+  /v2/outlook:
+    post:
+      security:
+      - BearerAuth: []
+      description: Returns a list of outlook information for organizations based on the Org IDs provided.
+      tags:
+      - Outlook
+      summary: List of outlook information for one or more organizations
+      parameters:
+      - description: Authorization
+        name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v2Outlook.OutlookListResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '424':
+          description: Failed Dependency
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v2Outlook.OutlookListRequest'
+        description: Search parameters to request outlook information.
+        required: true
+  /v2/outlook/fundingwindow:
+    post:
+      security:
+      - BearerAuth: []
+      description: Returns funding window for a list of organizations
+      tags:
+      - Outlook
+      summary: List funding window data for a list of organizations.
+      parameters:
+      - description: Authorization
+        name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v2Outlook.FundingWindowListResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '424':
+          description: Failed Dependency
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v2Outlook.FundingWindowListRequestBody'
+        description: Search parameters
+        required: true
+components:
+  schemas:
+    v2Outlook.BusinessModelLandscape:
+      type: object
+      properties:
+        businessModel:
+          description: The name of the business model landscape.
+          type: string
+          example: SaaS
+        businessModelId:
+          description: The CBI ID of the business model landscape; see https://api-docs.cbinsights.com/portal/docs/References/Taxonomy/business-models
+          type: integer
+          example: 7
+    v2Outlook.MosaicScore:
+      type: object
+      properties:
+        management:
+          description: A Mosaic sub-score that measures the pedigree, education, and work experience of the leaders of the company.
+          allOf:
+          - $ref: '#/components/schemas/v2Outlook.CurrentMosaicScore'
+        market:
+          description: A Mosaic sub-score that measures the health of the industry in which the company is categorized.
+          allOf:
+          - $ref: '#/components/schemas/v2Outlook.CurrentMosaicScore'
+        momentum:
+          description: A Mosaic sub-score that measures the financial health of the company.
+          allOf:
+          - $ref: '#/components/schemas/v2Outlook.CurrentMosaicScore'
+        money:
+          description: A Mosaic sub-score that measures the traction of the company based on the company’s business signals, such as vendors, partners, social media, and news sentiment.
+          allOf:
+          - $ref: '#/components/schemas/v2Outlook.CurrentMosaicScore'
+        overall:
+          description: Overall Mosaic Score of the company. This is a composite score that measures the overall health of the company based on the company’s business signals, such as vendors, partners, social media, and news sentiment.
+          allOf:
+          - $ref: '#/components/schemas/v2Outlook.CurrentMosaicScore'
+    v2Outlook.CommercialMaturity:
+      type: object
+      properties:
+        commercialMaturitySignals:
+          description: Signals that are affecting the commercial maturity of the company.
+          allOf:
+          - $ref: '#/components/schemas/v2Outlook.CommercialMaturitySignals'
+        maturityLevel:
+          description: The maturity level of the company.
+          allOf:
+          - $ref: '#/components/schemas/v2Outlook.MaturityLevel'
+    v2Outlook.OutlookResponse:
+      type: object
+      properties:
+        commercialMaturity:
+          description: 'CB Insights proprietary metric to measures a private company''s current ability to compete for customers or serve as a partner on a scale of 1-5.  This metric is available only for a subset of companies. More about this metric: https://support.cbinsights.com/hc/en-us/articles/25759259449485-About-Commercial-Maturity.'
+          allOf:
+          - $ref: '#/components/schemas/v2Outlook.CommercialMaturity'
+        exitProbability:
+          description: 'CB Insights Exit Probability is a proprietary machine learning algorithm that measures a private company’s chance of an IPO or M&A exit within the next 2 years. More about this metric: https://support.cbinsights.com/hc/en-us/articles/29078253654413-About-Exit-Probability'
+          allOf:
+          - $ref: '#/components/schemas/v2Outlook.CurrentExitProbability'
+        mosaicScore:
+          description: CB Insights’ proprietary algorithm to indicate the company’s potential for success. All scores based on a scale between 0-1000. For more on our methodology and forecasting success, https://support.cbinsights.com/hc/en-us/articles/360042055171-About-Mosaic-Health
+          allOf:
+          - $ref: '#/components/schemas/v2Outlook.MosaicScore'
+    v2Outlook.CurrentExitProbability:
+      type: object
+      properties:
+        exitSignals:
+          description: Signals that are affecting the exit probability of the company.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2Outlook.ExitSignal'
+        ipo:
+          description: The exit probability of the company within the next 2 years via an IPO.
+          allOf:
+          - $ref: '#/components/schemas/v2Outlook.ExitProbabilityScore'
+        mna:
+          description: The exit probability of the company within the next 2 years via an M&A.
+          allOf:
+          - $ref: '#/components/schemas/v2Outlook.ExitProbabilityScore'
+    v2Outlook.ExitSignal:
+      type: object
+      properties:
+        direction:
+          description: The direction in which the signal is trending for the company (positive, negative, or unspecified).
+          type: string
+          example: positive
+        signal:
+          description: A Signal that affects the exit probability of the company.
+          type: string
+          example: High employee headcount
+    v2Outlook.PointChange:
+      type: object
+      properties:
+        baseDateForPointChange:
+          type: string
+        pointChange:
+          type: number
+    v2Outlook.ScoreInsights:
+      type: object
+      properties:
+        negativeTags:
+          type: array
+          items:
+            type: string
+        percentile:
+          type: number
+        pointChange:
+          $ref: '#/components/schemas/v2Outlook.PointChange'
+        positiveTags:
+          type: array
+          items:
+            type: string
+    v2Outlook.CommercialMaturityHistoryRequest:
+      type: object
+      properties:
+        endDate:
+          description: The end date of the commercial maturity score history. If provided, it must be (a) a date equal to or later than '2024-07-25' and (b) at most 24 months later than StartDate. If not provided, defaults to today's date.
+          type: string
+          example: '2025-04-15'
+        startDate:
+          description: The start date of the commercial maturity score history. If provided, it must be (a) a date equal to or later than '2024-07-25' and (b) at most 24 months ago from EndDate. If not provided, defaults to the later of '1 year ago from current date or '2024-07-25'.
+          type: string
+          example: '2025-01-01'
+    v2Outlook.CohortCriteria:
+      type: object
+      properties:
+        cohortGeo:
+          description: The cohort Geography.
+          type: string
+          example: North America
+        cohortLandscapes:
+          description: The cohort landscapes.
+          allOf:
+          - $ref: '#/components/schemas/v2Outlook.CohortLandscapes'
+        cohortRoundCategory:
+          description: The cohort funding round category.
+          type: string
+          example: Series B
+    v2Outlook.OutlookListRequest:
+      type: object
+      properties:
+        mosaicScoreVersion:
+          description: Deprecated. Only Mosaic v2.1 is served.
+          type: string
+          example: v2.1
+        orgIds:
+          description: List of Org IDs to look up, the request must contain 1 - 100 Org IDs.
+          type: array
+          items:
+            type: integer
+          example:
+          - 129410
+          - 129411
+    v2Outlook.HistoricalExitProbabilityScore:
+      type: object
+      properties:
+        asOfDate:
+          description: The date at which the exit probability was calculated.
+          type: string
+          example: '2025-03-20'
+        exitProbability:
+          description: The exit probability of the company within 2 years from the date of calculation (asOfDate)
+          type: number
+          example: 22.43
+        meanProbability:
+          description: The mean exit probability of similar companies.
+          type: number
+          example: 21.33
+        ratioToMean:
+          description: The exit probability of the company as compared to similar companies.
+          type: number
+          example: 1.05
+    v2Outlook.FundingWindowOrg:
+      type: object
+      properties:
+        cohortCriteria:
+          description: Criteria used to define the cohort.
+          allOf:
+          - $ref: '#/components/schemas/v2Outlook.CohortCriteria'
+        cohortNextRoundRate:
+          description: The percentage of this cohort that historically raised another round, expressed as a decimal between 0 and 1.
+          type: number
+          example: 0.357353
+        latestFunding:
+          description: The latest equity backed funding.
+          allOf:
+          - $ref: '#/components/schemas/v2Outlook.LatestFunding'
+        orgId:
+          description: CB Insights Organization ID.
+          type: integer
+          example: 7
+        windowEnd:
+          description: The estimated funding window end date.
+          type: string
+          example: '2022-04-08'
+        windowStart:
+          description: The estimated funding window start date.
+          type: string
+          example: '2022-01-02'
+    v2Outlook.CurrentMosaicScore:
+      type: object
+      properties:
+        asOfDate:
+          description: Date at which the Mosaic Score was calculated.
+          type: string
+          example: '2025-02-15'
+        scoreInsights:
+          description: Insight into the Mosaic Score.
+          allOf:
+          - $ref: '#/components/schemas/v2Outlook.ScoreInsights'
+        scoreValue:
+          description: Value of the Mosaic Score.
+          type: number
+          example: 237
+    v2Outlook.CommercialMaturityHistoryResponse:
+      type: object
+      properties:
+        commercialMaturityHistory:
+          type: array
+          items:
+            $ref: '#/components/schemas/v2Outlook.MaturityLevel'
+    v2Outlook.MosaicHistoryResponse:
+      type: object
+      properties:
+        management:
+          type: array
+          items:
+            $ref: '#/components/schemas/v2Outlook.HistoricalMosaicScore'
+        market:
+          type: array
+          items:
+            $ref: '#/components/schemas/v2Outlook.HistoricalMosaicScore'
+        momentum:
+          type: array
+          items:
+            $ref: '#/components/schemas/v2Outlook.HistoricalMosaicScore'
+        money:
+          type: array
+          items:
+            $ref: '#/components/schemas/v2Outlook.HistoricalMosaicScore'
+        overall:
+          type: array
+          items:
+            $ref: '#/components/schemas/v2Outlook.HistoricalMosaicScore'
+    v2Outlook.ExitProbabilityHistoryResponse:
+      type: object
+      properties:
+        ipo:
+          type: array
+          items:
+            $ref: '#/components/schemas/v2Outlook.HistoricalExitProbabilityScore'
+        mna:
+          type: array
+          items:
+            $ref: '#/components/schemas/v2Outlook.HistoricalExitProbabilityScore'
+    v2Outlook.ExitProbabilityScore:
+      type: object
+      properties:
+        asOfDate:
+          description: Date at which the exit probability was calculated.
+          type: string
+          example: '2025-03-20'
+        exitProbability:
+          description: The exit probability of the company within the next 2 years.
+          type: number
+          example: 22.43
+        meanProbability:
+          description: The mean exit probability of similar companies.
+          type: number
+          example: 21.33
+        ratioToMean:
+          description: The exit probability of the company as compared to similar companies.
+          type: number
+          example: 1.05
+    v2Outlook.ExitProbabilityHistoryRequest:
+      type: object
+      properties:
+        endDate:
+          description: The end date of the exit probability history. If provided, it must be (a) a date equal to or later than '2025-02-25' and (b) at most 24 months later than StartDate. If not provided, defaults to today's date.
+          type: string
+          example: '2025-04-15'
+        startDate:
+          description: The start date of the exit probability history. If provided, it must be (a) a date equal to or later than '2025-02-25' and (b) at most 24 months ago from EndDate. If not provided, defaults to the later of '1 year ago from current date or '2025-02-25'.
+          type: string
+          example: '2025-03-01'
+    v2Outlook.TechnologyLandscape:
+      type: object
+      properties:
+        technologyId:
+          description: The CBI ID of the technology landscape; see https://api-docs.cbinsights.com/portal/docs/References/Taxonomy/technologies
+          type: integer
+          example: 1
+        technologyName:
+          description: The name of the technology landscape.
+          type: string
+          example: Defense Tech
+    v2Outlook.OutlookListResponse:
+      type: object
+      properties:
+        orgs:
+          description: 'A list of organizations with their outlook information.
+
+            If an Org ID has no data, it will be excluded from the response.'
+          type: array
+          items:
+            $ref: '#/components/schemas/v2Outlook.OrgOutlookResponse'
+    common.ErrorWithCode:
+      type: object
+      properties:
+        error:
+          type: string
+    v2Outlook.FundingWindowResponse:
+      type: object
+      properties:
+        cohortCriteria:
+          description: Criteria used to define the cohort.
+          allOf:
+          - $ref: '#/components/schemas/v2Outlook.CohortCriteria'
+        cohortNextRoundRate:
+          description: The percentage of this cohort that historically raised another round, expressed as a decimal between 0 and 1.
+          type: number
+          example: 0.357353
+        latestFunding:
+          description: The latest equity backed funding.
+          allOf:
+          - $ref: '#/components/schemas/v2Outlook.LatestFunding'
+        windowEnd:
+          description: The estimated funding window end date.
+          type: string
+          example: '2022-04-08'
+        windowStart:
+          description: The estimated funding window start date.
+          type: string
+          example: '2022-01-02'
+    v2Outlook.FundingWindowListResponse:
+      type: object
+      properties:
+        orgs:
+          description: List of funding window data for the requested Org IDs. If an Org ID has no data, it will be excluded from the response.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2Outlook.FundingWindowOrg'
+    v2Outlook.HistoricalMosaicScore:
+      type: object
+      properties:
+        asOfDate:
+          description: Date at which the Mosaic Score was calculated.
+          type: string
+          example: '2025-02-15'
+        scoreValue:
+          description: Value of the Mosaic Score.
+          type: number
+          example: 237
+    v2Outlook.MosaicHistoryRequest:
+      type: object
+      properties:
+        mosaicScoreVersion:
+          description: Deprecated. Only Mosaic v2.1 is served.
+          type: string
+          example: v2.1
+        startDate:
+          description: The start date of the mosaic history data. If provided, it must be (a) a date equal to or later than '2024-01-01' and (b) at most 24 months ago from current date. If not provided, defaults to the later of '1 year ago or 2024-01-01'.
+          type: string
+          example: '2025-02-15'
+    v2Outlook.OutlookRequest:
+      type: object
+      properties:
+        mosaicScoreVersion:
+          description: Deprecated. Only Mosaic v2.1 is served.
+          type: string
+          example: v2.1
+    v2Outlook.CommercialMaturitySignals:
+      type: object
+      properties:
+        asOfDate:
+          description: The date at which the commercial maturity signals were calculated.
+          type: string
+          example: '2025-02-21'
+        signals:
+          description: Signals that are affecting the commercial maturity of the company.
+          type: array
+          items:
+            type: string
+          example:
+          - High IPO rate in sector
+          - High latest funding
+    v2Outlook.MaturityLevel:
+      type: object
+      properties:
+        asOfDate:
+          description: The date at which the maturity level was calculated.
+          type: string
+          example: 02/21/2025
+        level:
+          description: The maturity level of the company.
+          type: integer
+          example: 5
+        stage:
+          description: The stage of the company.
+          type: string
+          example: Established
+        stageDescription:
+          description: Description of the stage of the company.
+          type: string
+          example: Major market presence
+    v2Outlook.LatestFunding:
+      type: object
+      properties:
+        date:
+          description: The date when the funding took place, in the format YYYY-MM-DD.
+          type: string
+          example: '2025-02-15'
+        dealId:
+          description: The latest funding deal ID.
+          type: integer
+          example: 7153
+    v2Outlook.CohortLandscapes:
+      type: object
+      properties:
+        businessModels:
+          description: Cohort landscape business models.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2Outlook.BusinessModelLandscape'
+        technologies:
+          description: Cohort landscape technologies.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2Outlook.TechnologyLandscape'
+    v2Outlook.OrgOutlookResponse:
+      type: object
+      properties:
+        commercialMaturity:
+          description: 'CB Insights proprietary metric to measures a private company''s current ability to compete for customers or serve as a partner on a scale of 1-5.  This metric is available only for a subset of companies. More about this metric: https://support.cbinsights.com/hc/en-us/articles/25759259449485-About-Commercial-Maturity.'
+          allOf:
+          - $ref: '#/components/schemas/v2Outlook.CommercialMaturity'
+        exitProbability:
+          description: 'CB Insights Exit Probability is a proprietary machine learning algorithm that measures a private company’s chance of an IPO or M&A exit within the next 2 years. More about this metric: https://support.cbinsights.com/hc/en-us/articles/29078253654413-About-Exit-Probability'
+          allOf:
+          - $ref: '#/components/schemas/v2Outlook.CurrentExitProbability'
+        mosaicScore:
+          description: CB Insights’ proprietary algorithm to indicate the company’s potential for success. All scores based on a scale between 0-1000. For more on our methodology and forecasting success, https://support.cbinsights.com/hc/en-us/articles/360042055171-About-Mosaic-Health
+          allOf:
+          - $ref: '#/components/schemas/v2Outlook.MosaicScore'
+        orgId:
+          description: CB Insights organization ID.
+          type: integer
+          example: 129410
+    v2Outlook.FundingWindowListRequestBody:
+      type: object
+      properties:
+        orgIds:
+          description: List of Org IDs to look up, the request must contain 1 - 100 Org IDs.
+          type: array
+          items:
+            type: integer
+          example:
+          - 129410
+          - 1034157
+  securitySchemes:
+    BearerAuth:
+      description: Type "Bearer" followed by a space and JWT token.
+      type: apiKey
+      name: Authorization
+      in: header
+externalDocs:
+  description: CBI API v1 reference
+  url: https://api-docs.cbinsights.com/

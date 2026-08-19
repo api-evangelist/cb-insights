@@ -1,7 +1,7 @@
 generated: '2026-08-09'
 method: searched
 source: >-
-  https://api-docs.cbinsights.com/docs/change_log/ + openapi/cb-insights-api-v2-openapi.json +
+  https://api-docs.cbinsights.com/docs/change_log/ + openapi/_original/cb-insights-api-v2-openapi.json +
   https://github.com/cbinsights/cbi-mcp-server
 docs:
 - https://api-docs.cbinsights.com/docs/change_log/
@@ -61,11 +61,11 @@ deprecation:
     scope: v2Outlook.OutlookRequest, v2Outlook.OutlookListRequest, v2Outlook.MosaicHistoryRequest,
       v2ManagementAndBoard.ManagementAndBoardRequestBody, v2ManagementAndBoard.ManagementAndBoardListRequestBody
     note: '"Deprecated. Only Mosaic v2.1 is served."'
-    source: openapi/cb-insights-api-v2-openapi.json
+    source: openapi/_original/cb-insights-api-v2-openapi.json
   - target: response field revenueSignalId
     scope: v2Revenue
     note: '"This has been deprecated and will always return null."'
-    source: openapi/cb-insights-api-v2-openapi.json
+    source: openapi/_original/cb-insights-api-v2-openapi.json
   - target: github.com/cbinsights/cbi-mcp-server (self-hosted reference MCP server)
     date: '2026-01'
     replacement: https://mcp.cbinsights.com

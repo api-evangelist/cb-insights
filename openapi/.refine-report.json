@@ -1,0 +1,47 @@
+{
+  "provider": "cb-insights",
+  "sources": [
+    "cb-insights-authorization-api-openapi.yml",
+    "cb-insights-businessrelationships-api-openapi.yml",
+    "cb-insights-chatcbi-api-openapi.yml",
+    "cb-insights-financialtransactions-api-openapi.yml",
+    "cb-insights-firmographics-api-openapi.yml",
+    "cb-insights-managementandboard-api-openapi.yml",
+    "cb-insights-organizations-api-openapi.yml",
+    "cb-insights-outlook-api-openapi.yml",
+    "cb-insights-revenue-api-openapi.yml",
+    "cb-insights-scoutingreports-api-openapi.yml",
+    "cb-insights-strategymap-api-openapi.yml"
+  ],
+  "outputs": [
+    "cb-insights-authorization-api-openapi.yml",
+    "cb-insights-businessrelationships-api-openapi.yml",
+    "cb-insights-chatcbi-api-openapi.yml",
+    "cb-insights-financialtransactions-api-openapi.yml",
+    "cb-insights-firmographics-api-openapi.yml",
+    "cb-insights-managementandboard-api-openapi.yml",
+    "cb-insights-organizations-api-openapi.yml",
+    "cb-insights-outlook-api-openapi.yml",
+    "cb-insights-revenue-api-openapi.yml",
+    "cb-insights-scoutingreports-api-openapi.yml",
+    "cb-insights-strategymap-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "cb-insights-authorization-api-openapi.yml: upgraded swagger 2.0 -> OpenAPI 3.2.0",
+    "cb-insights-businessrelationships-api-openapi.yml: upgraded swagger 2.0 -> OpenAPI 3.2.0",
+    "cb-insights-chatcbi-api-openapi.yml: upgraded swagger 2.0 -> OpenAPI 3.2.0",
+    "cb-insights-financialtransactions-api-openapi.yml: upgraded swagger 2.0 -> OpenAPI 3.2.0",
+    "cb-insights-firmographics-api-openapi.yml: upgraded swagger 2.0 -> OpenAPI 3.2.0",
+    "cb-insights-managementandboard-api-openapi.yml: upgraded swagger 2.0 -> OpenAPI 3.2.0",
+    "cb-insights-organizations-api-openapi.yml: upgraded swagger 2.0 -> OpenAPI 3.2.0",
+    "cb-insights-outlook-api-openapi.yml: upgraded swagger 2.0 -> OpenAPI 3.2.0",
+    "cb-insights-revenue-api-openapi.yml: upgraded swagger 2.0 -> OpenAPI 3.2.0",
+    "cb-insights-scoutingreports-api-openapi.yml: upgraded swagger 2.0 -> OpenAPI 3.2.0",
+    "cb-insights-strategymap-api-openapi.yml: upgraded swagger 2.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": []
+}

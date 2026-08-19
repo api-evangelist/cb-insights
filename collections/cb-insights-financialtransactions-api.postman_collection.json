@@ -1,0 +1,2701 @@
+{
+  "item": [
+    {
+      "id": "74ba77dd-e991-414b-a50a-cbced6db8edc",
+      "name": "FinancialTransactions",
+      "description": {
+        "content": "This dataset contains information about funding deals, cap table history, M&As, IPOs, and CBI-generated insights that extract key themes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2c5cb1ad-1ed6-4f5a-8cbf-40cf66ef692f",
+          "name": "List of funding information for one or more organizations",
+          "request": {
+            "name": "List of funding information for one or more organizations",
+            "description": {
+              "content": "Returns a list of funding information for organizations based on the Org IDs provided, plus AI-generated insights that extract key themes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "financialtransactions",
+                "fundings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"limit\": \"<integer>\",\n  \"nextPageToken\": \"<string>\",\n  \"orgIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "91951b22-834b-4c64-8404-fdd61b3d55e8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "financialtransactions",
+                    "fundings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": 100,\n  \"nextPageToken\": \"\",\n  \"orgIds\": [\n    129410,\n    1034157\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"nextPageToken\": \"string\",\n  \"orgs\": [\n    {\n      \"capTableHistory\": [\n        {\n          \"coiFilingDate\": \"2013-12-31\",\n          \"conversionPrice\": 2.21,\n          \"dealId\": 854976,\n          \"dividendRate\": 0.004,\n          \"issuancePrice\": 2.21,\n          \"liquidationMultiple\": 1,\n          \"liquidationPrice\": 2.21,\n          \"parValue\": 13.32,\n          \"percentageOwned\": 0.049,\n          \"roundType\": \"Angel\",\n          \"roundTypeId\": 9,\n          \"sharesAuthorized\": 20000,\n          \"terms\": {\n            \"antiDilutionProvision\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"antiDilutionProvisionId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"dividendPreference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"dividendPreferenceId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"hasBoardVotingRights\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"hasGeneralVotingRights\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"liquidationPreference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"liquidationPreferenceId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"participationRights\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"participationRightsId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"coiFilingDate\": \"2013-12-31\",\n          \"conversionPrice\": 2.21,\n          \"dealId\": 854976,\n          \"dividendRate\": 0.004,\n          \"issuancePrice\": 2.21,\n          \"liquidationMultiple\": 1,\n          \"liquidationPrice\": 2.21,\n          \"parValue\": 13.32,\n          \"percentageOwned\": 0.049,\n          \"roundType\": \"Angel\",\n          \"roundTypeId\": 9,\n          \"sharesAuthorized\": 20000,\n          \"terms\": {\n            \"antiDilutionProvision\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"antiDilutionProvisionId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"dividendPreference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"dividendPreferenceId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"hasBoardVotingRights\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"hasGeneralVotingRights\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"liquidationPreference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"liquidationPreferenceId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"participationRights\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"participationRightsId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"fundings\": [\n        {\n          \"amountInMillions\": 2,\n          \"date\": \"2011-03-15\",\n          \"dealId\": 88456,\n          \"insights\": {\n            \"details\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"headline\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sources\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"investors\": [\n            {\n              \"isFollowOn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isLead\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isNew\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"orgId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"isFollowOn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isLead\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isNew\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"orgId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"isExit\": false,\n          \"recipient\": {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"orgId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"revenueMax\": 1500000,\n          \"revenueMin\": 1500000,\n          \"revenueMultipleMax\": 12,\n          \"revenueMultipleMin\": 12,\n          \"revenueTimePeriod\": \"FY 2024\",\n          \"round\": \"Seed VC - II\",\n          \"roundCategory\": \"Seed / Angel\",\n          \"roundCategoryId\": 2,\n          \"roundId\": 108,\n          \"simplifiedRound\": \"Seed VC\",\n          \"sources\": [\n            \"http://techcrunch.com/2011/03/28/stealth-payment-startup-stripe-paypal/\",\n            \"http://venturebeat.com/2011/03/29/stealth-online-payments-startup-stripe-draws-backing-from-paypal-founders/\"\n          ],\n          \"valuationInMillions\": 18\n        },\n        {\n          \"amountInMillions\": 2,\n          \"date\": \"2011-03-15\",\n          \"dealId\": 88456,\n          \"insights\": {\n            \"details\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"headline\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sources\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"investors\": [\n            {\n              \"isFollowOn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isLead\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isNew\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"orgId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"isFollowOn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isLead\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isNew\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"orgId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"isExit\": false,\n          \"recipient\": {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"orgId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"revenueMax\": 1500000,\n          \"revenueMin\": 1500000,\n          \"revenueMultipleMax\": 12,\n          \"revenueMultipleMin\": 12,\n          \"revenueTimePeriod\": \"FY 2024\",\n          \"round\": \"Seed VC - II\",\n          \"roundCategory\": \"Seed / Angel\",\n          \"roundCategoryId\": 2,\n          \"roundId\": 108,\n          \"simplifiedRound\": \"Seed VC\",\n          \"sources\": [\n            \"http://techcrunch.com/2011/03/28/stealth-payment-startup-stripe-paypal/\",\n            \"http://venturebeat.com/2011/03/29/stealth-online-payments-startup-stripe-draws-backing-from-paypal-founders/\"\n          ],\n          \"valuationInMillions\": 18\n        }\n      ],\n      \"orgId\": 129410\n    },\n    {\n      \"capTableHistory\": [\n        {\n          \"coiFilingDate\": \"2013-12-31\",\n          \"conversionPrice\": 2.21,\n          \"dealId\": 854976,\n          \"dividendRate\": 0.004,\n          \"issuancePrice\": 2.21,\n          \"liquidationMultiple\": 1,\n          \"liquidationPrice\": 2.21,\n          \"parValue\": 13.32,\n          \"percentageOwned\": 0.049,\n          \"roundType\": \"Angel\",\n          \"roundTypeId\": 9,\n          \"sharesAuthorized\": 20000,\n          \"terms\": {\n            \"antiDilutionProvision\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"antiDilutionProvisionId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"dividendPreference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"dividendPreferenceId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"hasBoardVotingRights\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"hasGeneralVotingRights\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"liquidationPreference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"liquidationPreferenceId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"participationRights\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"participationRightsId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"coiFilingDate\": \"2013-12-31\",\n          \"conversionPrice\": 2.21,\n          \"dealId\": 854976,\n          \"dividendRate\": 0.004,\n          \"issuancePrice\": 2.21,\n          \"liquidationMultiple\": 1,\n          \"liquidationPrice\": 2.21,\n          \"parValue\": 13.32,\n          \"percentageOwned\": 0.049,\n          \"roundType\": \"Angel\",\n          \"roundTypeId\": 9,\n          \"sharesAuthorized\": 20000,\n          \"terms\": {\n            \"antiDilutionProvision\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"antiDilutionProvisionId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"dividendPreference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"dividendPreferenceId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"hasBoardVotingRights\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"hasGeneralVotingRights\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"liquidationPreference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"liquidationPreferenceId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"participationRights\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"participationRightsId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"fundings\": [\n        {\n          \"amountInMillions\": 2,\n          \"date\": \"2011-03-15\",\n          \"dealId\": 88456,\n          \"insights\": {\n            \"details\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"headline\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sources\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"investors\": [\n            {\n              \"isFollowOn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isLead\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isNew\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"orgId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"isFollowOn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isLead\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isNew\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"orgId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"isExit\": false,\n          \"recipient\": {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"orgId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"revenueMax\": 1500000,\n          \"revenueMin\": 1500000,\n          \"revenueMultipleMax\": 12,\n          \"revenueMultipleMin\": 12,\n          \"revenueTimePeriod\": \"FY 2024\",\n          \"round\": \"Seed VC - II\",\n          \"roundCategory\": \"Seed / Angel\",\n          \"roundCategoryId\": 2,\n          \"roundId\": 108,\n          \"simplifiedRound\": \"Seed VC\",\n          \"sources\": [\n            \"http://techcrunch.com/2011/03/28/stealth-payment-startup-stripe-paypal/\",\n            \"http://venturebeat.com/2011/03/29/stealth-online-payments-startup-stripe-draws-backing-from-paypal-founders/\"\n          ],\n          \"valuationInMillions\": 18\n        },\n        {\n          \"amountInMillions\": 2,\n          \"date\": \"2011-03-15\",\n          \"dealId\": 88456,\n          \"insights\": {\n            \"details\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"headline\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sources\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"investors\": [\n            {\n              \"isFollowOn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isLead\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isNew\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"orgId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"isFollowOn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isLead\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isNew\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"orgId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"isExit\": false,\n          \"recipient\": {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"orgId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"revenueMax\": 1500000,\n          \"revenueMin\": 1500000,\n          \"revenueMultipleMax\": 12,\n          \"revenueMultipleMin\": 12,\n          \"revenueTimePeriod\": \"FY 2024\",\n          \"round\": \"Seed VC - II\",\n          \"roundCategory\": \"Seed / Angel\",\n          \"roundCategoryId\": 2,\n          \"roundId\": 108,\n          \"simplifiedRound\": \"Seed VC\",\n          \"sources\": [\n            \"http://techcrunch.com/2011/03/28/stealth-payment-startup-stripe-paypal/\",\n            \"http://venturebeat.com/2011/03/29/stealth-online-payments-startup-stripe-draws-backing-from-paypal-founders/\"\n          ],\n          \"valuationInMillions\": 18\n        }\n      ],\n      \"orgId\": 129410\n    }\n  ],\n  \"totalHits\": 100,\n  \"totalHitsRelation\": \"eq\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97c3eec8-1218-41df-bc03-f44c0fdc5311",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "financialtransactions",
+                    "fundings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": 100,\n  \"nextPageToken\": \"\",\n  \"orgIds\": [\n    129410,\n    1034157\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "22460a04-419a-4bb7-9b61-4c1f0b47839a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "financialtransactions",
+                    "fundings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": 100,\n  \"nextPageToken\": \"\",\n  \"orgIds\": [\n    129410,\n    1034157\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b6f11e8-638b-4f43-8b45-aa94af2cbf57",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "financialtransactions",
+                    "fundings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": 100,\n  \"nextPageToken\": \"\",\n  \"orgIds\": [\n    129410,\n    1034157\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c1ca115-bba3-46ec-b2dc-79bffa7bbeaa",
+              "name": "Failed Dependency",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "financialtransactions",
+                    "fundings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": 100,\n  \"nextPageToken\": \"\",\n  \"orgIds\": [\n    129410,\n    1034157\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Failed Dependency (WebDAV) (RFC 4918)",
+              "code": 424,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "39ba9495-5d66-432b-b675-cb64c05c3beb",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "financialtransactions",
+                    "fundings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": 100,\n  \"nextPageToken\": \"\",\n  \"orgIds\": [\n    129410,\n    1034157\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "649fd1b6-9c61-4cbb-bb0b-f06f9de56e53",
+          "name": "List of investments rounds for one or more organizations",
+          "request": {
+            "name": "List of investments rounds for one or more organizations",
+            "description": {
+              "content": "Returns a list of investment rounds in which the requested Org IDs participated in, plus AI-generated insights that extract key themes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "financialtransactions",
+                "investments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"limit\": \"<integer>\",\n  \"nextPageToken\": \"<string>\",\n  \"orgIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e8d74e5c-feb6-471e-a429-bef6b1bc1a30",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "financialtransactions",
+                    "investments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": 100,\n  \"nextPageToken\": \"\",\n  \"orgIds\": [\n    129410,\n    1034157\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"nextPageToken\": \"eyJwYWdpbmF0aW9uX3NjaGVtZSI6MiwibmV4dF9wYWdlX3Rva2VuIjoxMjk0MTB9Cg==\",\n  \"orgs\": [\n    {\n      \"investments\": [\n        {\n          \"amountInMillions\": 2,\n          \"date\": \"2011-03-15\",\n          \"dealId\": 88456,\n          \"insights\": {\n            \"details\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"headline\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sources\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"investors\": [\n            {\n              \"isFollowOn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isLead\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isNew\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"orgId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"isFollowOn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isLead\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isNew\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"orgId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"isExit\": false,\n          \"recipient\": {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"orgId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"revenueMax\": 1500000,\n          \"revenueMin\": 1500000,\n          \"revenueMultipleMax\": 12,\n          \"revenueMultipleMin\": 12,\n          \"revenueTimePeriod\": \"FY 2024\",\n          \"round\": \"Seed VC - II\",\n          \"roundCategory\": \"Seed / Angel\",\n          \"roundCategoryId\": 2,\n          \"roundId\": 108,\n          \"simplifiedRound\": \"Seed VC\",\n          \"sources\": [\n            \"http://techcrunch.com/2011/03/28/stealth-payment-startup-stripe-paypal/\",\n            \"http://venturebeat.com/2011/03/29/stealth-online-payments-startup-stripe-draws-backing-from-paypal-founders/\"\n          ],\n          \"valuationInMillions\": 18\n        },\n        {\n          \"amountInMillions\": 2,\n          \"date\": \"2011-03-15\",\n          \"dealId\": 88456,\n          \"insights\": {\n            \"details\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"headline\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sources\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"investors\": [\n            {\n              \"isFollowOn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isLead\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isNew\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"orgId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"isFollowOn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isLead\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isNew\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"orgId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"isExit\": false,\n          \"recipient\": {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"orgId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"revenueMax\": 1500000,\n          \"revenueMin\": 1500000,\n          \"revenueMultipleMax\": 12,\n          \"revenueMultipleMin\": 12,\n          \"revenueTimePeriod\": \"FY 2024\",\n          \"round\": \"Seed VC - II\",\n          \"roundCategory\": \"Seed / Angel\",\n          \"roundCategoryId\": 2,\n          \"roundId\": 108,\n          \"simplifiedRound\": \"Seed VC\",\n          \"sources\": [\n            \"http://techcrunch.com/2011/03/28/stealth-payment-startup-stripe-paypal/\",\n            \"http://venturebeat.com/2011/03/29/stealth-online-payments-startup-stripe-draws-backing-from-paypal-founders/\"\n          ],\n          \"valuationInMillions\": 18\n        }\n      ],\n      \"orgId\": 129410\n    },\n    {\n      \"investments\": [\n        {\n          \"amountInMillions\": 2,\n          \"date\": \"2011-03-15\",\n          \"dealId\": 88456,\n          \"insights\": {\n            \"details\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"headline\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sources\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"investors\": [\n            {\n              \"isFollowOn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isLead\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isNew\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"orgId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"isFollowOn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isLead\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isNew\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"orgId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"isExit\": false,\n          \"recipient\": {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"orgId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"revenueMax\": 1500000,\n          \"revenueMin\": 1500000,\n          \"revenueMultipleMax\": 12,\n          \"revenueMultipleMin\": 12,\n          \"revenueTimePeriod\": \"FY 2024\",\n          \"round\": \"Seed VC - II\",\n          \"roundCategory\": \"Seed / Angel\",\n          \"roundCategoryId\": 2,\n          \"roundId\": 108,\n          \"simplifiedRound\": \"Seed VC\",\n          \"sources\": [\n            \"http://techcrunch.com/2011/03/28/stealth-payment-startup-stripe-paypal/\",\n            \"http://venturebeat.com/2011/03/29/stealth-online-payments-startup-stripe-draws-backing-from-paypal-founders/\"\n          ],\n          \"valuationInMillions\": 18\n        },\n        {\n          \"amountInMillions\": 2,\n          \"date\": \"2011-03-15\",\n          \"dealId\": 88456,\n          \"insights\": {\n            \"details\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"headline\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sources\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"investors\": [\n            {\n              \"isFollowOn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isLead\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isNew\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"orgId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"isFollowOn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isLead\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isNew\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"orgId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"isExit\": false,\n          \"recipient\": {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"orgId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"revenueMax\": 1500000,\n          \"revenueMin\": 1500000,\n          \"revenueMultipleMax\": 12,\n          \"revenueMultipleMin\": 12,\n          \"revenueTimePeriod\": \"FY 2024\",\n          \"round\": \"Seed VC - II\",\n          \"roundCategory\": \"Seed / Angel\",\n          \"roundCategoryId\": 2,\n          \"roundId\": 108,\n          \"simplifiedRound\": \"Seed VC\",\n          \"sources\": [\n            \"http://techcrunch.com/2011/03/28/stealth-payment-startup-stripe-paypal/\",\n            \"http://venturebeat.com/2011/03/29/stealth-online-payments-startup-stripe-draws-backing-from-paypal-founders/\"\n          ],\n          \"valuationInMillions\": 18\n        }\n      ],\n      \"orgId\": 129410\n    }\n  ],\n  \"totalHits\": 100,\n  \"totalHitsRelation\": \"eq\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c5c8e045-e3f6-4edc-b553-00a8bdebf425",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "financialtransactions",
+                    "investments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": 100,\n  \"nextPageToken\": \"\",\n  \"orgIds\": [\n    129410,\n    1034157\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "94cb2f56-404d-43c8-8fa6-eaad423a14fb",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "financialtransactions",
+                    "investments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": 100,\n  \"nextPageToken\": \"\",\n  \"orgIds\": [\n    129410,\n    1034157\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4968e21f-8dad-419b-bc37-7fc67d0da186",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "financialtransactions",
+                    "investments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": 100,\n  \"nextPageToken\": \"\",\n  \"orgIds\": [\n    129410,\n    1034157\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5f35f1b4-005a-4c69-b7d1-ecd391ed410a",
+              "name": "Failed Dependency",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "financialtransactions",
+                    "investments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": 100,\n  \"nextPageToken\": \"\",\n  \"orgIds\": [\n    129410,\n    1034157\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Failed Dependency (WebDAV) (RFC 4918)",
+              "code": 424,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87594aef-117c-45c4-8163-6047c8b92a6d",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "financialtransactions",
+                    "investments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": 100,\n  \"nextPageToken\": \"\",\n  \"orgIds\": [\n    129410,\n    1034157\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c92a3601-a028-4fa5-a0cf-0c236c30108f",
+          "name": "List of portfolio exits for one or more organizations",
+          "request": {
+            "name": "List of portfolio exits for one or more organizations",
+            "description": {
+              "content": "Returns a list of exit rounds for companies in which the requested Org IDs invested prior to the exit, plus AI-generated insights that extract key themes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "financialtransactions",
+                "portfolioexits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"limit\": \"<integer>\",\n  \"nextPageToken\": \"<string>\",\n  \"orgIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bffc70a9-75f2-419d-a9b9-377e519247be",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "financialtransactions",
+                    "portfolioexits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": 10,\n  \"nextPageToken\": \"\",\n  \"orgIds\": [\n    129410,\n    1034157\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"nextPageToken\": \"eyJwYWdpbmF0aW9uX3NjaGVtZSI6MiwibmV4dF9wYWdlX3Rva2VuIjoxMjk0MTB9Cg==\",\n  \"orgs\": [\n    {\n      \"orgId\": 129410,\n      \"portfolioExits\": [\n        {\n          \"amountInMillions\": 1218.92,\n          \"date\": \"2025-07-31\",\n          \"dealId\": 18708,\n          \"insights\": {\n            \"details\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"headline\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sources\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"investors\": [\n            {\n              \"isFollowOn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isLead\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isNew\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"orgId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"isFollowOn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isLead\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isNew\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"orgId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"isExit\": true,\n          \"recipient\": {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"orgId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"round\": \"IPO\",\n          \"roundCategory\": \"IPO\",\n          \"roundCategoryId\": 10,\n          \"roundId\": 76,\n          \"simplifiedRound\": \"IPO\",\n          \"sources\": [\n            \"https://www.reuters.com/technology/figma-raises-12-billion-us-ipo-signaling-thaw-tech-listings-2025-07-30/\",\n            \"https://www.cnbc.com/2025/07/30/figma-prices-ipo-at-33-above-expected-range.html\"\n          ],\n          \"valuationInMillions\": 16086.21\n        },\n        {\n          \"amountInMillions\": 1218.92,\n          \"date\": \"2025-07-31\",\n          \"dealId\": 18708,\n          \"insights\": {\n            \"details\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"headline\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sources\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"investors\": [\n            {\n              \"isFollowOn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isLead\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isNew\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"orgId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"isFollowOn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isLead\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isNew\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"orgId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"isExit\": true,\n          \"recipient\": {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"orgId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"round\": \"IPO\",\n          \"roundCategory\": \"IPO\",\n          \"roundCategoryId\": 10,\n          \"roundId\": 76,\n          \"simplifiedRound\": \"IPO\",\n          \"sources\": [\n            \"https://www.reuters.com/technology/figma-raises-12-billion-us-ipo-signaling-thaw-tech-listings-2025-07-30/\",\n            \"https://www.cnbc.com/2025/07/30/figma-prices-ipo-at-33-above-expected-range.html\"\n          ],\n          \"valuationInMillions\": 16086.21\n        }\n      ]\n    },\n    {\n      \"orgId\": 129410,\n      \"portfolioExits\": [\n        {\n          \"amountInMillions\": 1218.92,\n          \"date\": \"2025-07-31\",\n          \"dealId\": 18708,\n          \"insights\": {\n            \"details\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"headline\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sources\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"investors\": [\n            {\n              \"isFollowOn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isLead\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isNew\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"orgId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"isFollowOn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isLead\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isNew\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"orgId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"isExit\": true,\n          \"recipient\": {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"orgId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"round\": \"IPO\",\n          \"roundCategory\": \"IPO\",\n          \"roundCategoryId\": 10,\n          \"roundId\": 76,\n          \"simplifiedRound\": \"IPO\",\n          \"sources\": [\n            \"https://www.reuters.com/technology/figma-raises-12-billion-us-ipo-signaling-thaw-tech-listings-2025-07-30/\",\n            \"https://www.cnbc.com/2025/07/30/figma-prices-ipo-at-33-above-expected-range.html\"\n          ],\n          \"valuationInMillions\": 16086.21\n        },\n        {\n          \"amountInMillions\": 1218.92,\n          \"date\": \"2025-07-31\",\n          \"dealId\": 18708,\n          \"insights\": {\n            \"details\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"headline\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sources\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"investors\": [\n            {\n              \"isFollowOn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isLead\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isNew\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"orgId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"isFollowOn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isLead\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"isNew\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"orgId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"isExit\": true,\n          \"recipient\": {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"orgId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"round\": \"IPO\",\n          \"roundCategory\": \"IPO\",\n          \"roundCategoryId\": 10,\n          \"roundId\": 76,\n          \"simplifiedRound\": \"IPO\",\n          \"sources\": [\n            \"https://www.reuters.com/technology/figma-raises-12-billion-us-ipo-signaling-thaw-tech-listings-2025-07-30/\",\n            \"https://www.cnbc.com/2025/07/30/figma-prices-ipo-at-33-above-expected-range.html\"\n          ],\n          \"valuationInMillions\": 16086.21\n        }\n      ]\n    }\n  ],\n  \"totalHits\": 100,\n  \"totalHitsRelation\": \"eq\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "82200459-cd83-451c-ba41-81e42fe38104",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "financialtransactions",
+                    "portfolioexits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": 10,\n  \"nextPageToken\": \"\",\n  \"orgIds\": [\n    129410,\n    1034157\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "05c608cb-b075-4c35-b3bd-d46eae844098",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "financialtransactions",
+                    "portfolioexits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": 10,\n  \"nextPageToken\": \"\",\n  \"orgIds\": [\n    129410,\n    1034157\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba3fdbc0-f78e-40df-8850-56bb3a808cc5",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "financialtransactions",
+                    "portfolioexits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": 10,\n  \"nextPageToken\": \"\",\n  \"orgIds\": [\n    129410,\n    1034157\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "943ca031-f712-4a6e-8521-515e420f79a0",
+              "name": "Failed Dependency",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "financialtransactions",
+                    "portfolioexits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": 10,\n  \"nextPageToken\": \"\",\n  \"orgIds\": [\n    129410,\n    1034157\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Failed Dependency (WebDAV) (RFC 4918)",
+              "code": 424,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1f0db37e-f74d-42ec-82ca-9c00fe7c8b5f",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "financialtransactions",
+                    "portfolioexits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": 10,\n  \"nextPageToken\": \"\",\n  \"orgIds\": [\n    129410,\n    1034157\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d7b6054-e74b-43c4-a7f4-6f1722eac0f9",
+          "name": "List funding transactions for a single organization.",
+          "request": {
+            "name": "List funding transactions for a single organization.",
+            "description": {
+              "content": "Retrieved data includes details about funding received by an organization, plus AI-generated insights that extract key themes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "organizations",
+                ":orgId",
+                "financialtransactions",
+                "fundings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "orgId",
+                  "description": "(Required) CB Insights organization ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"limit\": \"<integer>\",\n  \"nextPageToken\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "56e21a0d-0cdb-4d79-97b5-ffc6ec638250",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":orgId",
+                    "financialtransactions",
+                    "fundings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "orgId",
+                      "description": "(Required) CB Insights organization ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": \"<integer>\",\n  \"nextPageToken\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"capTableHistory\": [\n    {\n      \"coiFilingDate\": \"2013-12-31\",\n      \"conversionPrice\": 2.21,\n      \"dealId\": 854976,\n      \"dividendRate\": 0.004,\n      \"issuancePrice\": 2.21,\n      \"liquidationMultiple\": 1,\n      \"liquidationPrice\": 2.21,\n      \"parValue\": 13.32,\n      \"percentageOwned\": 0.049,\n      \"roundType\": \"Angel\",\n      \"roundTypeId\": 9,\n      \"sharesAuthorized\": 20000,\n      \"terms\": {\n        \"antiDilutionProvision\": \"Full Ratchet\",\n        \"antiDilutionProvisionId\": 1,\n        \"dividendPreference\": \"Cumulative\",\n        \"dividendPreferenceId\": 1,\n        \"hasBoardVotingRights\": false,\n        \"hasGeneralVotingRights\": true,\n        \"liquidationPreference\": \"Junior\",\n        \"liquidationPreferenceId\": 2,\n        \"participationRights\": \"Full Participation\",\n        \"participationRightsId\": 2\n      }\n    },\n    {\n      \"coiFilingDate\": \"2013-12-31\",\n      \"conversionPrice\": 2.21,\n      \"dealId\": 854976,\n      \"dividendRate\": 0.004,\n      \"issuancePrice\": 2.21,\n      \"liquidationMultiple\": 1,\n      \"liquidationPrice\": 2.21,\n      \"parValue\": 13.32,\n      \"percentageOwned\": 0.049,\n      \"roundType\": \"Angel\",\n      \"roundTypeId\": 9,\n      \"sharesAuthorized\": 20000,\n      \"terms\": {\n        \"antiDilutionProvision\": \"Full Ratchet\",\n        \"antiDilutionProvisionId\": 1,\n        \"dividendPreference\": \"Cumulative\",\n        \"dividendPreferenceId\": 1,\n        \"hasBoardVotingRights\": false,\n        \"hasGeneralVotingRights\": true,\n        \"liquidationPreference\": \"Junior\",\n        \"liquidationPreferenceId\": 2,\n        \"participationRights\": \"Full Participation\",\n        \"participationRightsId\": 2\n      }\n    }\n  ],\n  \"fundings\": [\n    {\n      \"amountInMillions\": 2,\n      \"date\": \"2011-03-15\",\n      \"dealId\": 88456,\n      \"insights\": {\n        \"details\": [\n          \"The funding round propelled Stripe's valuation to $3.5 billion\",\n          \" enhancing its financial leverage in the payments sector. Investment from prominent firms.\"\n        ],\n        \"headline\": \"Stripe's valuation swells with latest funding, bolstering its market position\",\n        \"sources\": [\n          \"http://www.vcnewsdaily.com/stripe/venture-capital-funding/sfbwyyxnvy\",\n          \"http://techcrunch.com/2014/12/04/thrive-capital-bet-big-30-million-to-be-exact-on-stripe/?ncid=rss\"\n        ],\n        \"summary\": \"Stripe completed a Series C - II funding round, securing $70 million\"\n      },\n      \"investors\": [\n        {\n          \"isFollowOn\": false,\n          \"isLead\": false,\n          \"isNew\": true,\n          \"name\": \"ABC Financial Group\",\n          \"orgId\": 19485\n        },\n        {\n          \"isFollowOn\": false,\n          \"isLead\": false,\n          \"isNew\": true,\n          \"name\": \"ABC Financial Group\",\n          \"orgId\": 19485\n        }\n      ],\n      \"isExit\": false,\n      \"recipient\": {\n        \"name\": \"Prss\",\n        \"orgId\": 2763\n      },\n      \"revenueMax\": 1500000,\n      \"revenueMin\": 1500000,\n      \"revenueMultipleMax\": 12,\n      \"revenueMultipleMin\": 12,\n      \"revenueTimePeriod\": \"FY 2024\",\n      \"round\": \"Seed VC - II\",\n      \"roundCategory\": \"Seed / Angel\",\n      \"roundCategoryId\": 2,\n      \"roundId\": 108,\n      \"simplifiedRound\": \"Seed VC\",\n      \"sources\": [\n        \"http://techcrunch.com/2011/03/28/stealth-payment-startup-stripe-paypal/\",\n        \"http://venturebeat.com/2011/03/29/stealth-online-payments-startup-stripe-draws-backing-from-paypal-founders/\"\n      ],\n      \"valuationInMillions\": 18\n    },\n    {\n      \"amountInMillions\": 2,\n      \"date\": \"2011-03-15\",\n      \"dealId\": 88456,\n      \"insights\": {\n        \"details\": [\n          \"The funding round propelled Stripe's valuation to $3.5 billion\",\n          \" enhancing its financial leverage in the payments sector. Investment from prominent firms.\"\n        ],\n        \"headline\": \"Stripe's valuation swells with latest funding, bolstering its market position\",\n        \"sources\": [\n          \"http://www.vcnewsdaily.com/stripe/venture-capital-funding/sfbwyyxnvy\",\n          \"http://techcrunch.com/2014/12/04/thrive-capital-bet-big-30-million-to-be-exact-on-stripe/?ncid=rss\"\n        ],\n        \"summary\": \"Stripe completed a Series C - II funding round, securing $70 million\"\n      },\n      \"investors\": [\n        {\n          \"isFollowOn\": false,\n          \"isLead\": false,\n          \"isNew\": true,\n          \"name\": \"ABC Financial Group\",\n          \"orgId\": 19485\n        },\n        {\n          \"isFollowOn\": false,\n          \"isLead\": false,\n          \"isNew\": true,\n          \"name\": \"ABC Financial Group\",\n          \"orgId\": 19485\n        }\n      ],\n      \"isExit\": false,\n      \"recipient\": {\n        \"name\": \"Prss\",\n        \"orgId\": 2763\n      },\n      \"revenueMax\": 1500000,\n      \"revenueMin\": 1500000,\n      \"revenueMultipleMax\": 12,\n      \"revenueMultipleMin\": 12,\n      \"revenueTimePeriod\": \"FY 2024\",\n      \"round\": \"Seed VC - II\",\n      \"roundCategory\": \"Seed / Angel\",\n      \"roundCategoryId\": 2,\n      \"roundId\": 108,\n      \"simplifiedRound\": \"Seed VC\",\n      \"sources\": [\n        \"http://techcrunch.com/2011/03/28/stealth-payment-startup-stripe-paypal/\",\n        \"http://venturebeat.com/2011/03/29/stealth-online-payments-startup-stripe-draws-backing-from-paypal-founders/\"\n      ],\n      \"valuationInMillions\": 18\n    }\n  ],\n  \"nextPageToken\": \"string\",\n  \"totalHits\": 100,\n  \"totalHitsRelation\": \"gte\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e2745e32-da0b-4c7c-974b-3deb71368552",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":orgId",
+                    "financialtransactions",
+                    "fundings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "orgId",
+                      "description": "(Required) CB Insights organization ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": \"<integer>\",\n  \"nextPageToken\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ed374234-d3db-4fc8-836e-dcdf42378230",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":orgId",
+                    "financialtransactions",
+                    "fundings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "orgId",
+                      "description": "(Required) CB Insights organization ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": \"<integer>\",\n  \"nextPageToken\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "772b4aa0-07af-48c0-b594-8f86cce8aac5",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":orgId",
+                    "financialtransactions",
+                    "fundings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "orgId",
+                      "description": "(Required) CB Insights organization ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": \"<integer>\",\n  \"nextPageToken\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87625f5a-e350-4df6-9d8e-d79cb740aa23",
+              "name": "Failed Dependency",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":orgId",
+                    "financialtransactions",
+                    "fundings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "orgId",
+                      "description": "(Required) CB Insights organization ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": \"<integer>\",\n  \"nextPageToken\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Failed Dependency (WebDAV) (RFC 4918)",
+              "code": 424,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "16a84576-0145-4afe-a1ab-a2eb8a9ca1e6",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":orgId",
+                    "financialtransactions",
+                    "fundings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "orgId",
+                      "description": "(Required) CB Insights organization ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": \"<integer>\",\n  \"nextPageToken\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "052d36e2-923f-4783-ba25-4c78269bfa7a",
+          "name": "List investment rounds for a single organization.",
+          "request": {
+            "name": "List investment rounds for a single organization.",
+            "description": {
+              "content": "Retrieves all transactions in which the selected organization invested in another organization, plus AI-generated insights that extract key themes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "organizations",
+                ":orgId",
+                "financialtransactions",
+                "investments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "orgId",
+                  "description": "(Required) CB Insights unique identifier of an organization"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"limit\": \"<integer>\",\n  \"nextPageToken\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e1104c78-714b-4e75-b467-e20e74eb196a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":orgId",
+                    "financialtransactions",
+                    "investments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "orgId",
+                      "description": "(Required) CB Insights unique identifier of an organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": \"<integer>\",\n  \"nextPageToken\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"investments\": [\n    {\n      \"amountInMillions\": 2,\n      \"date\": \"2011-03-15\",\n      \"dealId\": 88456,\n      \"insights\": {\n        \"details\": [\n          \"The funding round propelled Stripe's valuation to $3.5 billion\",\n          \" enhancing its financial leverage in the payments sector. Investment from prominent firms.\"\n        ],\n        \"headline\": \"Stripe's valuation swells with latest funding, bolstering its market position\",\n        \"sources\": [\n          \"http://www.vcnewsdaily.com/stripe/venture-capital-funding/sfbwyyxnvy\",\n          \"http://techcrunch.com/2014/12/04/thrive-capital-bet-big-30-million-to-be-exact-on-stripe/?ncid=rss\"\n        ],\n        \"summary\": \"Stripe completed a Series C - II funding round, securing $70 million\"\n      },\n      \"investors\": [\n        {\n          \"isFollowOn\": false,\n          \"isLead\": false,\n          \"isNew\": true,\n          \"name\": \"ABC Financial Group\",\n          \"orgId\": 19485\n        },\n        {\n          \"isFollowOn\": false,\n          \"isLead\": false,\n          \"isNew\": true,\n          \"name\": \"ABC Financial Group\",\n          \"orgId\": 19485\n        }\n      ],\n      \"isExit\": false,\n      \"recipient\": {\n        \"name\": \"Prss\",\n        \"orgId\": 2763\n      },\n      \"revenueMax\": 1500000,\n      \"revenueMin\": 1500000,\n      \"revenueMultipleMax\": 12,\n      \"revenueMultipleMin\": 12,\n      \"revenueTimePeriod\": \"FY 2024\",\n      \"round\": \"Seed VC - II\",\n      \"roundCategory\": \"Seed / Angel\",\n      \"roundCategoryId\": 2,\n      \"roundId\": 108,\n      \"simplifiedRound\": \"Seed VC\",\n      \"sources\": [\n        \"http://techcrunch.com/2011/03/28/stealth-payment-startup-stripe-paypal/\",\n        \"http://venturebeat.com/2011/03/29/stealth-online-payments-startup-stripe-draws-backing-from-paypal-founders/\"\n      ],\n      \"valuationInMillions\": 18\n    },\n    {\n      \"amountInMillions\": 2,\n      \"date\": \"2011-03-15\",\n      \"dealId\": 88456,\n      \"insights\": {\n        \"details\": [\n          \"The funding round propelled Stripe's valuation to $3.5 billion\",\n          \" enhancing its financial leverage in the payments sector. Investment from prominent firms.\"\n        ],\n        \"headline\": \"Stripe's valuation swells with latest funding, bolstering its market position\",\n        \"sources\": [\n          \"http://www.vcnewsdaily.com/stripe/venture-capital-funding/sfbwyyxnvy\",\n          \"http://techcrunch.com/2014/12/04/thrive-capital-bet-big-30-million-to-be-exact-on-stripe/?ncid=rss\"\n        ],\n        \"summary\": \"Stripe completed a Series C - II funding round, securing $70 million\"\n      },\n      \"investors\": [\n        {\n          \"isFollowOn\": false,\n          \"isLead\": false,\n          \"isNew\": true,\n          \"name\": \"ABC Financial Group\",\n          \"orgId\": 19485\n        },\n        {\n          \"isFollowOn\": false,\n          \"isLead\": false,\n          \"isNew\": true,\n          \"name\": \"ABC Financial Group\",\n          \"orgId\": 19485\n        }\n      ],\n      \"isExit\": false,\n      \"recipient\": {\n        \"name\": \"Prss\",\n        \"orgId\": 2763\n      },\n      \"revenueMax\": 1500000,\n      \"revenueMin\": 1500000,\n      \"revenueMultipleMax\": 12,\n      \"revenueMultipleMin\": 12,\n      \"revenueTimePeriod\": \"FY 2024\",\n      \"round\": \"Seed VC - II\",\n      \"roundCategory\": \"Seed / Angel\",\n      \"roundCategoryId\": 2,\n      \"roundId\": 108,\n      \"simplifiedRound\": \"Seed VC\",\n      \"sources\": [\n        \"http://techcrunch.com/2011/03/28/stealth-payment-startup-stripe-paypal/\",\n        \"http://venturebeat.com/2011/03/29/stealth-online-payments-startup-stripe-draws-backing-from-paypal-founders/\"\n      ],\n      \"valuationInMillions\": 18\n    }\n  ],\n  \"nextPageToken\": \"string\",\n  \"totalHits\": 100,\n  \"totalHitsRelation\": \"gte\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97a9dff7-14de-4265-9882-ca5ea7cfdd00",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":orgId",
+                    "financialtransactions",
+                    "investments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "orgId",
+                      "description": "(Required) CB Insights unique identifier of an organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": \"<integer>\",\n  \"nextPageToken\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e8f14ea2-2a02-44c0-915d-9622d45bf6ac",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":orgId",
+                    "financialtransactions",
+                    "investments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "orgId",
+                      "description": "(Required) CB Insights unique identifier of an organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": \"<integer>\",\n  \"nextPageToken\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "41e379cb-88bc-4cb7-bdcc-69e30a21b85b",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":orgId",
+                    "financialtransactions",
+                    "investments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "orgId",
+                      "description": "(Required) CB Insights unique identifier of an organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": \"<integer>\",\n  \"nextPageToken\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e851041e-995c-4464-876e-389d3af9532b",
+              "name": "Failed Dependency",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":orgId",
+                    "financialtransactions",
+                    "investments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "orgId",
+                      "description": "(Required) CB Insights unique identifier of an organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": \"<integer>\",\n  \"nextPageToken\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Failed Dependency (WebDAV) (RFC 4918)",
+              "code": 424,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8f016e2c-2edd-4754-b665-b4854149764c",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":orgId",
+                    "financialtransactions",
+                    "investments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "orgId",
+                      "description": "(Required) CB Insights unique identifier of an organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": \"<integer>\",\n  \"nextPageToken\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c39a488-f2b8-4a6f-8e35-19486577fc01",
+          "name": "List portfolio exits for a single organization.",
+          "request": {
+            "name": "List portfolio exits for a single organization.",
+            "description": {
+              "content": "Retrieves exit rounds for companies in which the selected organization invested prior to the exit, plus AI-generated insights that extract key themes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "organizations",
+                ":orgId",
+                "financialtransactions",
+                "portfolioexits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "orgId",
+                  "description": "(Required) CB Insights unique identifier of an organization"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "83271fd1-3489-4d13-a6e8-c58d57e479fe",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":orgId",
+                    "financialtransactions",
+                    "portfolioexits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "orgId",
+                      "description": "(Required) CB Insights unique identifier of an organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"portfolioExits\": [\n    {\n      \"amountInMillions\": 1218.92,\n      \"date\": \"2025-07-31\",\n      \"dealId\": 18708,\n      \"insights\": {\n        \"details\": [\n          \"The funding round propelled Stripe's valuation to $3.5 billion\",\n          \" enhancing its financial leverage in the payments sector. Investment from prominent firms.\"\n        ],\n        \"headline\": \"Stripe's valuation swells with latest funding, bolstering its market position\",\n        \"sources\": [\n          \"http://www.vcnewsdaily.com/stripe/venture-capital-funding/sfbwyyxnvy\",\n          \"http://techcrunch.com/2014/12/04/thrive-capital-bet-big-30-million-to-be-exact-on-stripe/?ncid=rss\"\n        ],\n        \"summary\": \"Stripe completed a Series C - II funding round, securing $70 million\"\n      },\n      \"investors\": [\n        {\n          \"isFollowOn\": false,\n          \"isLead\": false,\n          \"isNew\": true,\n          \"name\": \"ABC Financial Group\",\n          \"orgId\": 19485\n        },\n        {\n          \"isFollowOn\": false,\n          \"isLead\": false,\n          \"isNew\": true,\n          \"name\": \"ABC Financial Group\",\n          \"orgId\": 19485\n        }\n      ],\n      \"isExit\": true,\n      \"recipient\": {\n        \"name\": \"Prss\",\n        \"orgId\": 2763\n      },\n      \"round\": \"IPO\",\n      \"roundCategory\": \"IPO\",\n      \"roundCategoryId\": 10,\n      \"roundId\": 76,\n      \"simplifiedRound\": \"IPO\",\n      \"sources\": [\n        \"https://www.reuters.com/technology/figma-raises-12-billion-us-ipo-signaling-thaw-tech-listings-2025-07-30/\",\n        \"https://www.cnbc.com/2025/07/30/figma-prices-ipo-at-33-above-expected-range.html\"\n      ],\n      \"valuationInMillions\": 16086.21\n    },\n    {\n      \"amountInMillions\": 1218.92,\n      \"date\": \"2025-07-31\",\n      \"dealId\": 18708,\n      \"insights\": {\n        \"details\": [\n          \"The funding round propelled Stripe's valuation to $3.5 billion\",\n          \" enhancing its financial leverage in the payments sector. Investment from prominent firms.\"\n        ],\n        \"headline\": \"Stripe's valuation swells with latest funding, bolstering its market position\",\n        \"sources\": [\n          \"http://www.vcnewsdaily.com/stripe/venture-capital-funding/sfbwyyxnvy\",\n          \"http://techcrunch.com/2014/12/04/thrive-capital-bet-big-30-million-to-be-exact-on-stripe/?ncid=rss\"\n        ],\n        \"summary\": \"Stripe completed a Series C - II funding round, securing $70 million\"\n      },\n      \"investors\": [\n        {\n          \"isFollowOn\": false,\n          \"isLead\": false,\n          \"isNew\": true,\n          \"name\": \"ABC Financial Group\",\n          \"orgId\": 19485\n        },\n        {\n          \"isFollowOn\": false,\n          \"isLead\": false,\n          \"isNew\": true,\n          \"name\": \"ABC Financial Group\",\n          \"orgId\": 19485\n        }\n      ],\n      \"isExit\": true,\n      \"recipient\": {\n        \"name\": \"Prss\",\n        \"orgId\": 2763\n      },\n      \"round\": \"IPO\",\n      \"roundCategory\": \"IPO\",\n      \"roundCategoryId\": 10,\n      \"roundId\": 76,\n      \"simplifiedRound\": \"IPO\",\n      \"sources\": [\n        \"https://www.reuters.com/technology/figma-raises-12-billion-us-ipo-signaling-thaw-tech-listings-2025-07-30/\",\n        \"https://www.cnbc.com/2025/07/30/figma-prices-ipo-at-33-above-expected-range.html\"\n      ],\n      \"valuationInMillions\": 16086.21\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2068da45-4eec-4560-b2be-175c9a99cfa7",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":orgId",
+                    "financialtransactions",
+                    "portfolioexits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "orgId",
+                      "description": "(Required) CB Insights unique identifier of an organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7e51465a-cde1-4e8c-8795-b9cbcba14360",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":orgId",
+                    "financialtransactions",
+                    "portfolioexits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "orgId",
+                      "description": "(Required) CB Insights unique identifier of an organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b06f53fe-6732-478a-a1c9-81022510005c",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":orgId",
+                    "financialtransactions",
+                    "portfolioexits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "orgId",
+                      "description": "(Required) CB Insights unique identifier of an organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ddfcf9b3-5d5c-4164-841c-dd6e3bfd2d59",
+              "name": "Failed Dependency",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":orgId",
+                    "financialtransactions",
+                    "portfolioexits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "orgId",
+                      "description": "(Required) CB Insights unique identifier of an organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Failed Dependency (WebDAV) (RFC 4918)",
+              "code": 424,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "815c8737-da52-444c-a096-566bbced49df",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":orgId",
+                    "financialtransactions",
+                    "portfolioexits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "orgId",
+                      "description": "(Required) CB Insights unique identifier of an organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.cbinsights.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "88274f79-d601-4d27-8b2e-b822e4334e48",
+    "name": "CB Insights Financial Transactions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Introduction\n\nThe CB Insights API offers market data and insights you won't find anywhere else. Use our API to build trading platforms, media content, and market indexes, or integrate our proprietary scores into your workflows, algorithms, or LLMs. \n\n# CB Insights API v2 compared to v1\n\nThe new CB Insights API v2 offers new datasets and additional data points that were not available in v1. v2 follows the same REST architectural style and has a new structure for you to retrieve the information you need as conveniently as possible.\n\nThis first set of data includes:\n\n- **Firmographics**. Profiles on private companies, public companies, and investors. Includes general information like location, headcount, and industry, as well as proprietary data like business models, Competitor Scores, and Expert Collections.\n- **Financial Transactions**. Funding deals, cap table history, M&As, and IPOs, plus AI-generated insights that extract key themes.\n- **Business Relationships**. Partnerships, clients/vendors, and licensing activity, plus AI-generated insights to predict future M&As and shifts in strategy.\n- **Management and Board**. Leadership teams, board members, and the Management factor of the Mosaic Score — our proprietary algorithm which evaluates leadership teams based on past achievements.\n- **Outlook**. Proprietary data science analysis including Mosaic Score, Commercial Maturity, and Exit Probability. Proven to predict winners better than top VCs.\n- **Scouting Reports**. On-demand, AI-generated insights into business model, market position, strengths, and opportunities for private companies.\n",
+      "type": "text/plain"
+    }
+  }
+}

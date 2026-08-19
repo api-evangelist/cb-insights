@@ -1,0 +1,119 @@
+generated: '2026-08-14'
+method: probed
+source: https://mcp.cbinsights.com/.well-known/oauth-authorization-server
+docs:
+- https://mcp.cbinsights.com/.well-known/oauth-authorization-server
+- https://mcp.cbinsights.com/.well-known/oauth-protected-resource
+- https://api-docs.cbinsights.com/portal/docs/Integrations/cbi-mcp-server
+summary: >-
+  Only one surface in the CB Insights estate has an OAuth scope model at all, and it is the hosted MCP
+  server — not the REST API. mcp.cbinsights.com runs a real RFC 8414 authorization server and
+  advertises exactly three scopes: openid, email and profile. All three are OpenID Connect identity
+  scopes. NOT ONE data scope is published, so an access token cannot be narrowed to a dataset, to
+  read-only, or to a spend ceiling — the token identifies the seat and the seat's full entitlement
+  follows. The REST APIs (v1 and v2) have no scope surface whatsoever: they use a bespoke
+  clientId/clientSecret exchange that returns a bare {"token": ...} with no scope, no grant_type and
+  no token_type, and the published Swagger 2.0 contract declares an apiKey-in-header scheme rather
+  than oauth2. derive-oauth-scopes.py therefore finds zero oauth2 schemes in openapi/ — this file is
+  built from the live authorization-server metadata instead.
+derived_from_openapi: false
+openapi_oauth2_schemes: 0
+openapi_note: >-
+  Ran python3 all/0-working/derive-oauth-scopes.py cb-insights on 2026-08-14 — "providers with
+  oauth2: 0, with scopes: 0". The v2 contract's only securityDefinition is BearerAuth, an
+  apiKey-in-header scheme, so no scope can be derived from the spec.
+schemes:
+- name: MCP OAuth 2.1
+  type: oauth2
+  applies_to: CB Insights MCP Server (https://mcp.cbinsights.com/)
+  issuer: https://mcp.cbinsights.com/
+  metadata_document: well-known/cb-insights-mcp-oauth-authorization-server.json
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://mcp.cbinsights.com/authorize
+    tokenUrl: https://mcp.cbinsights.com/token
+    pkce: S256
+  - flow: clientCredentials
+    tokenUrl: https://mcp.cbinsights.com/token
+  - flow: refreshToken
+    tokenUrl: https://mcp.cbinsights.com/token
+  registration_endpoint: https://mcp.cbinsights.com/register
+  dynamic_client_registration: true
+  token_endpoint_auth_methods:
+  - none
+  - client_secret_post
+  - client_secret_basic
+  bearer_methods_supported:
+  - header
+  sources:
+  - https://mcp.cbinsights.com/.well-known/oauth-authorization-server
+  - https://mcp.cbinsights.com/.well-known/oauth-protected-resource
+scopes:
+- scope: openid
+  kind: identity
+  description: >-
+    OpenID Connect authentication — requests an ID token asserting who the end user is. Grants no data
+    access of its own.
+  flows: [authorizationCode]
+  sources: [https://mcp.cbinsights.com/.well-known/oauth-authorization-server]
+- scope: email
+  kind: identity
+  description: OpenID Connect claim scope — releases the end user's email address to the client.
+  flows: [authorizationCode]
+  sources: [https://mcp.cbinsights.com/.well-known/oauth-authorization-server]
+- scope: profile
+  kind: identity
+  description: OpenID Connect claim scope — releases the end user's basic profile claims to the client.
+  flows: [authorizationCode]
+  sources: [https://mcp.cbinsights.com/.well-known/oauth-authorization-server]
+scope_count: 3
+data_scope_count: 0
+protected_resource:
+  resource: https://mcp.cbinsights.com/
+  authorization_servers:
+  - https://mcp.cbinsights.com/
+  scopes_supported:
+  - openid
+  - email
+  - profile
+  file: well-known/cb-insights-mcp-oauth-protected-resource.json
+  rfc: RFC 9728
+  note: >-
+    The 401 challenge from the MCP endpoint itself carries resource_metadata pointing at this document,
+    so an MCP client can discover the authorization server correctly. What it discovers, however, is a
+    scope set that cannot express least privilege over the data.
+surfaces_without_scopes:
+- surface: CB Insights API v2
+  base_url: https://api.cbinsights.com
+  auth: bespoke clientId/clientSecret POST to /v2/authorize returning a 24-hour bearer JWT
+  scopes: none — the token carries no scope claim and none is documented
+  source: https://api-docs.cbinsights.com/portal/docs/CBI-API/cbi-authentication
+- surface: CB Insights API v1
+  base_url: https://api.cbinsights.com
+  auth: GET /v1/authorize with clientId and clientSecret as query parameters
+  scopes: none
+  source: https://api-docs.cbinsights.com/docs/tutorials/authentication_flow/
+gaps:
+- No data scopes anywhere. An agent connecting through Claude, ChatGPT, Perplexity or Copilot receives
+  a token that identifies the seat; entitlement and credit spend follow the seat, not the grant, so the
+  user cannot consent to a narrower slice than "everything this seat can see".
+- No read-only scope, so there is no token-level distinction between reading firmographics and
+  generating a billable scouting report or ChatCBI response.
+- No scope reference page exists in the developer documentation — the three scopes are discoverable
+  only from the RFC 8414 metadata document, never from prose.
+- No token revocation or introspection endpoint is advertised, so a scope grant cannot be audited or
+  withdrawn programmatically.
+x-evidence:
+- url: https://mcp.cbinsights.com/.well-known/oauth-authorization-server
+  status: 200
+  fetched: '2026-08-14'
+  content_type: application/json
+- url: https://mcp.cbinsights.com/.well-known/oauth-protected-resource
+  status: 200
+  fetched: '2026-08-09'
+  content_type: application/json
+cross_links:
+  authentication: authentication/cb-insights-authentication.yml
+  mcp: mcp/cb-insights-mcp.yml
+  well_known: well-known/cb-insights-well-known.yml
+  conformance: conformance/cb-insights-conformance.yml

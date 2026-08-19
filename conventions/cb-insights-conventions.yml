@@ -3,7 +3,7 @@ method: searched
 source: >-
   https://api-docs.cbinsights.com/portal/docs/CBI-API/cbi-api-overview +
   https://api-docs.cbinsights.com/portal/docs/CBI-API/search-structure +
-  openapi/cb-insights-api-v2-openapi.json
+  openapi/_original/cb-insights-api-v2-openapi.json
 docs:
 - https://api-docs.cbinsights.com/portal/docs/CBI-API/cbi-api-overview
 - https://api-docs.cbinsights.com/portal/docs/CBI-API/search-structure

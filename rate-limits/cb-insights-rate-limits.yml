@@ -66,7 +66,7 @@ pagination_limits:
   min: 1
   max: 100
   default: 10
-  source: openapi/cb-insights-api-v2-openapi.json
+  source: openapi/_original/cb-insights-api-v2-openapi.json
 - name: Credit log page size (v1)
   parameter: pageSize
   max: 1000
@@ -76,7 +76,7 @@ pagination_limits:
   detail: >-
     totalHitsRelation is set to 'gte' once totalHits exceeds 10,000, indicating result sets are not
     fully enumerable beyond that depth.
-  source: openapi/cb-insights-api-v2-openapi.json
+  source: openapi/_original/cb-insights-api-v2-openapi.json
 gaps:
 - The 429 status and the ratelimit-* headers are documented only in the v1 reference; the v2 Swagger
   contract declares neither, so a generated v2 client is throttle-blind.

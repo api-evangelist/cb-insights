@@ -17,7 +17,7 @@ operations:
 generated: '2026-08-09'
 method: generated
 source: >-
-  Grounded in openapi/cb-insights-api-v2-openapi.json (v2FinancialTransactions.* definitions) and
+  Grounded in openapi/_original/cb-insights-api-v2-openapi.json (v2FinancialTransactions.* definitions) and
   https://api-docs.cbinsights.com/portal/docs/CBI-data/Company-data-and-insights/financial-transactions.
   The published contract declares no operationIds, so operations are referenced by method and path.
 ---

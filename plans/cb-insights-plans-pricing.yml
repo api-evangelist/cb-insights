@@ -1,0 +1,115 @@
+generated: '2026-08-14'
+method: searched
+source: https://www.cbinsights.com/pricing
+docs:
+- https://www.cbinsights.com/pricing
+- https://api-docs.cbinsights.com/portal/signup
+- https://api-docs.cbinsights.com/docs/reference/credit_model/
+- https://api-docs.cbinsights.com/portal/api-terms-of-use
+summary: >-
+  CB Insights publishes no price for anything. The pricing page names three commercial offerings —
+  Browser Analyst, Strategy Terminal and Data Solutions — and each one carries a "Request pricing"
+  button rather than a rate, a currency, a billing period or a seat count. There is no self-serve
+  checkout, no published rate card and no per-credit price anywhere on the public surface. What IS
+  published, and is the only quantified entitlement in the estate, is the API trial allowance on the
+  developer-portal sign-up form: 25 companies, 5 scouting reports and 5 ChatCBI messages. Because no
+  offering has a published price, plan_count is 0 by the definition this artifact uses — the named
+  offerings are recorded below as offerings, not as plans, so a reader is not misled into thinking a
+  rate exists.
+plan_count: 0
+pricing_model: contact-sales
+currency: null
+billing_period: null
+self_serve_checkout: false
+public_rate_card: false
+named_offerings:
+- name: Browser Analyst
+  price: null
+  price_published: false
+  cta: Request pricing
+  delivery: browser extension
+  included_published:
+  - Unlimited scouting reports and company profile data, with SWOT analysis
+  - Contact information for key executives
+  - Unlimited actionable intelligence on news articles, LinkedIn profiles, and legal or technical documents
+  api_access_stated: false
+  source: https://www.cbinsights.com/pricing
+- name: Strategy Terminal
+  price: null
+  price_published: false
+  cta: Request pricing
+  delivery: web application, mobile app, browser extension, email alerts
+  included_published:
+  - Unlimited access to the predictive model of the world's companies and markets
+  - AI search and analysis across 1,600+ markets and 12 million companies
+  - Proprietary scoring — Mosaic Score, Commercial Maturity, Exit Probability
+  - AI Agents, from scouting reports to account briefs
+  - Turnkey integrations with tools like Microsoft Copilot, Salesforce and more
+  api_access_stated: false
+  note: >-
+    The connector/integration surface (Microsoft Copilot, Salesforce) is named here, but the page does
+    not state whether the hosted MCP server at mcp.cbinsights.com is included in this offering or is a
+    separate line item.
+  source: https://www.cbinsights.com/pricing
+- name: Data Solutions
+  price: null
+  price_published: false
+  cta: Request pricing
+  delivery: consumption-based data feeds; also purchasable via Snowflake Marketplace
+  included_published:
+  - Business models, key people, headcount profiles
+  - Financial transactions and funding data
+  - Business relationships and scouting reports
+  - Proprietary data science metrics
+  - ChatCBI responses with citations
+  api_access_stated: false
+  note: >-
+    This is the offering whose described contents match the v2 REST API datasets one-for-one
+    (Firmographics, Financial Transactions, Business Relationships, Management and Board, Outlook,
+    Scouting Reports, ChatCBI), and it is the only one described as consumption-based — consistent
+    with the credit ledger the API meters against. The page never names "API" explicitly.
+  source: https://www.cbinsights.com/pricing
+trials:
+- name: API trial
+  price: 0
+  price_published: true
+  entitlements:
+    companies: 25
+    scouting_reports: 5
+    chatcbi_messages: 5
+  duration: not stated
+  credential: trial clientId/clientSecret issued after email validation on the developer-portal sign-up form
+  commitment: none stated ("no commitment required")
+  source: https://api-docs.cbinsights.com/portal/signup
+- name: Platform free trial
+  price: 0
+  price_published: true
+  duration: 10 days
+  applies_to: not stated — the pricing page promotes a "Start free trial" control without naming a tier
+  source: https://www.cbinsights.com/pricing
+metering:
+  model: credit ledger
+  detail: >-
+    API usage is metered in credits, not in requests. Each data call debits the account balance by an
+    amount that varies by endpoint and datapack, reported per response in the
+    x-cbinsights-credits-call-consumed header; a call with no credits left fails with 424. Credit
+    allotments are contractual and are not published, and no per-credit price appears anywhere on the
+    public surface — so the effective cost of any given API call cannot be determined before signing.
+  free_operation: POST /v2/organizations (organization lookup) is documented as never charging credits
+  ledger_endpoint: GET /v1/credits
+  see: rate-limits/cb-insights-rate-limits.yml
+third_party_price_reporting:
+  note: >-
+    Procurement aggregators and comparison sites publish estimated CB Insights contract values in the
+    $30k–$265k/year range. Those are third-party estimates, not a CB Insights publication, so no figure
+    is recorded as a price in this artifact.
+gaps:
+- No price, currency or billing period is published for any offering.
+- No published per-credit rate, so the cost of an API call is unknowable before contracting.
+- The pricing page never names the API or the MCP server as a purchasable line item, so a developer
+  cannot tell from it which offering grants programmatic access.
+- No usage calculator, no overage rate, and no published quota per tier.
+cross_links:
+  rate_limits: rate-limits/cb-insights-rate-limits.yml
+  authentication: authentication/cb-insights-authentication.yml
+  lifecycle: lifecycle/cb-insights-lifecycle.yml

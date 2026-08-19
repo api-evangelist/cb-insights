@@ -22,7 +22,7 @@ operations:
 generated: '2026-08-09'
 method: generated
 source: >-
-  Grounded in openapi/cb-insights-api-v2-openapi.json (v2Outlook.*, v2ScoutingReports.*,
+  Grounded in openapi/_original/cb-insights-api-v2-openapi.json (v2Outlook.*, v2ScoutingReports.*,
   v2StrategyMap.* definitions) and
   https://api-docs.cbinsights.com/portal/docs/CBI-data/Company-data-and-insights/outlook.
   The published contract declares no operationIds, so operations are referenced by method and path.

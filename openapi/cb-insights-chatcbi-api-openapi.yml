@@ -1,0 +1,305 @@
+openapi: 3.2.0
+info:
+  description: "# Introduction\n\nThe CB Insights API offers market data and insights you won't find anywhere else. Use our API to build trading platforms, media content, and market indexes, or integrate our proprietary scores into your workflows, algorithms, or LLMs. \n\n# CB Insights API v2 compared to v1\n\nThe new CB Insights API v2 offers new datasets and additional data points that were not available in v1. v2 follows the same REST architectural style and has a new structure for you to retrieve the information you need as conveniently as possible.\n\nThis first set of data includes:\n\n- **Firmographics**. Profiles on private companies, public companies, and investors. Includes general information like location, headcount, and industry, as well as proprietary data like business models, Competitor Scores, and Expert Collections.\n- **Financial Transactions**. Funding deals, cap table history, M&As, and IPOs, plus AI-generated insights that extract key themes.\n- **Business Relationships**. Partnerships, clients/vendors, and licensing activity, plus AI-generated insights to predict future M&As and shifts in strategy.\n- **Management and Board**. Leadership teams, board members, and the Management factor of the Mosaic Score — our proprietary algorithm which evaluates leadership teams based on past achievements.\n- **Outlook**. Proprietary data science analysis including Mosaic Score, Commercial Maturity, and Exit Probability. Proven to predict winners better than top VCs.\n- **Scouting Reports**. On-demand, AI-generated insights into business model, market position, strengths, and opportunities for private companies.\n"
+  title: CB Insights Chat CBI API
+  contact: {}
+  version: '2.0'
+  x-logo:
+    altText: CB Insights logo
+    backgroundColor: '#FFFFFF'
+    href: https://api-docs.cbinsights.com/v2/
+    url: https://api-docs.cbinsights.com/images/CBI_Logo_Color.svg
+servers:
+- url: https://api.cbinsights.com
+tags:
+- name: ChatCBI
+paths:
+  /v2/cbirag:
+    post:
+      security:
+      - BearerAuth: []
+      description: This endpoint uses generative AI and may make mistakes. Always verify pertinent information.
+      tags:
+      - ChatCBI
+      summary: Perform a RAG across CB Insights data and gets relevant structured data back in response to a query
+      parameters:
+      - description: Authorization
+        name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v2CBIRag.CBIRagResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '424':
+          description: Failed Dependency
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v2CBIRag.CBIRagRequest'
+        description: RAG request parameters
+        required: true
+  /v2/chatcbi:
+    post:
+      security:
+      - BearerAuth: []
+      description: See https://api-docs.cbinsights.com/portal/docs/CBI-API/ChatCBI for more information and usage details. This endpoint uses generative AI and may make mistakes. Always verify pertinent information.
+      tags:
+      - ChatCBI
+      summary: Converse with the beta version of our AI chatbot ChatCBI
+      parameters:
+      - description: Authorization
+        name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v2ChatCBI.ChatCBIResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '424':
+          description: Failed Dependency
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v2ChatCBI.ChatCBIRequest'
+        description: Chat parameters
+        required: true
+  /v2/chatcbichunked:
+    post:
+      security:
+      - BearerAuth: []
+      description: Response is a series of incremental chunks. See https://api-docs.cbinsights.com/portal/docs/CBI-API/ChatCBI for more information and usage details. This endpoint uses generative AI and may make mistakes. Always verify pertinent information.
+      tags:
+      - ChatCBI
+      summary: Converse with the beta version of our AI chatbot ChatCBI, which responds via incremental chunks
+      parameters:
+      - description: Authorization
+        name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v2ChatCBI.ChatCBIResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '424':
+          description: Failed Dependency
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorWithCode'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v2ChatCBI.ChatCBIRequest'
+        description: Chat parameters
+        required: true
+components:
+  schemas:
+    v2CBIRag.CBIRagResponse:
+      type: object
+      properties:
+        data:
+          description: Raw data that can be used to generate a user friendly response.
+          type: string
+          example: '{"companySearch": ["{<escaped_json_result>}"], "dealSearch": ["{<escaped_json_result>}"], "webResults": ["{<escaped_json_result>}"], "analystInsights": ["{<escaped_json_result>}"], "cbiResearch": ["{<escaped_json_result>}"], "markets": ["{<escaped_json_result>}"], "profilesV2": ["{<escaped_json_result>}"], "scoutingReports": ["{<escaped_json_result>}"], "earningsCallInsights": ["{<escaped_json_result>}"], "businessRelationships": ["{<escaped_json_result>}"], "buyerInterviews": ["{<escaped_json_result>}"], "cbiSupport": ["{<escaped_json_result>}"], "corporateSearch": ["{<escaped_json_result>}"], "hiring": ["{<escaped_json_result>}"], "jobPostings": ["{<escaped_json_result>}"], "revenue": ["{<escaped_json_result>}"], "fundingSummaries": ["{<escaped_json_result>}"], "investments": ["{<escaped_json_result>}"], "keyDevelopments": ["{<escaped_json_result>}"]}'
+        guidance:
+          description: CBIRag response to the message. Example is an excerpt.
+          type: array
+          items:
+            type: string
+          example:
+          - '"deal_search: Investment and acquisition deal search results including funding rounds'
+          - ' M&A transactions'
+          - ' and deal participants"'
+          - '"cb_insights_research: CB Insights research articles and reports covering industry trends'
+          - ' market analysis'
+          - ' and company deep-dives"'
+    v2ChatCBI.Result:
+      type: object
+      properties:
+        date:
+          type: string
+          example: 09/18/2024
+        thumbnailUrl:
+          type: string
+          example: https://s.yimg.com/cv/apiv2/cv/apiv2/social/images/yahoo-finance-default-logo.png
+        title:
+          type: string
+          example: Markets with Highest Percentage Equity Funding Growth
+        url:
+          type: string
+          example: https://app.cbinsights.com/markets?industry=Consumer+%26+Retail&tab=leaderboards
+    v2ChatCBI.Source:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/v2ChatCBI.Result'
+        sourceIndex:
+          type: integer
+          example: 1
+    v2ChatCBI.ChatCBIResponse:
+      type: object
+      properties:
+        chatID:
+          description: Identifies the conversation. If chatID was provided in the request, this will be the same.
+          type: string
+          example: d5aa5a74-9334-4d92-aacf-e69577305b79
+        message:
+          description: ChatCBI response to the message. Example is an excerpt.
+          type: string
+          example: '# Emerging Technology Markets with Highest Equity Funding Growth
+
+
+            Based on the latest data, several emerging technology markets are experiencing exceptional equity funding growth. Here''s a breakdown of the markets showing the most significant year-over-year percentage increases:'
+        relatedContent:
+          description: List of related references.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2ChatCBI.Result'
+        sources:
+          description: List of sources used to generate the response.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2ChatCBI.Source'
+        suggestions:
+          description: List of suggested follow-up questions.
+          type: array
+          items:
+            type: string
+          example:
+          - How has the funding landscape for autonomous trucking evolved over the past 2-3 years?
+          - Which specific companies are leading the digital twins market?
+        title:
+          description: Title of the chat
+          type: string
+          example: Emerging Tech Markets with Highest Funding Growth
+    common.ErrorWithCode:
+      type: object
+      properties:
+        error:
+          type: string
+    v2CBIRag.CBIRagRequest:
+      type: object
+      properties:
+        message:
+          description: The message to send. The total length of the message must be under 10,000 characters.
+          type: string
+          example: Which emerging technology markets are seeing the highest equity funding growth right now?
+    v2ChatCBI.ChatCBIRequest:
+      type: object
+      properties:
+        chatID:
+          description: A unique id for the conversation, for use with multi-turn conversations. A chatID is returned in the initial response.
+          type: string
+          example: d5aa5a74-9334-4d92-aacf-e69577305b79
+        message:
+          description: The message to send.
+          type: string
+          example: Which emerging technology markets are seeing the highest equity funding growth right now?
+  securitySchemes:
+    BearerAuth:
+      description: Type "Bearer" followed by a space and JWT token.
+      type: apiKey
+      name: Authorization
+      in: header
+externalDocs:
+  description: CBI API v1 reference
+  url: https://api-docs.cbinsights.com/

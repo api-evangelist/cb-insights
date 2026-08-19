@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CB Insights Management And Board API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ManagementAndBoard",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve details about management and board for a list of organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cbinsights.com/v2/managementandboard",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieved data includes information about leadership team, board members, and Management Mosaic score — CB Insights proprietary algorithm evaluating leadership teams based on past achievements."
+        },
+        {
+          "info": {
+            "name": "Retrieve details about management and board for an organization.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cbinsights.com/v2/organizations/:orgId/managementandboard",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "CB Insights organization ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieved data includes information about leadership team, board members, and Management Mosaic score — CB Insights proprietary algorithm evaluating leadership teams based on past achievements."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

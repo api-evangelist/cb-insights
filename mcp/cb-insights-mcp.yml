@@ -15,13 +15,11 @@ server:
     method: POST tools/list
     url: https://mcp.cbinsights.com/
     http_status: 401
-    www_authenticate: >-
-      Bearer error="invalid_token", resource_metadata="https://mcp.cbinsights.com/.well-known/oauth-protected-resource"
+    www_authenticate: Bearer error="invalid_token", resource_metadata="https://mcp.cbinsights.com/.well-known/oauth-protected-resource"
     date: '2026-08-09'
-    result: >-
-      A live MCP endpoint that answers the JSON-RPC envelope and challenges for OAuth. GET returns
-      405 Method Not Allowed; /mcp and /sse sub-paths return 404 — the server is mounted at the
-      host root. Fronted by Envoy with HSTS (max-age=31536000).
+    result: A live MCP endpoint that answers the JSON-RPC envelope and challenges for OAuth. GET returns
+      405 Method Not Allowed; /mcp and /sse sub-paths return 404 — the server is mounted at the host root.
+      Fronted by Envoy with HSTS (max-age=31536000).
   listings:
   - client: Claude
     path: Customize > Connectors > search "CB Insights"
@@ -36,10 +34,9 @@ server:
   - client: Microsoft 365 Copilot in Excel
     path: Copilot > Select Sources > CB Insights
   - client: Other (Claude Code, Codex, custom)
-    path: "available on request via account manager"
-  admin_gate: >-
-    CB Insights documents that in every listed client the Connect control may be greyed out pending
-    the customer's own IT/admin approval — connection is tenant-governed on the client side, not
+    path: available on request via account manager
+  admin_gate: CB Insights documents that in every listed client the Connect control may be greyed out
+    pending the customer's own IT/admin approval — connection is tenant-governed on the client side, not
     only on the CB Insights side.
 auth:
   methods:
@@ -63,29 +60,25 @@ auth:
       oauth_authorization_server: well-known/cb-insights-mcp-oauth-authorization-server.json
       oauth_protected_resource: well-known/cb-insights-mcp-oauth-protected-resource.json
       openid_configuration: well-known/cb-insights-mcp-openid-configuration.json
-  end_user_identity: >-
-    Users sign in with their own CB Insights credentials rather than an API key, so entitlement and
-    credit consumption bind to a seat.
+  end_user_identity: Users sign in with their own CB Insights credentials rather than an API key, so entitlement
+    and credit consumption bind to a seat.
 tools:
   live_introspection: gated
-  gated_note: >-
-    POST tools/list returns 401 invalid_token, so the real tool set with inputSchema cannot be read
-    anonymously. CB Insights publishes a "Programmatic Integration" tools-reference page, but it
-    renders the tool list client-side ("Loading tools reference…" is the entire server-rendered
-    body) and the underlying data file is not reachable at any static path — so the tool list is not
-    machine-readable from the public surface either.
-  verification_hint_published: >-
-    CB Insights' own quick-start tells users to verify a connection by asking the model "What CB
-    Insights tools do you have?" — i.e. the published discovery path for the tool list is to ask an
-    LLM, not to read a manifest.
+  gated_note: POST tools/list returns 401 invalid_token, so the real tool set with inputSchema cannot
+    be read anonymously. CB Insights publishes a "Programmatic Integration" tools-reference page, but
+    it renders the tool list client-side ("Loading tools reference…" is the entire server-rendered body)
+    and the underlying data file is not reachable at any static path — so the tool list is not machine-readable
+    from the public surface either.
+  verification_hint_published: CB Insights' own quick-start tells users to verify a connection by asking
+    the model "What CB Insights tools do you have?" — i.e. the published discovery path for the tool list
+    is to ask an LLM, not to read a manifest.
   known_tools:
   - name: ChatCBI
     status: confirmed
     confirmed_from: https://github.com/cbinsights/cbi-mcp-server (server.py, @mcp.tool name="ChatCBI")
     title: Chat with CBI
-    description: >-
-      Send a message to ChatCBI — CB Insights' market-intelligence research LLM — and return the
-      response. Continues a conversation when a prior chat id is supplied.
+    description: Send a message to ChatCBI — CB Insights' market-intelligence research LLM — and return
+      the response. Continues a conversation when a prior chat id is supplied.
     annotations:
       readOnlyHint: true
       openWorldHint: true
@@ -106,20 +99,18 @@ tools:
     - suggestions
     - title
     backs_onto: POST /v2/chatcbi
-    caveat: >-
-      This tool definition is confirmed for the DEPRECATED self-hosted reference server, not for the
-      hosted mcp.cbinsights.com surface. The hosted server is described as covering the wider data
+    caveat: This tool definition is confirmed for the DEPRECATED self-hosted reference server, not for
+      the hosted mcp.cbinsights.com surface. The hosted server is described as covering the wider data
       surface; its actual tool names are unverified.
-  unverified_note: >-
-    No other tool name has been confirmed from any public CB Insights artifact. The derived
-    candidate set in mcp/cb-insights-tool-crosswalk.yml is a mapping of the REST surface an agent
-    would need, NOT a claim about what the hosted server exposes.
+  unverified_note: No other tool name has been confirmed from any public CB Insights artifact. The derived
+    candidate set in mcp/cb-insights-tool-crosswalk.yml is a mapping of the REST surface an agent would
+    need, NOT a claim about what the hosted server exposes.
 reference_implementation:
   repo: https://github.com/cbinsights/cbi-mcp-server
   language: Python
   framework: mcp.server.fastmcp (FastMCP)
   status: deprecated
-  deprecated: '2026-01'
+  deprecated: 2026-01
   replacement: https://mcp.cbinsights.com
   api_base_used: https://api.cbinsights.com/v2
   env:
@@ -127,31 +118,36 @@ reference_implementation:
   - CBI_CLIENT_SECRET
   - CBI_MCP_TIMEOUT (default 120)
   - CBI_MCP_PORT (default 8000)
-  server_instructions: >-
-    "ChatCBI is a specialized market intelligence and company research copilot powered by CB Insights
-    data. Use this tool when you need detailed information about companies, business deals, financial
-    transactions, market trends, funding rounds, acquisitions, partnerships, or competitive
-    intelligence."
+  server_instructions: '"ChatCBI is a specialized market intelligence and company research copilot powered
+    by CB Insights data. Use this tool when you need detailed information about companies, business deals,
+    financial transactions, market trends, funding rounds, acquisitions, partnerships, or competitive
+    intelligence."'
 adjacent_agent_surfaces:
 - name: Snowflake Marketplace data share
-  detail: >-
-    Firmographics, Financial Transactions, Business Relationships, Management and Board and Outlook
-    published with Semantic Views (queryable via SQL or Cortex Analyst); Research Reports published
-    as a Cortex Knowledge Extension for Cortex Search and Cortex Agent.
+  detail: Firmographics, Financial Transactions, Business Relationships, Management and Board and Outlook
+    published with Semantic Views (queryable via SQL or Cortex Analyst); Research Reports published as
+    a Cortex Knowledge Extension for Cortex Search and Cortex Agent.
   source: https://api-docs.cbinsights.com/portal/docs/Integrations/snowflake
 - name: Microsoft 365 Copilot connector
   source: https://www.cbinsights.com/mcp-gallery
 - name: Salesforce CRM integration
   source: https://www.cbinsights.com/what-we-offer/salesforce-integration/
 gaps:
-- No machine-readable tool manifest is published anywhere — not at the endpoint (auth-gated), not in
-  the docs (client-rendered with no reachable data file), and not in an llms.txt.
-- No A2A agent card at /.well-known/agent-card.json or /.well-known/agent.json on any host, despite
-  the marketing site advertising "A2A & MCP support".
-- The OAuth server advertises only identity scopes (openid/email/profile), so an agent token cannot
-  be scoped to a subset of the data surface.
+- No machine-readable tool manifest is published anywhere — not at the endpoint (auth-gated), not in the
+  docs (client-rendered with no reachable data file), and not in an llms.txt.
+- No A2A agent card at /.well-known/agent-card.json or /.well-known/agent.json on any host, despite the
+  marketing site advertising "A2A & MCP support".
+- The OAuth server advertises only identity scopes (openid/email/profile), so an agent token cannot be
+  scoped to a subset of the data surface.
 cross_links:
   crosswalk: mcp/cb-insights-tool-crosswalk.yml
   authentication: authentication/cb-insights-authentication.yml
   well_known: well-known/cb-insights-well-known.yml
   conformance: conformance/cb-insights-conformance.yml
+deployment:
+  mode: remote
+  endpoint: https://mcp.cbinsights.com/
+  verified: probed
+  probe: gated
+  checked: '2026-08-12'
+  source: catalog MCP census

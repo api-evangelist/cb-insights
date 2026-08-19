@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CB Insights Authorization API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authorization",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Authorize a client",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cbinsights.com/v2/authorize",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authorize a client using client ID and client secret. Returns a bearer token to be used in subsequent requests. The client ID and client secret are provided by CB Insights. To receive your client ID and client secret, please contact your Customer Success Manager or email info@cbinsights.com."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

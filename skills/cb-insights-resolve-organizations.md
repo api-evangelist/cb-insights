@@ -12,7 +12,7 @@ operations:
 generated: '2026-08-09'
 method: generated
 source: >-
-  Grounded in openapi/cb-insights-api-v2-openapi.json and
+  Grounded in openapi/_original/cb-insights-api-v2-openapi.json and
   https://api-docs.cbinsights.com/portal/docs/CBI-API/search-structure. The published contract
   declares no operationIds, so operations are referenced by method and path.
 ---

@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CB Insights Scouting Reports API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ScoutingReports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generates a Scouting Report for an organization.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cbinsights.com/v2/organizations/:orgId/scoutingreport",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "CB Insights organization ID; only active companies are eligible"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Due to the substantial processing involved in generating a Scouting Report, this call may take several minutes. If you'd like to stream the report as it's generated, please use the `/v2/organizations/{orgId}/scoutingreportstream` endpoint. When present, Mosaic scores always represent version 2.1 of the model."
+        },
+        {
+          "info": {
+            "name": "Generates a Scouting Report for an organization and delivers it as a stream.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cbinsights.com/v2/organizations/:orgId/scoutingreportstream",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "CB Insights organization ID; only active companies are eligible"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delivered as a series of chunks, where each chunk is a JSON object, with data progressively added in each new chunk. If a server-side error occurs mid-stream, an object will be written containing the key `\"error\"` and you will not be charged a credit. When present, Mosaic scores always represent version 2.1 of the model."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

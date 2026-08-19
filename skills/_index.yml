@@ -1,7 +1,7 @@
 generated: '2026-08-09'
 method: generated
 source: >-
-  Authored by API Evangelist from openapi/cb-insights-api-v2-openapi.json and the CB Insights
+  Authored by API Evangelist from openapi/_original/cb-insights-api-v2-openapi.json and the CB Insights
   developer portal. CB Insights publishes no skills, AGENTS.md, or agent operating instructions of
   its own — probed for /llms.txt (404/403 across all hosts), /.well-known/agent-card.json (404) and
   a machine-readable MCP tool list (401, auth-gated).

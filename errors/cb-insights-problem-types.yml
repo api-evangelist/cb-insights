@@ -2,7 +2,7 @@ generated: '2026-08-09'
 method: searched
 format: bespoke-json
 source: https://api-docs.cbinsights.com/docs/reference/error_codes/
-derived_from: openapi/cb-insights-api-v2-openapi.json
+derived_from: openapi/_original/cb-insights-api-v2-openapi.json
 docs:
 - https://api-docs.cbinsights.com/docs/reference/error_codes/
 - https://api-docs.cbinsights.com/portal/docs/api/

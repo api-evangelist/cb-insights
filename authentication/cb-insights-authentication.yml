@@ -7,7 +7,7 @@ docs:
 - https://api-docs.cbinsights.com/docs/tutorials/authentication_flow/
 - https://api-docs.cbinsights.com/docs/endpoints/authentication_endpoint/
 derived_from:
-- openapi/cb-insights-api-v2-openapi.json
+- openapi/_original/cb-insights-api-v2-openapi.json
 - well-known/cb-insights-mcp-oauth-authorization-server.json
 - well-known/cb-insights-mcp-oauth-protected-resource.json
 summary: >-
@@ -35,7 +35,7 @@ schemes:
     required `Authorization` header parameter on each operation.
   applies_to: CB Insights API v2 (all 28 operations except POST /v2/authorize)
   sources:
-  - openapi/cb-insights-api-v2-openapi.json
+  - openapi/_original/cb-insights-api-v2-openapi.json
   - https://api-docs.cbinsights.com/portal/docs/CBI-API/cbi-authentication
 - name: v2 client credentials exchange
   type: custom-client-credentials

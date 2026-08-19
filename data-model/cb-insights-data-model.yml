@@ -1,7 +1,7 @@
 generated: '2026-08-09'
 method: derived
 source: >-
-  openapi/cb-insights-api-v2-openapi.json (115 definitions, $ref graph + id-reference fields),
+  openapi/_original/cb-insights-api-v2-openapi.json (115 definitions, $ref graph + id-reference fields),
   cross-checked against https://api-docs.cbinsights.com/portal/docs/CBI-API/cbi-api-overview
 summary: >-
   A single-hub model. CB Insights states it outright in its own overview — "the Organization entity
@@ -252,6 +252,6 @@ notes:
 - >-
   The contract declares no operationIds, so entity operations can only be referenced by METHOD+PATH.
 cross_links:
-  openapi: openapi/cb-insights-api-v2-openapi.json
+  openapi: openapi/_original/cb-insights-api-v2-openapi.json
   conventions: conventions/cb-insights-conventions.yml
   vocabulary: vocabulary/cb-insights-vocabulary.yml

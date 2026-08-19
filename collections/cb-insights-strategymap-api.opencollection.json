@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CB Insights Strategy Map API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "StrategyMap",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve the strategy map for an organization.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cbinsights.com/v2/organizations/:orgId/strategymap",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "CB Insights organization ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieved data includes companies related to the organization, grouped into industry categories, along with the business relationships, investments, and acquisitions that connect them, plus AI-generated insights."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

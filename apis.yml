@@ -24,6 +24,21 @@ created: '2026-08-09'
 modified: '2026-08-14'
 tags:
 - Company
+- Market Intelligence
+- private-company-data
+- Venture Capital
+- funding-data
+- investor-data
+- Company Data
+- People Data
+- BusinessRelationships
+- predictive-scoring
+- MCP
+- agent-native
+- Data Enrichment
+- Snowflake
+tags_raw:
+- Company
 - market-intelligence
 - private-company-data
 - venture-capital
@@ -48,6 +63,12 @@ apis:
   humanURL: https://api-docs.cbinsights.com/docs/endpoints/
   baseURL: https://api.cbinsights.com
   tags:
+  - Market Intelligence
+  - private-company-data
+  - funding-data
+  - investor-data
+  - Company Data
+  tags_raw:
   - market-intelligence
   - private-company-data
   - funding-data
@@ -81,6 +102,11 @@ apis:
   humanURL: https://api-docs.cbinsights.com/portal/docs/Integrations/cbi-mcp-server
   baseURL: https://mcp.cbinsights.com/
   tags:
+  - MCP
+  - agent-native
+  - Market Intelligence
+  - private-company-data
+  tags_raw:
   - mcp
   - agent-native
   - market-intelligence
@@ -200,6 +226,8 @@ apis:
   humanURL: https://api-docs.cbinsights.com/portal/docs/api/
   baseURL: https://api.cbinsights.com
   tags:
+  - Financial Transactions
+  tags_raw:
   - FinancialTransactions
   properties:
   - type: OpenAPI
@@ -295,6 +323,8 @@ apis:
   humanURL: https://api-docs.cbinsights.com/portal/docs/api/
   baseURL: https://api.cbinsights.com
   tags:
+  - Organization
+  tags_raw:
   - Organizations
   properties:
   - type: OpenAPI

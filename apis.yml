@@ -39,17 +39,17 @@ tags:
 - Company
 - Market Intelligence
 - private-company-data
-- venture-capital
-- funding-data
+- Venture Capital
+- Funding Data
 - investor-data
-- company-data
-- people-data
-- business-relationships
+- Company Data
+- People Data
+- BusinessRelationships
 - predictive-scoring
 - MCP
 - agent-native
 - Data Enrichment
-- snowflake
+- Snowflake
 tags_raw:
 - Company
 - market-intelligence
@@ -78,9 +78,9 @@ apis:
   tags:
   - Market Intelligence
   - private-company-data
-  - funding-data
+  - Funding Data
   - investor-data
-  - company-data
+  - Company Data
   tags_raw:
   - market-intelligence
   - private-company-data
@@ -239,7 +239,7 @@ apis:
   humanURL: https://api-docs.cbinsights.com/portal/docs/api/
   baseURL: https://api.cbinsights.com
   tags:
-  - FinancialTransactions
+  - Financial Transactions
   tags_raw:
   - FinancialTransactions
   properties:

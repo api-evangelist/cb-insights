@@ -246,40 +246,6 @@ apis:
     url: https://api-docs.cbinsights.com/portal/api-terms-of-use
   - type: SignUp
     url: https://api-docs.cbinsights.com/portal/signup
-- aid: cb-insights:cb-insights-financialtransactions-api
-  name: CB Insights Financial Transactions API
-  description: >-
-    This dataset contains information about funding deals, cap table history, M&As, IPOs, and CBI-generated
-    insights that extract key themes.
-  humanURL: https://api-docs.cbinsights.com/portal/docs/api/
-  baseURL: https://api.cbinsights.com
-  tags:
-  - Financial Transactions
-  tags_raw:
-  - FinancialTransactions
-  properties:
-  - type: OpenAPI
-    url: openapi/cb-insights-financialtransactions-api-openapi.yml
-  - type: Documentation
-    url: https://api-docs.cbinsights.com/portal/docs/intro
-  - type: APIReference
-    url: https://api-docs.cbinsights.com/portal/docs/api/
-  - type: GettingStarted
-    url: https://api-docs.cbinsights.com/portal/docs/quick-start
-  - type: Authentication
-    url: authentication/cb-insights-authentication.yml
-  - type: Conventions
-    url: conventions/cb-insights-conventions.yml
-  - type: ErrorCatalog
-    url: errors/cb-insights-problem-types.yml
-  - type: RateLimits
-    url: rate-limits/cb-insights-rate-limits.yml
-  - type: DataModel
-    url: data-model/cb-insights-data-model.yml
-  - type: TermsOfService
-    url: https://api-docs.cbinsights.com/portal/api-terms-of-use
-  - type: SignUp
-    url: https://api-docs.cbinsights.com/portal/signup
 - aid: cb-insights:cb-insights-firmographics-api
   name: CB Insights Firmographics API
   description: >-
@@ -483,6 +449,38 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/cb-insights-strategymap-api-openapi.yml
+  - type: Documentation
+    url: https://api-docs.cbinsights.com/portal/docs/intro
+  - type: APIReference
+    url: https://api-docs.cbinsights.com/portal/docs/api/
+  - type: GettingStarted
+    url: https://api-docs.cbinsights.com/portal/docs/quick-start
+  - type: Authentication
+    url: authentication/cb-insights-authentication.yml
+  - type: Conventions
+    url: conventions/cb-insights-conventions.yml
+  - type: ErrorCatalog
+    url: errors/cb-insights-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/cb-insights-rate-limits.yml
+  - type: DataModel
+    url: data-model/cb-insights-data-model.yml
+  - type: TermsOfService
+    url: https://api-docs.cbinsights.com/portal/api-terms-of-use
+  - type: SignUp
+    url: https://api-docs.cbinsights.com/portal/signup
+- aid: cb-insights:cb-insights-financial-transactions-api
+  name: CB Insights Financial Transactions API
+  description: >-
+    This dataset contains information about funding deals, cap table history, M&As, IPOs, and CBI-generated
+    insights that extract key themes.
+  humanURL: https://api-docs.cbinsights.com/docs/endpoints/
+  baseURL: https://api.cbinsights.com
+  tags:
+  - Financial Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/cb-insights-financial-transactions-api-openapi.yml
   - type: Documentation
     url: https://api-docs.cbinsights.com/portal/docs/intro
   - type: APIReference

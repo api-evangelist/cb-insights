@@ -1,6 +1,9 @@
 openapi: 3.2.0
 info:
-  description: "# Introduction\n\nThe CB Insights API offers market data and insights you won't find anywhere else. Use our API to build trading platforms, media content, and market indexes, or integrate our proprietary scores into your workflows, algorithms, or LLMs. \n\n# CB Insights API v2 compared to v1\n\nThe new CB Insights API v2 offers new datasets and additional data points that were not available in v1. v2 follows the same REST architectural style and has a new structure for you to retrieve the information you need as conveniently as possible.\n\nThis first set of data includes:\n\n- **Firmographics**. Profiles on private companies, public companies, and investors. Includes general information like location, headcount, and industry, as well as proprietary data like business models, Competitor Scores, and Expert Collections.\n- **Financial Transactions**. Funding deals, cap table history, M&As, and IPOs, plus AI-generated insights that extract key themes.\n- **Business Relationships**. Partnerships, clients/vendors, and licensing activity, plus AI-generated insights to predict future M&As and shifts in strategy.\n- **Management and Board**. Leadership teams, board members, and the Management factor of the Mosaic Score — our proprietary algorithm which evaluates leadership teams based on past achievements.\n- **Outlook**. Proprietary data science analysis including Mosaic Score, Commercial Maturity, and Exit Probability. Proven to predict winners better than top VCs.\n- **Scouting Reports**. On-demand, AI-generated insights into business model, market position, strengths, and opportunities for private companies.\n"
+  description: '# Introduction
+
+
+    The CB Insights API offers market data and insights you won''t find anywhere else.'
   title: CB Insights Chat CBI API
   contact: {}
   version: '2.0'
@@ -21,7 +24,7 @@ paths:
       description: This endpoint uses generative AI and may make mistakes. Always verify pertinent information.
       tags:
       - ChatCBI
-      summary: Perform a RAG across CB Insights data and gets relevant structured data back in response to a query
+      summary: Perform a RAG across CB Insights data and gets relevant structured data back in…
       parameters:
       - description: Authorization
         name: Authorization
@@ -73,6 +76,8 @@ paths:
               $ref: '#/components/schemas/v2CBIRag.CBIRagRequest'
         description: RAG request parameters
         required: true
+      operationId: postV2Cbirag
+      x-operation-id-source: derived
   /v2/chatcbi:
     post:
       security:
@@ -132,6 +137,8 @@ paths:
               $ref: '#/components/schemas/v2ChatCBI.ChatCBIRequest'
         description: Chat parameters
         required: true
+      operationId: postV2Chatcbi
+      x-operation-id-source: derived
   /v2/chatcbichunked:
     post:
       security:
@@ -139,7 +146,7 @@ paths:
       description: Response is a series of incremental chunks. See https://api-docs.cbinsights.com/portal/docs/CBI-API/ChatCBI for more information and usage details. This endpoint uses generative AI and may make mistakes. Always verify pertinent information.
       tags:
       - ChatCBI
-      summary: Converse with the beta version of our AI chatbot ChatCBI, which responds via incremental chunks
+      summary: Converse with the beta version of our AI chatbot ChatCBI, which responds via…
       parameters:
       - description: Authorization
         name: Authorization
@@ -191,27 +198,10 @@ paths:
               $ref: '#/components/schemas/v2ChatCBI.ChatCBIRequest'
         description: Chat parameters
         required: true
+      operationId: postV2Chatcbichunked
+      x-operation-id-source: derived
 components:
   schemas:
-    v2CBIRag.CBIRagResponse:
-      type: object
-      properties:
-        data:
-          description: Raw data that can be used to generate a user friendly response.
-          type: string
-          example: '{"companySearch": ["{<escaped_json_result>}"], "dealSearch": ["{<escaped_json_result>}"], "webResults": ["{<escaped_json_result>}"], "analystInsights": ["{<escaped_json_result>}"], "cbiResearch": ["{<escaped_json_result>}"], "markets": ["{<escaped_json_result>}"], "profilesV2": ["{<escaped_json_result>}"], "scoutingReports": ["{<escaped_json_result>}"], "earningsCallInsights": ["{<escaped_json_result>}"], "businessRelationships": ["{<escaped_json_result>}"], "buyerInterviews": ["{<escaped_json_result>}"], "cbiSupport": ["{<escaped_json_result>}"], "corporateSearch": ["{<escaped_json_result>}"], "hiring": ["{<escaped_json_result>}"], "jobPostings": ["{<escaped_json_result>}"], "revenue": ["{<escaped_json_result>}"], "fundingSummaries": ["{<escaped_json_result>}"], "investments": ["{<escaped_json_result>}"], "keyDevelopments": ["{<escaped_json_result>}"]}'
-        guidance:
-          description: CBIRag response to the message. Example is an excerpt.
-          type: array
-          items:
-            type: string
-          example:
-          - '"deal_search: Investment and acquisition deal search results including funding rounds'
-          - ' M&A transactions'
-          - ' and deal participants"'
-          - '"cb_insights_research: CB Insights research articles and reports covering industry trends'
-          - ' market analysis'
-          - ' and company deep-dives"'
     v2ChatCBI.Result:
       type: object
       properties:
@@ -227,6 +217,11 @@ components:
         url:
           type: string
           example: https://app.cbinsights.com/markets?industry=Consumer+%26+Retail&tab=leaderboards
+    common.ErrorWithCode:
+      type: object
+      properties:
+        error:
+          type: string
     v2ChatCBI.Source:
       type: object
       properties:
@@ -271,11 +266,25 @@ components:
           description: Title of the chat
           type: string
           example: Emerging Tech Markets with Highest Funding Growth
-    common.ErrorWithCode:
+    v2CBIRag.CBIRagResponse:
       type: object
       properties:
-        error:
+        data:
+          description: Raw data that can be used to generate a user friendly response.
           type: string
+          example: '{"companySearch": ["{<escaped_json_result>}"], "dealSearch": ["{<escaped_json_result>}"], "webResults": ["{<escaped_json_result>}"], "analystInsights": ["{<escaped_json_result>}"], "cbiResearch": ["{<escaped_json_result>}"], "markets": ["{<escaped_json_result>}"], "profilesV2": ["{<escaped_json_result>}"], "scoutingReports": ["{<escaped_json_result>}"], "earningsCallInsights": ["{<escaped_json_result>}"], "businessRelationships": ["{<escaped_json_result>}"], "buyerInterviews": ["{<escaped_json_result>}"], "cbiSupport": ["{<escaped_json_result>}"], "corporateSearch": ["{<escaped_json_result>}"], "hiring": ["{<escaped_json_result>}"], "jobPostings": ["{<escaped_json_result>}"], "revenue": ["{<escaped_json_result>}"], "fundingSummaries": ["{<escaped_json_result>}"], "investments": ["{<escaped_json_result>}"], "keyDevelopments": ["{<escaped_json_result>}"]}'
+        guidance:
+          description: CBIRag response to the message. Example is an excerpt.
+          type: array
+          items:
+            type: string
+          example:
+          - '"deal_search: Investment and acquisition deal search results including funding rounds'
+          - ' M&A transactions'
+          - ' and deal participants"'
+          - '"cb_insights_research: CB Insights research articles and reports covering industry trends'
+          - ' market analysis'
+          - ' and company deep-dives"'
     v2CBIRag.CBIRagRequest:
       type: object
       properties:

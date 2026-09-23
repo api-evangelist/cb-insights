@@ -1,6 +1,9 @@
 openapi: 3.2.0
 info:
-  description: "# Introduction\n\nThe CB Insights API offers market data and insights you won't find anywhere else. Use our API to build trading platforms, media content, and market indexes, or integrate our proprietary scores into your workflows, algorithms, or LLMs. \n\n# CB Insights API v2 compared to v1\n\nThe new CB Insights API v2 offers new datasets and additional data points that were not available in v1. v2 follows the same REST architectural style and has a new structure for you to retrieve the information you need as conveniently as possible.\n\nThis first set of data includes:\n\n- **Firmographics**. Profiles on private companies, public companies, and investors. Includes general information like location, headcount, and industry, as well as proprietary data like business models, Competitor Scores, and Expert Collections.\n- **Financial Transactions**. Funding deals, cap table history, M&As, and IPOs, plus AI-generated insights that extract key themes.\n- **Business Relationships**. Partnerships, clients/vendors, and licensing activity, plus AI-generated insights to predict future M&As and shifts in strategy.\n- **Management and Board**. Leadership teams, board members, and the Management factor of the Mosaic Score — our proprietary algorithm which evaluates leadership teams based on past achievements.\n- **Outlook**. Proprietary data science analysis including Mosaic Score, Commercial Maturity, and Exit Probability. Proven to predict winners better than top VCs.\n- **Scouting Reports**. On-demand, AI-generated insights into business model, market position, strengths, and opportunities for private companies.\n"
+  description: '# Introduction
+
+
+    The CB Insights API offers market data and insights you won''t find anywhere else.'
   title: CB Insights Firmographics API
   contact: {}
   version: '2.0'
@@ -22,7 +25,7 @@ paths:
       description: Retrieve a list of profiles on private companies, public companies, and investors based on the parameters defined in the request body.
       tags:
       - Firmographics
-      summary: List profiles of companies.
+      summary: List profiles of companies
       parameters:
       - description: Authorization
         name: Authorization
@@ -74,143 +77,10 @@ paths:
               $ref: '#/components/schemas/v2Firmographics.FirmographicsRequestBody'
         description: Search parameters to request a list of organization profiles. You must pass at least one search parameter. Each field creates an AND condition while each value within a field creates an OR. For example, a request containing orgIds 144613 and 234543, and sectorIds 12 and 27, will return profiles of the organizations with orgIds matching 144613 OR 234543 and sector IDs matching 12 OR 27.
         required: true
+      operationId: postV2Firmographics
+      x-operation-id-source: derived
 components:
   schemas:
-    v2Firmographics.AwardsAndSpotlightsLandscape:
-      type: object
-      properties:
-        awardsAndSpotlightsId:
-          description: The CBI ID of the awards and spotlights landscape; see https://api-docs.cbinsights.com/portal/docs/References/Taxonomy/awards-and-spotlights
-          type: integer
-          example: 5
-        awardsAndSpotlightsName:
-          description: The name of the awards and spotlights landscape.
-          type: string
-          example: NRF Big Show Exhibitors (2025)
-    v2Firmographics.BusinessModelLandscape:
-      type: object
-      properties:
-        businessModel:
-          description: The name of the business model landscape.
-          type: string
-          example: SaaS
-        businessModelId:
-          description: The CBI ID of the business model landscape; see https://api-docs.cbinsights.com/portal/docs/References/Taxonomy/business-models
-          type: integer
-          example: 7
-    v2Firmographics.BasicOrg:
-      type: object
-      properties:
-        name:
-          description: The name of the organization.
-          type: string
-          example: Blockdata
-        orgId:
-          description: CB Insights organization ID.
-          type: integer
-          example: 417006
-    v2Firmographics.Identifiers:
-      type: object
-      properties:
-        ciks:
-          description: SEC Central Index Keys.
-          type: array
-          items:
-            type: string
-          example:
-          - '320193'
-        cusips:
-          description: Committee on Uniform Security Identification Procedures (North American security identifiers).
-          type: array
-          items:
-            type: string
-          example:
-          - 037833100
-        figis:
-          description: Financial Instrument Global Identifiers (also known as OpenFIGI).
-          type: array
-          items:
-            type: string
-          example:
-          - BBG000B9XRY4
-        isins:
-          description: International Securities Identification Numbers.
-          type: array
-          items:
-            type: string
-          example:
-          - US0378331005
-        leis:
-          description: Legal Entity Identifiers.
-          type: array
-          items:
-            type: string
-          example:
-          - HWUPKR0MPOU8FGXBT394
-        tickers:
-          description: Stock tickers associated with this organization, not including the exchange associated with each ticker.
-          type: array
-          items:
-            type: string
-          example:
-          - APC
-        tickersWithExchanges:
-          description: Stock tickers associated with this organization, including the exchange of each ticker, separated by a colon.
-          type: array
-          items:
-            type: string
-          example:
-          - APC:BE
-          - APC:DU
-    v2Firmographics.Taxonomy:
-      type: object
-      properties:
-        industry:
-          description: The industry of this organization in the CB Insights industry taxonomy (mid-level)
-          type: string
-          example: Personal Computers & Notebooks
-        industryId:
-          description: The CBI ID of this industry; see https://api-docs.cbinsights.com/portal/docs/References/Taxonomy/industries
-          type: integer
-          example: 144
-        landscape:
-          description: Landscape
-          allOf:
-          - $ref: '#/components/schemas/v2Firmographics.Landscape'
-        marketIds:
-          description: IDs for CB Insights markets the organization is a part of; see https://api-docs.cbinsights.com/portal/docs/References/Taxonomy/markets
-          type: array
-          items:
-            type: integer
-          example:
-          - 6
-          - 95
-          - 106
-        marketNames:
-          description: CB Insights markets the organization is a part of.
-          type: array
-          items:
-            type: string
-          example:
-          - Web3 wallets
-          - Large language model (LLM) developers
-          - Retail AI agents
-        sector:
-          description: The sector of this organization in the CB Insights industry taxonomy (highest level).
-          type: string
-          example: Computer Hardware & Services
-        sectorId:
-          description: The CBI ID of this sector; see https://api-docs.cbinsights.com/portal/docs/References/Taxonomy/industries
-          type: integer
-          example: 4
-        subindustry:
-          description: The sub-industry of this organization in the CB Insights industry taxonomy (lowest level).
-          type: string
-          example: E-Commerce Enablement
-        subindustryId:
-          description: The CBI ID of this sub-industry; see https://api-docs.cbinsights.com/portal/docs/References/Taxonomy/industries
-          type: integer
-          example: 87
     v2Firmographics.Summary:
       type: object
       properties:
@@ -333,36 +203,21 @@ components:
           description: The street address of the organization.
           type: string
           example: 498 Seventh Avenue 12th Floor
-    v2Firmographics.ExpertCollection:
+    v2Firmographics.Competitor:
       type: object
       properties:
-        collectionId:
-          description: The ID of the Expert Collection.
-          type: integer
-          example: 3285
-        collectionName:
-          description: Name of the Expert Collection.
+        name:
+          description: The name of the organization.
           type: string
-          example: Market Research & Consumer Insights
-    v2Firmographics.Headcount:
-      type: object
-      properties:
-        currentHeadcount:
-          description: The current headcount of this organization.
+          example: Xeler8
+        orgId:
+          description: CB Insights organization ID.
           type: integer
-          example: 300
-        oneYearGrowth:
-          description: The change in this organization's headcount over the past 12 months, expressed as a decimal offset from zero (i.e. a 12.3% increase returns 0.123, and a 45.6% decrease returns -0.456).
+          example: 31509
+        score:
+          description: The Competitor Score of this competitor.
           type: number
-          example: -15.254237174987793
-        sixMonthGrowth:
-          description: The change in this organization's headcount over the past 6 months, expressed as a decimal offset from zero (i.e. a 12.3% increase returns 0.123, and a 45.6% decrease returns -0.456).
-          type: number
-          example: -7.1207427978515625
-        twoYearGrowth:
-          description: The change in this organization's headcount over the past 24 months, expressed as a decimal offset from zero (i.e. a 12.3% increase returns 0.123, and a 45.6% decrease returns -0.456).
-          type: number
-          example: -35.622318267822266
+          example: 81.86949920654297
     v2Firmographics.FirmographicsRequestBody:
       description: Search parameters to request a list of organization profiles. You must pass at least one search parameter.
       type: object
@@ -581,100 +436,55 @@ components:
         vcBacked:
           description: Boolean flag to match organizations that have received venture funding.
           type: boolean
-    v2Firmographics.Region:
+    v2Firmographics.Taxonomy:
       type: object
       properties:
-        region:
-          description: The name of the region for this geographical location.
+        industry:
+          description: The industry of this organization in the CB Insights industry taxonomy (mid-level)
           type: string
-          example: New York Metro
-        regionId:
-          description: The CBI ID of the region; see https://api-docs.cbinsights.com/docs/reference/address/
+          example: Personal Computers & Notebooks
+        industryId:
+          description: The CBI ID of this industry; see https://api-docs.cbinsights.com/portal/docs/References/Taxonomy/industries
           type: integer
-          example: 5
-    v2Firmographics.FirmographicsResponse:
-      type: object
-      properties:
-        nextPageToken:
-          description: Token to fetch the next page of results. If the value is null, then there are no more results to page through.
-          type: string
-          example: eyJwYWdpbmF0aW9uX3NjaGVtZSI6MiwibmV4dF9wYWdlX3Rva2VuIjoxMjk0MTB9Cg==
-        orgs:
-          description: A list of organization profiles that include general information like location, headcount, and industry, as well as proprietary data like business models, Competitor Scores, and Expert Collections.
+          example: 144
+        landscape:
+          description: Landscape
+          allOf:
+          - $ref: '#/components/schemas/v2Firmographics.Landscape'
+        marketIds:
+          description: IDs for CB Insights markets the organization is a part of; see https://api-docs.cbinsights.com/portal/docs/References/Taxonomy/markets
           type: array
           items:
-            $ref: '#/components/schemas/v2Firmographics.Org'
-        totalHits:
-          description: Total number of organizations matching the request parameters.
+            type: integer
+          example:
+          - 6
+          - 95
+          - 106
+        marketNames:
+          description: CB Insights markets the organization is a part of.
+          type: array
+          items:
+            type: string
+          example:
+          - Web3 wallets
+          - Large language model (LLM) developers
+          - Retail AI agents
+        sector:
+          description: The sector of this organization in the CB Insights industry taxonomy (highest level).
+          type: string
+          example: Computer Hardware & Services
+        sectorId:
+          description: The CBI ID of this sector; see https://api-docs.cbinsights.com/portal/docs/References/Taxonomy/industries
           type: integer
-          example: 10
-        totalHitsRelation:
-          description: Indicates whether totalHits is equal to ('eq'), or greater than or equal to ('gte') the number of organizations which can be fetched. Will be set to 'gte' if totalHits exceeds 10,000.
+          example: 4
+        subindustry:
+          description: The sub-industry of this organization in the CB Insights industry taxonomy (lowest level).
           type: string
-          example: gte
-    v2Firmographics.Financials:
-      type: object
-      properties:
-        lastFundingDate:
-          description: The date of the most recent funding round, in the format YYYY-MM-DD.
-          type: string
-          example: '2024-06-30'
-        latestRevenueMultipleMax:
-          description: The latest maximum known revenue multiple.
-          type: number
-          example: 0.20000000298023224
-        latestRevenueMultipleMin:
-          description: The latest minimum known revenue multiple.
-          type: number
-          example: 0.20000000298023224
-        marketCap:
-          description: For public companies, the market capitalization of the organization in millions of US dollars.
-          type: number
-          example: 3479762.37056
-        revenueDate:
-          description: The date of the most recent revenue data, in the format YYYY-MM-DD.
-          type: string
-          example: '2024-06-30'
-        revenueMax:
-          description: The latest maximum known revenue in US dollars.
-          type: number
-          example: 85776998400
-        revenueMin:
-          description: The latest minimum known revenue in US dollars. For most organizations, revenueMin is equal to revenueMax.
-          type: number
-          example: 85776998400
-        stockLastClose:
-          description: For public companies, the price, in US dollars, at which it traded at the end of the previous regular trading session.
-          type: number
-          example: 228.2
-        totalEquityFunding:
-          description: Total equity funding, in millions of US dollars. This only includes rounds where equity is exchanged.
-          type: number
-          example: 79.30000000447035
-        totalFunding:
-          description: Total funding of any type raised by this organization, in millions of US dollars. This includes Grant, Accelerator, Debt, and other non-equity rounds.
-          type: number
-          example: 0.7200000286102295
-        valuation:
-          description: Latest valuation on record in millions of US dollars.
-          type: number
-          example: 1778
-    common.ErrorWithCode:
-      type: object
-      properties:
-        error:
-          type: string
-    v2Firmographics.TechnologyLandscape:
-      type: object
-      properties:
-        technologyId:
-          description: The CBI ID of the technology landscape; see https://api-docs.cbinsights.com/portal/docs/References/Taxonomy/technologies
+          example: E-Commerce Enablement
+        subindustryId:
+          description: The CBI ID of this sub-industry; see https://api-docs.cbinsights.com/portal/docs/References/Taxonomy/industries
           type: integer
-          example: 1
-        technologyName:
-          description: The name of the technology landscape.
-          type: string
-          example: Defense Tech
+          example: 87
     v2Firmographics.Org:
       type: object
       properties:
@@ -727,32 +537,53 @@ components:
           description: CB Insights custom taxonomy where sector is the top of the hierarchy, followed by industry, and then sub-industry. Not all organizations contain all taxonomy levels. Includes Landscape as applicable.
           allOf:
           - $ref: '#/components/schemas/v2Firmographics.Taxonomy'
-    v2Firmographics.Competitor:
+    v2Firmographics.Financials:
       type: object
       properties:
-        name:
-          description: The name of the organization.
+        lastFundingDate:
+          description: The date of the most recent funding round, in the format YYYY-MM-DD.
           type: string
-          example: Xeler8
-        orgId:
-          description: CB Insights organization ID.
-          type: integer
-          example: 31509
-        score:
-          description: The Competitor Score of this competitor.
+          example: '2024-06-30'
+        latestRevenueMultipleMax:
+          description: The latest maximum known revenue multiple.
           type: number
-          example: 81.86949920654297
-    v2Firmographics.BusinessModel:
-      type: object
-      properties:
-        businessModel:
-          description: The name of the business model.
+          example: 0.20000000298023224
+        latestRevenueMultipleMin:
+          description: The latest minimum known revenue multiple.
+          type: number
+          example: 0.20000000298023224
+        marketCap:
+          description: For public companies, the market capitalization of the organization in millions of US dollars.
+          type: number
+          example: 3479762.37056
+        revenueDate:
+          description: The date of the most recent revenue data, in the format YYYY-MM-DD.
           type: string
-          example: SaaS
-        businessModelId:
-          description: The CBI ID of the business model; see https://api-docs.cbinsights.com/portal/docs/References/Taxonomy/business-models
-          type: integer
-          example: 7
+          example: '2024-06-30'
+        revenueMax:
+          description: The latest maximum known revenue in US dollars.
+          type: number
+          example: 85776998400
+        revenueMin:
+          description: The latest minimum known revenue in US dollars. For most organizations, revenueMin is equal to revenueMax.
+          type: number
+          example: 85776998400
+        stockLastClose:
+          description: For public companies, the price, in US dollars, at which it traded at the end of the previous regular trading session.
+          type: number
+          example: 228.2
+        totalEquityFunding:
+          description: Total equity funding, in millions of US dollars. This only includes rounds where equity is exchanged.
+          type: number
+          example: 79.30000000447035
+        totalFunding:
+          description: Total funding of any type raised by this organization, in millions of US dollars. This includes Grant, Accelerator, Debt, and other non-equity rounds.
+          type: number
+          example: 0.7200000286102295
+        valuation:
+          description: Latest valuation on record in millions of US dollars.
+          type: number
+          example: 1778
     v2Firmographics.Landscape:
       type: object
       properties:
@@ -771,6 +602,180 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/v2Firmographics.TechnologyLandscape'
+    v2Firmographics.BasicOrg:
+      type: object
+      properties:
+        name:
+          description: The name of the organization.
+          type: string
+          example: Blockdata
+        orgId:
+          description: CB Insights organization ID.
+          type: integer
+          example: 417006
+    v2Firmographics.Headcount:
+      type: object
+      properties:
+        currentHeadcount:
+          description: The current headcount of this organization.
+          type: integer
+          example: 300
+        oneYearGrowth:
+          description: The change in this organization's headcount over the past 12 months, expressed as a decimal offset from zero (i.e. a 12.3% increase returns 0.123, and a 45.6% decrease returns -0.456).
+          type: number
+          example: -15.254237174987793
+        sixMonthGrowth:
+          description: The change in this organization's headcount over the past 6 months, expressed as a decimal offset from zero (i.e. a 12.3% increase returns 0.123, and a 45.6% decrease returns -0.456).
+          type: number
+          example: -7.1207427978515625
+        twoYearGrowth:
+          description: The change in this organization's headcount over the past 24 months, expressed as a decimal offset from zero (i.e. a 12.3% increase returns 0.123, and a 45.6% decrease returns -0.456).
+          type: number
+          example: -35.622318267822266
+    v2Firmographics.BusinessModelLandscape:
+      type: object
+      properties:
+        businessModel:
+          description: The name of the business model landscape.
+          type: string
+          example: SaaS
+        businessModelId:
+          description: The CBI ID of the business model landscape; see https://api-docs.cbinsights.com/portal/docs/References/Taxonomy/business-models
+          type: integer
+          example: 7
+    v2Firmographics.TechnologyLandscape:
+      type: object
+      properties:
+        technologyId:
+          description: The CBI ID of the technology landscape; see https://api-docs.cbinsights.com/portal/docs/References/Taxonomy/technologies
+          type: integer
+          example: 1
+        technologyName:
+          description: The name of the technology landscape.
+          type: string
+          example: Defense Tech
+    v2Firmographics.FirmographicsResponse:
+      type: object
+      properties:
+        nextPageToken:
+          description: Token to fetch the next page of results. If the value is null, then there are no more results to page through.
+          type: string
+          example: eyJwYWdpbmF0aW9uX3NjaGVtZSI6MiwibmV4dF9wYWdlX3Rva2VuIjoxMjk0MTB9Cg==
+        orgs:
+          description: A list of organization profiles that include general information like location, headcount, and industry, as well as proprietary data like business models, Competitor Scores, and Expert Collections.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2Firmographics.Org'
+        totalHits:
+          description: Total number of organizations matching the request parameters.
+          type: integer
+          example: 10
+        totalHitsRelation:
+          description: Indicates whether totalHits is equal to ('eq'), or greater than or equal to ('gte') the number of organizations which can be fetched. Will be set to 'gte' if totalHits exceeds 10,000.
+          type: string
+          example: gte
+    common.ErrorWithCode:
+      type: object
+      properties:
+        error:
+          type: string
+    v2Firmographics.Identifiers:
+      type: object
+      properties:
+        ciks:
+          description: SEC Central Index Keys.
+          type: array
+          items:
+            type: string
+          example:
+          - '320193'
+        cusips:
+          description: Committee on Uniform Security Identification Procedures (North American security identifiers).
+          type: array
+          items:
+            type: string
+          example:
+          - 037833100
+        figis:
+          description: Financial Instrument Global Identifiers (also known as OpenFIGI).
+          type: array
+          items:
+            type: string
+          example:
+          - BBG000B9XRY4
+        isins:
+          description: International Securities Identification Numbers.
+          type: array
+          items:
+            type: string
+          example:
+          - US0378331005
+        leis:
+          description: Legal Entity Identifiers.
+          type: array
+          items:
+            type: string
+          example:
+          - HWUPKR0MPOU8FGXBT394
+        tickers:
+          description: Stock tickers associated with this organization, not including the exchange associated with each ticker.
+          type: array
+          items:
+            type: string
+          example:
+          - APC
+        tickersWithExchanges:
+          description: Stock tickers associated with this organization, including the exchange of each ticker, separated by a colon.
+          type: array
+          items:
+            type: string
+          example:
+          - APC:BE
+          - APC:DU
+    v2Firmographics.ExpertCollection:
+      type: object
+      properties:
+        collectionId:
+          description: The ID of the Expert Collection.
+          type: integer
+          example: 3285
+        collectionName:
+          description: Name of the Expert Collection.
+          type: string
+          example: Market Research & Consumer Insights
+    v2Firmographics.Region:
+      type: object
+      properties:
+        region:
+          description: The name of the region for this geographical location.
+          type: string
+          example: New York Metro
+        regionId:
+          description: The CBI ID of the region; see https://api-docs.cbinsights.com/docs/reference/address/
+          type: integer
+          example: 5
+    v2Firmographics.AwardsAndSpotlightsLandscape:
+      type: object
+      properties:
+        awardsAndSpotlightsId:
+          description: The CBI ID of the awards and spotlights landscape; see https://api-docs.cbinsights.com/portal/docs/References/Taxonomy/awards-and-spotlights
+          type: integer
+          example: 5
+        awardsAndSpotlightsName:
+          description: The name of the awards and spotlights landscape.
+          type: string
+          example: NRF Big Show Exhibitors (2025)
+    v2Firmographics.BusinessModel:
+      type: object
+      properties:
+        businessModel:
+          description: The name of the business model.
+          type: string
+          example: SaaS
+        businessModelId:
+          description: The CBI ID of the business model; see https://api-docs.cbinsights.com/portal/docs/References/Taxonomy/business-models
+          type: integer
+          example: 7
   securitySchemes:
     BearerAuth:
       description: Type "Bearer" followed by a space and JWT token.

@@ -1,17 +1,7 @@
 {
   "provider": "cb-insights",
   "sources": [
-    "cb-insights-authorization-api-openapi.yml",
-    "cb-insights-businessrelationships-api-openapi.yml",
-    "cb-insights-chatcbi-api-openapi.yml",
-    "cb-insights-financialtransactions-api-openapi.yml",
-    "cb-insights-firmographics-api-openapi.yml",
-    "cb-insights-managementandboard-api-openapi.yml",
-    "cb-insights-organizations-api-openapi.yml",
-    "cb-insights-outlook-api-openapi.yml",
-    "cb-insights-revenue-api-openapi.yml",
-    "cb-insights-scoutingreports-api-openapi.yml",
-    "cb-insights-strategymap-api-openapi.yml"
+    "_original/cb-insights-api-v2-openapi.json"
   ],
   "outputs": [
     "cb-insights-authorization-api-openapi.yml",
@@ -26,22 +16,31 @@
     "cb-insights-scoutingreports-api-openapi.yml",
     "cb-insights-strategymap-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
   "notes": [
-    "cb-insights-authorization-api-openapi.yml: upgraded swagger 2.0 -> OpenAPI 3.2.0",
-    "cb-insights-businessrelationships-api-openapi.yml: upgraded swagger 2.0 -> OpenAPI 3.2.0",
-    "cb-insights-chatcbi-api-openapi.yml: upgraded swagger 2.0 -> OpenAPI 3.2.0",
-    "cb-insights-financialtransactions-api-openapi.yml: upgraded swagger 2.0 -> OpenAPI 3.2.0",
-    "cb-insights-firmographics-api-openapi.yml: upgraded swagger 2.0 -> OpenAPI 3.2.0",
-    "cb-insights-managementandboard-api-openapi.yml: upgraded swagger 2.0 -> OpenAPI 3.2.0",
-    "cb-insights-organizations-api-openapi.yml: upgraded swagger 2.0 -> OpenAPI 3.2.0",
-    "cb-insights-outlook-api-openapi.yml: upgraded swagger 2.0 -> OpenAPI 3.2.0",
-    "cb-insights-revenue-api-openapi.yml: upgraded swagger 2.0 -> OpenAPI 3.2.0",
-    "cb-insights-scoutingreports-api-openapi.yml: upgraded swagger 2.0 -> OpenAPI 3.2.0",
-    "cb-insights-strategymap-api-openapi.yml: upgraded swagger 2.0 -> OpenAPI 3.2.0",
-    "apis.yml register: already-registered"
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "cb-insights-api-v2-openapi.json: upgraded swagger 2.0 -> OpenAPI 3.2.0",
+    "cb-insights-api-v2-openapi.json: declared missing tag: ChatCBI",
+    "cb-insights-api-v2-openapi.json: declared missing tag: Revenue",
+    "cb-insights-api-v2-openapi.json: declared missing tag: StrategyMap",
+    "superseded outputs removed: cb-insights-financial-transactions-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 13 total)"
   ],
-  "skipped": []
+  "skipped": [
+    "cb-insights-authorization-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cb-insights-businessrelationships-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cb-insights-chatcbi-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cb-insights-financial-transactions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cb-insights-firmographics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cb-insights-managementandboard-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cb-insights-organizations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cb-insights-outlook-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cb-insights-revenue-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cb-insights-scoutingreports-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cb-insights-strategymap-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,6 +1,9 @@
 openapi: 3.2.0
 info:
-  description: "# Introduction\n\nThe CB Insights API offers market data and insights you won't find anywhere else. Use our API to build trading platforms, media content, and market indexes, or integrate our proprietary scores into your workflows, algorithms, or LLMs. \n\n# CB Insights API v2 compared to v1\n\nThe new CB Insights API v2 offers new datasets and additional data points that were not available in v1. v2 follows the same REST architectural style and has a new structure for you to retrieve the information you need as conveniently as possible.\n\nThis first set of data includes:\n\n- **Firmographics**. Profiles on private companies, public companies, and investors. Includes general information like location, headcount, and industry, as well as proprietary data like business models, Competitor Scores, and Expert Collections.\n- **Financial Transactions**. Funding deals, cap table history, M&As, and IPOs, plus AI-generated insights that extract key themes.\n- **Business Relationships**. Partnerships, clients/vendors, and licensing activity, plus AI-generated insights to predict future M&As and shifts in strategy.\n- **Management and Board**. Leadership teams, board members, and the Management factor of the Mosaic Score — our proprietary algorithm which evaluates leadership teams based on past achievements.\n- **Outlook**. Proprietary data science analysis including Mosaic Score, Commercial Maturity, and Exit Probability. Proven to predict winners better than top VCs.\n- **Scouting Reports**. On-demand, AI-generated insights into business model, market position, strengths, and opportunities for private companies.\n"
+  description: '# Introduction
+
+
+    The CB Insights API offers market data and insights you won''t find anywhere else.'
   title: CB Insights Financial Transactions API
   contact: {}
   version: '2.0'
@@ -13,7 +16,7 @@ servers:
 - url: https://api.cbinsights.com
 tags:
 - description: This dataset contains information about funding deals, cap table history, M&As, IPOs, and CBI-generated insights that extract key themes.
-  name: FinancialTransactions
+  name: Financial Transactions
 paths:
   /v2/financialtransactions/fundings:
     post:
@@ -21,7 +24,7 @@ paths:
       - BearerAuth: []
       description: Returns a list of funding information for organizations based on the Org IDs provided, plus AI-generated insights that extract key themes.
       tags:
-      - FinancialTransactions
+      - Financial Transactions
       summary: List of funding information for one or more organizations
       parameters:
       - description: Authorization
@@ -74,13 +77,15 @@ paths:
               $ref: '#/components/schemas/v2FinancialTransactions.FundingsListRequestBody'
         description: Search parameters
         required: true
+      operationId: postV2FinancialtransactionsFundings
+      x-operation-id-source: derived
   /v2/financialtransactions/investments:
     post:
       security:
       - BearerAuth: []
       description: Returns a list of investment rounds in which the requested Org IDs participated in, plus AI-generated insights that extract key themes.
       tags:
-      - FinancialTransactions
+      - Financial Transactions
       summary: List of investments rounds for one or more organizations
       parameters:
       - description: Authorization
@@ -133,13 +138,15 @@ paths:
               $ref: '#/components/schemas/v2FinancialTransactions.InvestmentsMultipleOrganizationsRequest'
         description: Search parameters
         required: true
+      operationId: postV2FinancialtransactionsInvestments
+      x-operation-id-source: derived
   /v2/financialtransactions/portfolioexits:
     post:
       security:
       - BearerAuth: []
       description: Returns a list of exit rounds for companies in which the requested Org IDs invested prior to the exit, plus AI-generated insights that extract key themes.
       tags:
-      - FinancialTransactions
+      - Financial Transactions
       summary: List of portfolio exits for one or more organizations
       parameters:
       - description: Authorization
@@ -192,14 +199,16 @@ paths:
               $ref: '#/components/schemas/v2FinancialTransactions.MultipleOrganizationsPortfolioExitsRequestBody'
         description: Search parameters
         required: true
+      operationId: postV2FinancialtransactionsPortfolioexits
+      x-operation-id-source: derived
   /v2/organizations/{orgId}/financialtransactions/fundings:
     post:
       security:
       - BearerAuth: []
       description: Retrieved data includes details about funding received by an organization, plus AI-generated insights that extract key themes.
       tags:
-      - FinancialTransactions
-      summary: List funding transactions for a single organization.
+      - Financial Transactions
+      summary: List funding transactions for a single organization
       parameters:
       - description: Authorization
         name: Authorization
@@ -256,14 +265,16 @@ paths:
             schema:
               $ref: '#/components/schemas/v2FinancialTransactions.ListTransactionsForOrganizationRequest'
         description: Request body
+      operationId: postV2OrganizationsByOrgIdFinancialtransactionsFundings
+      x-operation-id-source: derived
   /v2/organizations/{orgId}/financialtransactions/investments:
     post:
       security:
       - BearerAuth: []
       description: Retrieves all transactions in which the selected organization invested in another organization, plus AI-generated insights that extract key themes.
       tags:
-      - FinancialTransactions
-      summary: List investment rounds for a single organization.
+      - Financial Transactions
+      summary: List investment rounds for a single organization
       parameters:
       - description: Authorization
         name: Authorization
@@ -320,14 +331,16 @@ paths:
             schema:
               $ref: '#/components/schemas/v2FinancialTransactions.ListTransactionsForOrganizationRequest'
         description: Request body
+      operationId: postV2OrganizationsByOrgIdFinancialtransactionsInvestments
+      x-operation-id-source: derived
   /v2/organizations/{orgId}/financialtransactions/portfolioexits:
     post:
       security:
       - BearerAuth: []
       description: Retrieves exit rounds for companies in which the selected organization invested prior to the exit, plus AI-generated insights that extract key themes.
       tags:
-      - FinancialTransactions
-      summary: List portfolio exits for a single organization.
+      - Financial Transactions
+      summary: List portfolio exits for a single organization
       parameters:
       - description: Authorization
         name: Authorization
@@ -378,8 +391,70 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/common.ErrorWithCode'
+      operationId: postV2OrganizationsByOrgIdFinancialtransactionsPortfolioexits
+      x-operation-id-source: derived
 components:
   schemas:
+    v2FinancialTransactions.OrgPortfolioExitsResponse:
+      type: object
+      properties:
+        orgId:
+          description: CB Insights organization ID.
+          type: integer
+          example: 129410
+        portfolioExits:
+          description: Portfolio exits where the requested org ID invested prior to the exit.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2FinancialTransactions.PortfolioExitTransaction'
+    v2FinancialTransactions.InvestmentsMultipleOrganizationsRequest:
+      type: object
+      properties:
+        limit:
+          description: The maximum number of results to be returned in a single response. Must be in the range [1, 100]. Defaults to 100.
+          type: integer
+          example: 100
+        nextPageToken:
+          description: Token to fetch the next page of results; provided in a previous response.
+          type: string
+          example: ''
+        orgIds:
+          description: List of Org IDs to look up, the request must contain 1 - 100 Org IDs.
+          type: array
+          items:
+            type: integer
+          example:
+          - 129410
+          - 1034157
+    v2FinancialTransactions.MultipleOrganizationsPortfolioExitsRequestBody:
+      type: object
+      properties:
+        limit:
+          description: The maximum number of results to be returned in a single response. Must be in the range [1, 100]. Defaults to 100.
+          type: integer
+          example: 10
+        nextPageToken:
+          description: Token to fetch the next page of results; provided in a previous response.
+          type: string
+          example: ''
+        orgIds:
+          description: List of Org IDs to look up, the request must contain 1 - 100 Org IDs.
+          type: array
+          items:
+            type: integer
+          example:
+          - 129410
+          - 1034157
+    v2FinancialTransactions.ListTransactionsForOrganizationRequest:
+      type: object
+      properties:
+        limit:
+          description: The number of transactions to be returned in a single response. Must be in the range [1, 100]. Defaults to 100.
+          type: integer
+        nextPageToken:
+          description: Token to fetch the next page of results; provided in a previous response.
+          type: string
+          example: ''
     v2FinancialTransactions.Insights:
       type: object
       properties:
@@ -407,6 +482,23 @@ components:
           description: Summary of CB Insights generated insights about the deal.
           type: string
           example: Stripe completed a Series C - II funding round, securing $70 million
+    v2FinancialTransactions.FundingsOrg:
+      type: object
+      properties:
+        capTableHistory:
+          description: Capitalization table history. Lists the funded organization's ownership structure.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2FinancialTransactions.CapTable'
+        fundings:
+          description: List of financial transactions where the organization received funding.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2FinancialTransactions.Transaction'
+        orgId:
+          description: CB Insights Organization ID.
+          type: integer
+          example: 129410
     v2FinancialTransactions.PortfolioExitsResponse:
       type: object
       properties:
@@ -415,6 +507,155 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/v2FinancialTransactions.PortfolioExitTransaction'
+    v2FinancialTransactions.BasicOrg:
+      type: object
+      properties:
+        name:
+          description: The name of the organization.
+          type: string
+          example: Prss
+        orgId:
+          description: The CB Insights unique organization ID of this organization.
+          type: integer
+          example: 2763
+    v2FinancialTransactions.InvestmentsOrg:
+      type: object
+      properties:
+        investments:
+          description: List of investments the Org ID participated in.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2FinancialTransactions.Transaction'
+        orgId:
+          description: CB Insights Organization ID.
+          type: integer
+          example: 129410
+    v2FinancialTransactions.FundingsListResponse:
+      type: object
+      properties:
+        nextPageToken:
+          description: Token to fetch the next page of results. If the value is null, then there are no more results.
+          type: string
+        orgs:
+          description: List of fundings for the requested Org IDs. If an Org ID has no funding data, it will be excluded from the response.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2FinancialTransactions.FundingsOrg'
+        totalHits:
+          description: Total number of fundings for the requested organizations.
+          type: integer
+          example: 100
+        totalHitsRelation:
+          description: Indicates whether totalHits is equal to ('eq'), or greater than or equal to ('gte') the number of fundings which can be fetched. Will be set to 'gte' in the rare case where totalHits exceeds 10,000.
+          type: string
+          example: eq
+    v2FinancialTransactions.Investor:
+      type: object
+      properties:
+        isFollowOn:
+          description: Indicates if this organization had previously invested in the company.
+          type: boolean
+          example: false
+        isLead:
+          description: Indicates if this organization took charge of the fundraising round (usually indicates that it contributed a substantial portion of the capital).
+          type: boolean
+          example: false
+        isNew:
+          description: Indicates if this organization invested in the company (recipient) for the first time.
+          type: boolean
+          example: true
+        name:
+          description: The name of the organization that made the investment.
+          type: string
+          example: ABC Financial Group
+        orgId:
+          description: The CB Insights unique organization ID of the organization that made the investment.
+          type: integer
+          example: 19485
+    v2FinancialTransactions.PortfolioExitTransaction:
+      type: object
+      properties:
+        amountInMillions:
+          description: The value of the transaction, in millions of US dollars.
+          type: number
+          example: 1218.92
+        date:
+          description: The date when the transaction took place, in the format YYYY-MM-DD.
+          type: string
+          example: '2025-07-31'
+        dealId:
+          description: The unique deal ID for this transaction.
+          type: integer
+          example: 18708
+        insights:
+          description: CB Insights proprietary AI generated insights about the deal.
+          allOf:
+          - $ref: '#/components/schemas/v2FinancialTransactions.Insights'
+        investors:
+          description: Organizations that participated in this transaction as investors.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2FinancialTransactions.Investor'
+        isExit:
+          description: Whether this transaction is an exit. (IPO, acquisition, etc. Always true for portfolio exits. This field is retained for compatibility.)
+          type: boolean
+          example: true
+        recipient:
+          description: The organization that exited (received funding).
+          allOf:
+          - $ref: '#/components/schemas/v2FinancialTransactions.BasicOrg'
+        round:
+          description: The name of the funding round type.
+          type: string
+          example: IPO
+        roundCategory:
+          description: See https://api-docs.cbinsights.com/docs/reference/funding_types/#funding-round-category
+          type: string
+          example: IPO
+        roundCategoryId:
+          description: See https://api-docs.cbinsights.com/docs/reference/funding_types/#funding-round-category
+          type: integer
+          example: 10
+        roundId:
+          description: The unique identifier of the funding round type. See https://api-docs.cbinsights.com/docs/reference/funding_types/
+          type: integer
+          example: 76
+        simplifiedRound:
+          description: A simplified name of the funding round. For example, "Acquired" and "Acq - Pending" would both be represented as "Acquisition".
+          type: string
+          example: IPO
+        sources:
+          description: A list of URLs to articles containing information about this financial transaction.
+          type: array
+          items:
+            type: string
+          example:
+          - https://www.reuters.com/technology/figma-raises-12-billion-us-ipo-signaling-thaw-tech-listings-2025-07-30/
+          - https://www.cnbc.com/2025/07/30/figma-prices-ipo-at-33-above-expected-range.html
+        valuationInMillions:
+          description: The valuation of the funded organization after this transaction, in millions of US dollars.
+          type: number
+          example: 16086.21
+    v2FinancialTransactions.InvestmentsMultipleResponse:
+      type: object
+      properties:
+        nextPageToken:
+          description: Token to fetch the next page of results. If the value is null, then there are no more results to page through.
+          type: string
+          example: eyJwYWdpbmF0aW9uX3NjaGVtZSI6MiwibmV4dF9wYWdlX3Rva2VuIjoxMjk0MTB9Cg==
+        orgs:
+          description: A list of investments the requested Org ID participated in.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2FinancialTransactions.InvestmentsOrg'
+        totalHits:
+          description: Total number of organizations with Portfolio Exits.
+          type: integer
+          example: 100
+        totalHitsRelation:
+          description: Indicates whether totalHits is equal to ('eq'), or greater than or equal to ('gte') the number of organizations with Portfolio Exits which can be fetched. Will be set to 'gte' in the rare case where totalHits exceeds 10,000.
+          type: string
+          example: eq
     v2FinancialTransactions.Transaction:
       type: object
       properties:
@@ -499,29 +740,51 @@ components:
           description: The valuation of the funded organization after this transaction, in millions of US dollars.
           type: number
           example: 18
-    v2FinancialTransactions.OrgPortfolioExitsResponse:
+    common.ErrorWithCode:
       type: object
       properties:
-        orgId:
-          description: CB Insights organization ID.
-          type: integer
-          example: 129410
-        portfolioExits:
-          description: Portfolio exits where the requested org ID invested prior to the exit.
+        error:
+          type: string
+    v2FinancialTransactions.MultiplePortfolioExitsResponse:
+      type: object
+      properties:
+        nextPageToken:
+          description: Token to fetch the next page of results. If the value is null, then there are no more results to page through.
+          type: string
+          example: eyJwYWdpbmF0aW9uX3NjaGVtZSI6MiwibmV4dF9wYWdlX3Rva2VuIjoxMjk0MTB9Cg==
+        orgs:
+          description: A list of exit rounds where the requested Org ID invested prior to the exit.
           type: array
           items:
-            $ref: '#/components/schemas/v2FinancialTransactions.PortfolioExitTransaction'
-    v2FinancialTransactions.BasicOrg:
+            $ref: '#/components/schemas/v2FinancialTransactions.OrgPortfolioExitsResponse'
+        totalHits:
+          description: Total number of organizations with Portfolio Exits.
+          type: integer
+          example: 100
+        totalHitsRelation:
+          description: Indicates whether totalHits is equal to ('eq'), or greater than or equal to ('gte') the number of organizations with Portfolio Exits which can be fetched. Will be set to 'gte' in the rare case where totalHits exceeds 10,000.
+          type: string
+          example: eq
+    v2FinancialTransactions.FundingsListRequestBody:
+      description: Search parameters to request available funding information for one or more organizations
       type: object
       properties:
-        name:
-          description: The name of the organization.
-          type: string
-          example: Prss
-        orgId:
-          description: The CB Insights unique organization ID of this organization.
+        limit:
+          description: The maximum number of results to be returned in a single response. Must be in the range [1, 100]. Defaults to 100.
           type: integer
-          example: 2763
+          example: 100
+        nextPageToken:
+          description: Token to fetch the next page of results; provided in a previous response.
+          type: string
+          example: ''
+        orgIds:
+          description: List of Org IDs to look up, the request must contain 1 - 100 Org IDs.
+          type: array
+          items:
+            type: integer
+          example:
+          - 129410
+          - 1034157
     v2FinancialTransactions.CapTable:
       type: object
       properties:
@@ -578,193 +841,6 @@ components:
           description: Additional terms governing the round. This can be null if the terms are not available.
           allOf:
           - $ref: '#/components/schemas/v2FinancialTransactions.Terms'
-    v2FinancialTransactions.FundingsListResponse:
-      type: object
-      properties:
-        nextPageToken:
-          description: Token to fetch the next page of results. If the value is null, then there are no more results.
-          type: string
-        orgs:
-          description: List of fundings for the requested Org IDs. If an Org ID has no funding data, it will be excluded from the response.
-          type: array
-          items:
-            $ref: '#/components/schemas/v2FinancialTransactions.FundingsOrg'
-        totalHits:
-          description: Total number of fundings for the requested organizations.
-          type: integer
-          example: 100
-        totalHitsRelation:
-          description: Indicates whether totalHits is equal to ('eq'), or greater than or equal to ('gte') the number of fundings which can be fetched. Will be set to 'gte' in the rare case where totalHits exceeds 10,000.
-          type: string
-          example: eq
-    v2FinancialTransactions.InvestmentsMultipleResponse:
-      type: object
-      properties:
-        nextPageToken:
-          description: Token to fetch the next page of results. If the value is null, then there are no more results to page through.
-          type: string
-          example: eyJwYWdpbmF0aW9uX3NjaGVtZSI6MiwibmV4dF9wYWdlX3Rva2VuIjoxMjk0MTB9Cg==
-        orgs:
-          description: A list of investments the requested Org ID participated in.
-          type: array
-          items:
-            $ref: '#/components/schemas/v2FinancialTransactions.InvestmentsOrg'
-        totalHits:
-          description: Total number of organizations with Portfolio Exits.
-          type: integer
-          example: 100
-        totalHitsRelation:
-          description: Indicates whether totalHits is equal to ('eq'), or greater than or equal to ('gte') the number of organizations with Portfolio Exits which can be fetched. Will be set to 'gte' in the rare case where totalHits exceeds 10,000.
-          type: string
-          example: eq
-    v2FinancialTransactions.PortfolioExitTransaction:
-      type: object
-      properties:
-        amountInMillions:
-          description: The value of the transaction, in millions of US dollars.
-          type: number
-          example: 1218.92
-        date:
-          description: The date when the transaction took place, in the format YYYY-MM-DD.
-          type: string
-          example: '2025-07-31'
-        dealId:
-          description: The unique deal ID for this transaction.
-          type: integer
-          example: 18708
-        insights:
-          description: CB Insights proprietary AI generated insights about the deal.
-          allOf:
-          - $ref: '#/components/schemas/v2FinancialTransactions.Insights'
-        investors:
-          description: Organizations that participated in this transaction as investors.
-          type: array
-          items:
-            $ref: '#/components/schemas/v2FinancialTransactions.Investor'
-        isExit:
-          description: Whether this transaction is an exit. (IPO, acquisition, etc. Always true for portfolio exits. This field is retained for compatibility.)
-          type: boolean
-          example: true
-        recipient:
-          description: The organization that exited (received funding).
-          allOf:
-          - $ref: '#/components/schemas/v2FinancialTransactions.BasicOrg'
-        round:
-          description: The name of the funding round type.
-          type: string
-          example: IPO
-        roundCategory:
-          description: See https://api-docs.cbinsights.com/docs/reference/funding_types/#funding-round-category
-          type: string
-          example: IPO
-        roundCategoryId:
-          description: See https://api-docs.cbinsights.com/docs/reference/funding_types/#funding-round-category
-          type: integer
-          example: 10
-        roundId:
-          description: The unique identifier of the funding round type. See https://api-docs.cbinsights.com/docs/reference/funding_types/
-          type: integer
-          example: 76
-        simplifiedRound:
-          description: A simplified name of the funding round. For example, "Acquired" and "Acq - Pending" would both be represented as "Acquisition".
-          type: string
-          example: IPO
-        sources:
-          description: A list of URLs to articles containing information about this financial transaction.
-          type: array
-          items:
-            type: string
-          example:
-          - https://www.reuters.com/technology/figma-raises-12-billion-us-ipo-signaling-thaw-tech-listings-2025-07-30/
-          - https://www.cnbc.com/2025/07/30/figma-prices-ipo-at-33-above-expected-range.html
-        valuationInMillions:
-          description: The valuation of the funded organization after this transaction, in millions of US dollars.
-          type: number
-          example: 16086.21
-    v2FinancialTransactions.MultipleOrganizationsPortfolioExitsRequestBody:
-      type: object
-      properties:
-        limit:
-          description: The maximum number of results to be returned in a single response. Must be in the range [1, 100]. Defaults to 100.
-          type: integer
-          example: 10
-        nextPageToken:
-          description: Token to fetch the next page of results; provided in a previous response.
-          type: string
-          example: ''
-        orgIds:
-          description: List of Org IDs to look up, the request must contain 1 - 100 Org IDs.
-          type: array
-          items:
-            type: integer
-          example:
-          - 129410
-          - 1034157
-    v2FinancialTransactions.FundingsOrg:
-      type: object
-      properties:
-        capTableHistory:
-          description: Capitalization table history. Lists the funded organization's ownership structure.
-          type: array
-          items:
-            $ref: '#/components/schemas/v2FinancialTransactions.CapTable'
-        fundings:
-          description: List of financial transactions where the organization received funding.
-          type: array
-          items:
-            $ref: '#/components/schemas/v2FinancialTransactions.Transaction'
-        orgId:
-          description: CB Insights Organization ID.
-          type: integer
-          example: 129410
-    v2FinancialTransactions.Investor:
-      type: object
-      properties:
-        isFollowOn:
-          description: Indicates if this organization had previously invested in the company.
-          type: boolean
-          example: false
-        isLead:
-          description: Indicates if this organization took charge of the fundraising round (usually indicates that it contributed a substantial portion of the capital).
-          type: boolean
-          example: false
-        isNew:
-          description: Indicates if this organization invested in the company (recipient) for the first time.
-          type: boolean
-          example: true
-        name:
-          description: The name of the organization that made the investment.
-          type: string
-          example: ABC Financial Group
-        orgId:
-          description: The CB Insights unique organization ID of the organization that made the investment.
-          type: integer
-          example: 19485
-    common.ErrorWithCode:
-      type: object
-      properties:
-        error:
-          type: string
-    v2FinancialTransactions.FundingsListRequestBody:
-      description: Search parameters to request available funding information for one or more organizations
-      type: object
-      properties:
-        limit:
-          description: The maximum number of results to be returned in a single response. Must be in the range [1, 100]. Defaults to 100.
-          type: integer
-          example: 100
-        nextPageToken:
-          description: Token to fetch the next page of results; provided in a previous response.
-          type: string
-          example: ''
-        orgIds:
-          description: List of Org IDs to look up, the request must contain 1 - 100 Org IDs.
-          type: array
-          items:
-            type: integer
-          example:
-          - 129410
-          - 1034157
     v2FinancialTransactions.Terms:
       type: object
       properties:
@@ -808,57 +884,6 @@ components:
           description: Unique identifier for the participation rights. This can be null if the participation rights are not available.
           type: integer
           example: 2
-    v2FinancialTransactions.InvestmentsMultipleOrganizationsRequest:
-      type: object
-      properties:
-        limit:
-          description: The maximum number of results to be returned in a single response. Must be in the range [1, 100]. Defaults to 100.
-          type: integer
-          example: 100
-        nextPageToken:
-          description: Token to fetch the next page of results; provided in a previous response.
-          type: string
-          example: ''
-        orgIds:
-          description: List of Org IDs to look up, the request must contain 1 - 100 Org IDs.
-          type: array
-          items:
-            type: integer
-          example:
-          - 129410
-          - 1034157
-    v2FinancialTransactions.MultiplePortfolioExitsResponse:
-      type: object
-      properties:
-        nextPageToken:
-          description: Token to fetch the next page of results. If the value is null, then there are no more results to page through.
-          type: string
-          example: eyJwYWdpbmF0aW9uX3NjaGVtZSI6MiwibmV4dF9wYWdlX3Rva2VuIjoxMjk0MTB9Cg==
-        orgs:
-          description: A list of exit rounds where the requested Org ID invested prior to the exit.
-          type: array
-          items:
-            $ref: '#/components/schemas/v2FinancialTransactions.OrgPortfolioExitsResponse'
-        totalHits:
-          description: Total number of organizations with Portfolio Exits.
-          type: integer
-          example: 100
-        totalHitsRelation:
-          description: Indicates whether totalHits is equal to ('eq'), or greater than or equal to ('gte') the number of organizations with Portfolio Exits which can be fetched. Will be set to 'gte' in the rare case where totalHits exceeds 10,000.
-          type: string
-          example: eq
-    v2FinancialTransactions.InvestmentsOrg:
-      type: object
-      properties:
-        investments:
-          description: List of investments the Org ID participated in.
-          type: array
-          items:
-            $ref: '#/components/schemas/v2FinancialTransactions.Transaction'
-        orgId:
-          description: CB Insights Organization ID.
-          type: integer
-          example: 129410
     v2FinancialTransactions.InvestmentsResponse:
       type: object
       properties:
@@ -902,16 +927,6 @@ components:
           description: Indicates whether totalHits is equal to ('eq'), or greater than or equal to ('gte') the number of fundings which can be fetched. Will be set to 'gte' in the rare case where totalHits exceeds 10,000.
           type: string
           example: gte
-    v2FinancialTransactions.ListTransactionsForOrganizationRequest:
-      type: object
-      properties:
-        limit:
-          description: The number of transactions to be returned in a single response. Must be in the range [1, 100]. Defaults to 100.
-          type: integer
-        nextPageToken:
-          description: Token to fetch the next page of results; provided in a previous response.
-          type: string
-          example: ''
   securitySchemes:
     BearerAuth:
       description: Type "Bearer" followed by a space and JWT token.

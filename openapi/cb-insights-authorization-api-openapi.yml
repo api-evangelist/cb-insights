@@ -1,6 +1,9 @@
 openapi: 3.2.0
 info:
-  description: "# Introduction\n\nThe CB Insights API offers market data and insights you won't find anywhere else. Use our API to build trading platforms, media content, and market indexes, or integrate our proprietary scores into your workflows, algorithms, or LLMs. \n\n# CB Insights API v2 compared to v1\n\nThe new CB Insights API v2 offers new datasets and additional data points that were not available in v1. v2 follows the same REST architectural style and has a new structure for you to retrieve the information you need as conveniently as possible.\n\nThis first set of data includes:\n\n- **Firmographics**. Profiles on private companies, public companies, and investors. Includes general information like location, headcount, and industry, as well as proprietary data like business models, Competitor Scores, and Expert Collections.\n- **Financial Transactions**. Funding deals, cap table history, M&As, and IPOs, plus AI-generated insights that extract key themes.\n- **Business Relationships**. Partnerships, clients/vendors, and licensing activity, plus AI-generated insights to predict future M&As and shifts in strategy.\n- **Management and Board**. Leadership teams, board members, and the Management factor of the Mosaic Score — our proprietary algorithm which evaluates leadership teams based on past achievements.\n- **Outlook**. Proprietary data science analysis including Mosaic Score, Commercial Maturity, and Exit Probability. Proven to predict winners better than top VCs.\n- **Scouting Reports**. On-demand, AI-generated insights into business model, market position, strengths, and opportunities for private companies.\n"
+  description: '# Introduction
+
+
+    The CB Insights API offers market data and insights you won''t find anywhere else.'
   title: CB Insights Authorization API
   contact: {}
   version: '2.0'
@@ -46,8 +49,17 @@ paths:
               $ref: '#/components/schemas/v2Authorize.AuthorizeRequestBody'
         description: Authorize request body
         required: true
+      operationId: postV2Authorize
+      x-operation-id-source: derived
 components:
   schemas:
+    v2Authorize.AuthorizeRequestBody:
+      type: object
+      properties:
+        clientId:
+          type: string
+        clientSecret:
+          type: string
     common.ErrorWithCode:
       type: object
       properties:
@@ -57,13 +69,6 @@ components:
       type: object
       properties:
         token:
-          type: string
-    v2Authorize.AuthorizeRequestBody:
-      type: object
-      properties:
-        clientId:
-          type: string
-        clientSecret:
           type: string
   securitySchemes:
     BearerAuth:

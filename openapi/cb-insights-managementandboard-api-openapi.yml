@@ -148,77 +148,18 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    v2ManagementAndBoard.ManagementAndBoardListRequestBody:
-      description: Search parameters to request available management and board information for one or more organizations
+    v2ManagementAndBoard.ManagementAndBoardResponse:
       type: object
       properties:
-        mosaicScoreVersion:
-          description: Deprecated. Only Mosaic v2.1 is served.
-          type: string
-          example: v2.1
-        orgIds:
-          description: List of Org IDs to look up, the request must contain 1 - 100 Org IDs.
+        mosaicManagement:
+          description: The Management factor of the Mosaic score that measures the pedigree, education, and work experience of the leaders of the company. https://support.cbinsights.com/hc/en-us/articles/360042055171-About-Mosaic-Health
+          type: integer
+          example: 400
+        people:
+          description: Individuals with general information about each individual and details about their education, work experience, and board associations.
           type: array
           items:
-            type: integer
-          example:
-          - 129410
-          - 1034157
-        titleIds:
-          description: List of title IDs used to filter people; see https://api-docs.cbinsights.com/docs/reference/person_titles/
-          type: array
-          items:
-            type: integer
-          example:
-          - 50
-          - 75
-    v2ManagementAndBoard.Experience:
-      type: object
-      properties:
-        endDate:
-          description: The date when the individual ended this work experience, if applicable, in the format YYYY-MM-DD.
-          type: string
-          example: '2000-01-01'
-        isCurrent:
-          description: Indicates whether the individual currently occupies this position.
-          type: boolean
-          example: false
-        orgId:
-          description: The CBI organization ID of the organization for this work experience.
-          type: integer
-          example: 32423
-        orgName:
-          description: The name of the organization for this work experience.
-          type: string
-          example: ABC Corp
-        startDate:
-          description: The date when the individual started this work experience, in the format YYYY-MM-DD.
-          type: string
-          example: '1996-01-01'
-        title:
-          description: The individual's title during this work experience.
-          type: string
-          example: Consultant
-        titleId:
-          description: The CBI ID of the individual's title during this work experience; see https://api-docs.cbinsights.com/docs/reference/person_titles/
-          type: integer
-          example: 4637
-    common.ErrorWithCode:
-      type: object
-      properties:
-        error:
-          type: string
-    v2ManagementAndBoard.ManagementAndBoardOrg:
-      type: object
-      properties:
-        managementAndBoard:
-          description: People information and Management factor of the Mosaic score for the organization.
-          allOf:
-          - $ref: '#/components/schemas/v2ManagementAndBoard.ManagementAndBoardResponse'
-        orgId:
-          description: CB Insights Organization ID.
-          type: integer
-          example: 129410
+            $ref: '#/components/schemas/v2ManagementAndBoard.Person'
     v2ManagementAndBoard.Education:
       type: object
       properties:
@@ -250,18 +191,30 @@ components:
           description: The CBI ID of the institution.
           type: integer
           example: 4637
-    v2ManagementAndBoard.ManagementAndBoardResponse:
+    v2ManagementAndBoard.ManagementAndBoardListRequestBody:
+      description: Search parameters to request available management and board information for one or more organizations
       type: object
       properties:
-        mosaicManagement:
-          description: The Management factor of the Mosaic score that measures the pedigree, education, and work experience of the leaders of the company. https://support.cbinsights.com/hc/en-us/articles/360042055171-About-Mosaic-Health
-          type: integer
-          example: 400
-        people:
-          description: Individuals with general information about each individual and details about their education, work experience, and board associations.
+        mosaicScoreVersion:
+          description: Deprecated. Only Mosaic v2.1 is served.
+          type: string
+          example: v2.1
+        orgIds:
+          description: List of Org IDs to look up, the request must contain 1 - 100 Org IDs.
           type: array
           items:
-            $ref: '#/components/schemas/v2ManagementAndBoard.Person'
+            type: integer
+          example:
+          - 129410
+          - 1034157
+        titleIds:
+          description: List of title IDs used to filter people; see https://api-docs.cbinsights.com/docs/reference/person_titles/
+          type: array
+          items:
+            type: integer
+          example:
+          - 50
+          - 75
     v2ManagementAndBoard.Person:
       type: object
       properties:
@@ -311,6 +264,53 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/v2ManagementAndBoard.ManagementAndBoardOrg'
+    common.ErrorWithCode:
+      type: object
+      properties:
+        error:
+          type: string
+    v2ManagementAndBoard.ManagementAndBoardOrg:
+      type: object
+      properties:
+        managementAndBoard:
+          description: People information and Management factor of the Mosaic score for the organization.
+          allOf:
+          - $ref: '#/components/schemas/v2ManagementAndBoard.ManagementAndBoardResponse'
+        orgId:
+          description: CB Insights Organization ID.
+          type: integer
+          example: 129410
+    v2ManagementAndBoard.Experience:
+      type: object
+      properties:
+        endDate:
+          description: The date when the individual ended this work experience, if applicable, in the format YYYY-MM-DD.
+          type: string
+          example: '2000-01-01'
+        isCurrent:
+          description: Indicates whether the individual currently occupies this position.
+          type: boolean
+          example: false
+        orgId:
+          description: The CBI organization ID of the organization for this work experience.
+          type: integer
+          example: 32423
+        orgName:
+          description: The name of the organization for this work experience.
+          type: string
+          example: ABC Corp
+        startDate:
+          description: The date when the individual started this work experience, in the format YYYY-MM-DD.
+          type: string
+          example: '1996-01-01'
+        title:
+          description: The individual's title during this work experience.
+          type: string
+          example: Consultant
+        titleId:
+          description: The CBI ID of the individual's title during this work experience; see https://api-docs.cbinsights.com/docs/reference/person_titles/
+          type: integer
+          example: 4637
     v2ManagementAndBoard.ManagementAndBoardRequestBody:
       description: Search parameters to request available management and board information for one organization
       type: object

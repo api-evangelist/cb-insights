@@ -53,6 +53,11 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    v2Authorize.AuthorizeResponse:
+      type: object
+      properties:
+        token:
+          type: string
     v2Authorize.AuthorizeRequestBody:
       type: object
       properties:
@@ -64,11 +69,6 @@ components:
       type: object
       properties:
         error:
-          type: string
-    v2Authorize.AuthorizeResponse:
-      type: object
-      properties:
-        token:
           type: string
   securitySchemes:
     BearerAuth:

@@ -140,26 +140,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    v2Revenue.Org:
-      type: object
-      properties:
-        orgId:
-          description: CB Insights organization ID.
-          type: integer
-          example: 12345
-        orgName:
-          description: The organization's name.
-          type: string
-          example: Stripe
-        orgUrl:
-          description: The organization's website.
-          type: string
-          example: https://www.stripe.com
-        revenue:
-          description: List of revenue data by year.
-          type: array
-          items:
-            $ref: '#/components/schemas/v2Revenue.ListRevenueYear'
     v2Revenue.RevenueYear:
       type: object
       properties:
@@ -199,26 +179,30 @@ components:
           description: Year-over-year growth percentage expressed as an integer.
           type: integer
           example: 15
-    v2Revenue.RevenueByYearResponse:
+    v2Revenue.Source:
       type: object
       properties:
-        orgId:
-          description: CB Insights organization ID.
-          type: integer
-          example: 12345
-        orgName:
-          description: The organization's name.
+        name:
+          description: Name of the source.
           type: string
-          example: Stripe
-        orgUrl:
-          description: The organization's website.
+          example: theinformation.com
+        url:
+          description: URL for the source data.
           type: string
-          example: https://www.stripe.com
-        revenue:
-          description: List of revenue data by year.
+          example: https://www.theinformation.com/articles/stripe-minted-2-billion-cash-last-year-go-public
+    common.ErrorWithCode:
+      type: object
+      properties:
+        error:
+          type: string
+    v2Revenue.RevenueByYearListResponse:
+      type: object
+      properties:
+        orgs:
+          description: List of revenue data for the requested Org IDs. If an Org ID has no data, it will be excluded from the response.
           type: array
           items:
-            $ref: '#/components/schemas/v2Revenue.RevenueYear'
+            $ref: '#/components/schemas/v2Revenue.Org'
     v2Revenue.ListRevenueYear:
       type: object
       properties:
@@ -255,22 +239,26 @@ components:
           description: Year-over-year growth percentage expressed as an integer.
           type: integer
           example: 15
-    v2Revenue.Source:
+    v2Revenue.RevenueByYearResponse:
       type: object
       properties:
-        name:
-          description: Name of the source.
+        orgId:
+          description: CB Insights organization ID.
+          type: integer
+          example: 12345
+        orgName:
+          description: The organization's name.
           type: string
-          example: theinformation.com
-        url:
-          description: URL for the source data.
+          example: Stripe
+        orgUrl:
+          description: The organization's website.
           type: string
-          example: https://www.theinformation.com/articles/stripe-minted-2-billion-cash-last-year-go-public
-    common.ErrorWithCode:
-      type: object
-      properties:
-        error:
-          type: string
+          example: https://www.stripe.com
+        revenue:
+          description: List of revenue data by year.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2Revenue.RevenueYear'
     v2Revenue.RevenueByYearListRequestBody:
       description: Search parameters to request available revenue data for one or more organizations
       type: object
@@ -283,14 +271,26 @@ components:
           example:
           - 129410
           - 1034157
-    v2Revenue.RevenueByYearListResponse:
+    v2Revenue.Org:
       type: object
       properties:
-        orgs:
-          description: List of revenue data for the requested Org IDs. If an Org ID has no data, it will be excluded from the response.
+        orgId:
+          description: CB Insights organization ID.
+          type: integer
+          example: 12345
+        orgName:
+          description: The organization's name.
+          type: string
+          example: Stripe
+        orgUrl:
+          description: The organization's website.
+          type: string
+          example: https://www.stripe.com
+        revenue:
+          description: List of revenue data by year.
           type: array
           items:
-            $ref: '#/components/schemas/v2Revenue.Org'
+            $ref: '#/components/schemas/v2Revenue.ListRevenueYear'
   securitySchemes:
     BearerAuth:
       description: Type "Bearer" followed by a space and JWT token.

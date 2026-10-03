@@ -79,66 +79,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    v2StrategyMap.Insights:
-      type: object
-      properties:
-        details:
-          description: The list of insights regarding this relationship.
-          type: array
-          items:
-            type: string
-          example:
-          - The funding round propelled Stripe's valuation to $3.5 billion
-          - Stripe's partnership with tech giants like Apple and Twitter for payment processing indicates strategic positioning for expanding its market share and influence in the digital economy.
-        headline:
-          description: The headline summarizing these insights.
-          type: string
-          example: Stripe's valuation swells with latest funding, bolstering its market position
-        sources:
-          description: A list of sources the insights are based on.
-          type: array
-          items:
-            type: string
-          example:
-          - http://www.vcnewsdaily.com/stripe/venture-capital-funding/sfbwyyxnvy
-          - http://techcrunch.com/2014/12/04/thrive-capital-bet-big-30-million-to-be-exact-on-stripe/?ncid=rss
-    v2StrategyMap.BusinessRelationship:
-      type: object
-      properties:
-        insights:
-          description: CB Insights proprietary AI generated insights about this business relationship.
-          allOf:
-          - $ref: '#/components/schemas/v2StrategyMap.Insights'
-        partnerRole:
-          description: The role that this business partner plays in the relationship (Partner, Vendor, Client, Licensor, Licensee, Supplier, Distributor, Sponsor, Sponsored).
-          type: string
-          example: Partner
-        relationshipId:
-          description: A unique ID which identifies this business relationship.
-          type: integer
-          example: 1415468
-        startDate:
-          description: The date when this business relationship began (YYYY-MM-DD).
-          type: string
-          example: '2024-09-17'
-    v2StrategyMap.Connections:
-      type: object
-      properties:
-        acquisitions:
-          description: A list of acquisitions connecting this company to the organization.
-          type: array
-          items:
-            $ref: '#/components/schemas/v2StrategyMap.FinancialEvent'
-        businessRelationships:
-          description: A list of business relationships connecting this company to the organization.
-          type: array
-          items:
-            $ref: '#/components/schemas/v2StrategyMap.BusinessRelationship'
-        investments:
-          description: A list of investments connecting this company to the organization.
-          type: array
-          items:
-            $ref: '#/components/schemas/v2StrategyMap.FinancialEvent'
     v2StrategyMap.Company:
       type: object
       properties:
@@ -163,22 +103,24 @@ components:
       properties:
         error:
           type: string
-    v2StrategyMap.StrategyMapResponse:
+    v2StrategyMap.Connections:
       type: object
       properties:
-        categories:
-          description: A list of industry categories grouping the organization's related companies.
+        acquisitions:
+          description: A list of acquisitions connecting this company to the organization.
           type: array
           items:
-            $ref: '#/components/schemas/v2StrategyMap.Category'
-        logoUrl:
-          description: The URL of the organization's logo.
-          type: string
-          example: https://s3-us-west-2.amazonaws.com/cbi-image-service-prd/original/0b23a5e0-1dde-4a05-8a02-b4ad0a0fa327.png
-        orgName:
-          description: The organization's name.
-          type: string
-          example: Stripe
+            $ref: '#/components/schemas/v2StrategyMap.FinancialEvent'
+        businessRelationships:
+          description: A list of business relationships connecting this company to the organization.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2StrategyMap.BusinessRelationship'
+        investments:
+          description: A list of investments connecting this company to the organization.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2StrategyMap.FinancialEvent'
     v2StrategyMap.Category:
       type: object
       properties:
@@ -210,6 +152,64 @@ components:
           description: The name of the funding round type.
           type: string
           example: Seed VC - II
+    v2StrategyMap.BusinessRelationship:
+      type: object
+      properties:
+        insights:
+          description: CB Insights proprietary AI generated insights about this business relationship.
+          allOf:
+          - $ref: '#/components/schemas/v2StrategyMap.Insights'
+        partnerRole:
+          description: The role that this business partner plays in the relationship (Partner, Vendor, Client, Licensor, Licensee, Supplier, Distributor, Sponsor, Sponsored).
+          type: string
+          example: Partner
+        relationshipId:
+          description: A unique ID which identifies this business relationship.
+          type: integer
+          example: 1415468
+        startDate:
+          description: The date when this business relationship began (YYYY-MM-DD).
+          type: string
+          example: '2024-09-17'
+    v2StrategyMap.StrategyMapResponse:
+      type: object
+      properties:
+        categories:
+          description: A list of industry categories grouping the organization's related companies.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2StrategyMap.Category'
+        logoUrl:
+          description: The URL of the organization's logo.
+          type: string
+          example: https://s3-us-west-2.amazonaws.com/cbi-image-service-prd/original/0b23a5e0-1dde-4a05-8a02-b4ad0a0fa327.png
+        orgName:
+          description: The organization's name.
+          type: string
+          example: Stripe
+    v2StrategyMap.Insights:
+      type: object
+      properties:
+        details:
+          description: The list of insights regarding this relationship.
+          type: array
+          items:
+            type: string
+          example:
+          - The funding round propelled Stripe's valuation to $3.5 billion
+          - Stripe's partnership with tech giants like Apple and Twitter for payment processing indicates strategic positioning for expanding its market share and influence in the digital economy.
+        headline:
+          description: The headline summarizing these insights.
+          type: string
+          example: Stripe's valuation swells with latest funding, bolstering its market position
+        sources:
+          description: A list of sources the insights are based on.
+          type: array
+          items:
+            type: string
+          example:
+          - http://www.vcnewsdaily.com/stripe/venture-capital-funding/sfbwyyxnvy
+          - http://techcrunch.com/2014/12/04/thrive-capital-bet-big-30-million-to-be-exact-on-stripe/?ncid=rss
   securitySchemes:
     BearerAuth:
       description: Type "Bearer" followed by a space and JWT token.

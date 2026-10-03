@@ -80,26 +80,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    v2OrganizationLookup.OrgLookupResponse:
-      type: object
-      properties:
-        nextPageToken:
-          description: Token to fetch the next page of results. If the value is null, then there are no more results to page through.
-          type: string
-          example: eyJwYWdpbmF0aW9uX3NjaGVtZSI6MiwibmV4dF9wYWdlX3Rva2VuIjoxMjk0MTB9Cg==
-        orgs:
-          description: A list of organization profiles, includes general information for each organization.
-          type: array
-          items:
-            $ref: '#/components/schemas/v2OrganizationLookup.Org'
-        totalHits:
-          description: Total number of organizations matching the request parameters.
-          type: integer
-          example: 10
-        totalHitsRelation:
-          description: Indicates whether totalHits is equal to ('eq'), or greater than or equal to ('gte') the number of organizations which can be fetched. Will be set to 'gte' if totalHits exceeds 10,000.
-          type: string
-          example: gte
     v2OrganizationLookup.Org:
       type: object
       properties:
@@ -176,6 +156,26 @@ components:
       properties:
         error:
           type: string
+    v2OrganizationLookup.OrgLookupResponse:
+      type: object
+      properties:
+        nextPageToken:
+          description: Token to fetch the next page of results. If the value is null, then there are no more results to page through.
+          type: string
+          example: eyJwYWdpbmF0aW9uX3NjaGVtZSI6MiwibmV4dF9wYWdlX3Rva2VuIjoxMjk0MTB9Cg==
+        orgs:
+          description: A list of organization profiles, includes general information for each organization.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2OrganizationLookup.Org'
+        totalHits:
+          description: Total number of organizations matching the request parameters.
+          type: integer
+          example: 10
+        totalHitsRelation:
+          description: Indicates whether totalHits is equal to ('eq'), or greater than or equal to ('gte') the number of organizations which can be fetched. Will be set to 'gte' if totalHits exceeds 10,000.
+          type: string
+          example: gte
   securitySchemes:
     BearerAuth:
       description: Type "Bearer" followed by a space and JWT token.

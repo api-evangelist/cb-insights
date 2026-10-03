@@ -53,10 +53,10 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    v2Authorize.AuthorizeResponse:
+    common.ErrorWithCode:
       type: object
       properties:
-        token:
+        error:
           type: string
     v2Authorize.AuthorizeRequestBody:
       type: object
@@ -65,10 +65,10 @@ components:
           type: string
         clientSecret:
           type: string
-    common.ErrorWithCode:
+    v2Authorize.AuthorizeResponse:
       type: object
       properties:
-        error:
+        token:
           type: string
   securitySchemes:
     BearerAuth:

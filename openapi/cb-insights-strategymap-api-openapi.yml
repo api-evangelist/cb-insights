@@ -79,98 +79,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    v2StrategyMap.Company:
-      type: object
-      properties:
-        connections:
-          description: The business relationships, investments, and acquisitions connecting this company to the organization.
-          allOf:
-          - $ref: '#/components/schemas/v2StrategyMap.Connections'
-        logoUrl:
-          description: The URL of the related company's logo.
-          type: string
-          example: https://s3-us-west-2.amazonaws.com/cbi-image-service-prd/modified/82ffe27d-5f7a-4fef-bed5-a38cadecf3d3.png
-        name:
-          description: The name of the related company.
-          type: string
-          example: OpenAI
-        orgId:
-          description: The CB Insights organization ID of the related company.
-          type: integer
-          example: 422214
-    common.ErrorWithCode:
-      type: object
-      properties:
-        error:
-          type: string
-    v2StrategyMap.Connections:
-      type: object
-      properties:
-        acquisitions:
-          description: A list of acquisitions connecting this company to the organization.
-          type: array
-          items:
-            $ref: '#/components/schemas/v2StrategyMap.FinancialEvent'
-        businessRelationships:
-          description: A list of business relationships connecting this company to the organization.
-          type: array
-          items:
-            $ref: '#/components/schemas/v2StrategyMap.BusinessRelationship'
-        investments:
-          description: A list of investments connecting this company to the organization.
-          type: array
-          items:
-            $ref: '#/components/schemas/v2StrategyMap.FinancialEvent'
-    v2StrategyMap.Category:
-      type: object
-      properties:
-        companies:
-          description: A list of companies related to the organization within this category.
-          type: array
-          items:
-            $ref: '#/components/schemas/v2StrategyMap.Company'
-        name:
-          description: The name of the category.
-          type: string
-          example: AI & Machine Learning
-    v2StrategyMap.FinancialEvent:
-      type: object
-      properties:
-        date:
-          description: The date when the deal took place, in the format YYYY-MM-DD.
-          type: string
-          example: '2011-03-15'
-        dealId:
-          description: The unique deal ID for this transaction.
-          type: integer
-          example: 88456
-        insights:
-          description: CB Insights proprietary AI generated insights about the deal.
-          allOf:
-          - $ref: '#/components/schemas/v2StrategyMap.Insights'
-        round:
-          description: The name of the funding round type.
-          type: string
-          example: Seed VC - II
-    v2StrategyMap.BusinessRelationship:
-      type: object
-      properties:
-        insights:
-          description: CB Insights proprietary AI generated insights about this business relationship.
-          allOf:
-          - $ref: '#/components/schemas/v2StrategyMap.Insights'
-        partnerRole:
-          description: The role that this business partner plays in the relationship (Partner, Vendor, Client, Licensor, Licensee, Supplier, Distributor, Sponsor, Sponsored).
-          type: string
-          example: Partner
-        relationshipId:
-          description: A unique ID which identifies this business relationship.
-          type: integer
-          example: 1415468
-        startDate:
-          description: The date when this business relationship began (YYYY-MM-DD).
-          type: string
-          example: '2024-09-17'
     v2StrategyMap.StrategyMapResponse:
       type: object
       properties:
@@ -210,6 +118,98 @@ components:
           example:
           - http://www.vcnewsdaily.com/stripe/venture-capital-funding/sfbwyyxnvy
           - http://techcrunch.com/2014/12/04/thrive-capital-bet-big-30-million-to-be-exact-on-stripe/?ncid=rss
+    v2StrategyMap.FinancialEvent:
+      type: object
+      properties:
+        date:
+          description: The date when the deal took place, in the format YYYY-MM-DD.
+          type: string
+          example: '2011-03-15'
+        dealId:
+          description: The unique deal ID for this transaction.
+          type: integer
+          example: 88456
+        insights:
+          description: CB Insights proprietary AI generated insights about the deal.
+          allOf:
+          - $ref: '#/components/schemas/v2StrategyMap.Insights'
+        round:
+          description: The name of the funding round type.
+          type: string
+          example: Seed VC - II
+    v2StrategyMap.Connections:
+      type: object
+      properties:
+        acquisitions:
+          description: A list of acquisitions connecting this company to the organization.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2StrategyMap.FinancialEvent'
+        businessRelationships:
+          description: A list of business relationships connecting this company to the organization.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2StrategyMap.BusinessRelationship'
+        investments:
+          description: A list of investments connecting this company to the organization.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2StrategyMap.FinancialEvent'
+    common.ErrorWithCode:
+      type: object
+      properties:
+        error:
+          type: string
+    v2StrategyMap.Company:
+      type: object
+      properties:
+        connections:
+          description: The business relationships, investments, and acquisitions connecting this company to the organization.
+          allOf:
+          - $ref: '#/components/schemas/v2StrategyMap.Connections'
+        logoUrl:
+          description: The URL of the related company's logo.
+          type: string
+          example: https://s3-us-west-2.amazonaws.com/cbi-image-service-prd/modified/82ffe27d-5f7a-4fef-bed5-a38cadecf3d3.png
+        name:
+          description: The name of the related company.
+          type: string
+          example: OpenAI
+        orgId:
+          description: The CB Insights organization ID of the related company.
+          type: integer
+          example: 422214
+    v2StrategyMap.Category:
+      type: object
+      properties:
+        companies:
+          description: A list of companies related to the organization within this category.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2StrategyMap.Company'
+        name:
+          description: The name of the category.
+          type: string
+          example: AI & Machine Learning
+    v2StrategyMap.BusinessRelationship:
+      type: object
+      properties:
+        insights:
+          description: CB Insights proprietary AI generated insights about this business relationship.
+          allOf:
+          - $ref: '#/components/schemas/v2StrategyMap.Insights'
+        partnerRole:
+          description: The role that this business partner plays in the relationship (Partner, Vendor, Client, Licensor, Licensee, Supplier, Distributor, Sponsor, Sponsored).
+          type: string
+          example: Partner
+        relationshipId:
+          description: A unique ID which identifies this business relationship.
+          type: integer
+          example: 1415468
+        startDate:
+          description: The date when this business relationship began (YYYY-MM-DD).
+          type: string
+          example: '2024-09-17'
   securitySchemes:
     BearerAuth:
       description: Type "Bearer" followed by a space and JWT token.

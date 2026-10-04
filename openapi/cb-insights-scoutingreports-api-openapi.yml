@@ -140,64 +140,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    v2ScoutingReports.ScoutingReportResponse:
-      type: object
-      properties:
-        orgInfo:
-          description: Basic information & CB Insights proprietary metrics regarding the organization.
-          allOf:
-          - $ref: '#/components/schemas/v2ScoutingReports.OrgInfo'
-        reportJson:
-          description: Scouting Report for the organization in JSON format. Please note that citation links are currently not included in the JSON version. Example is an excerpt.
-          type: string
-          example: '{"achievements_metrics_milestones":["Merged with Chain Reaction Cycles in 2016, creating a combined entity with revenues exceeding £300 million [7]"}'
-        reportMarkdown:
-          description: Scouting Report for the organization in Markdown format (after parsing the JSON string). Includes citations. Example is an excerpt.
-          type: string
-          example: '# Wiggle Company Report
-
-            Wiggle is an online retailer specializing in cycling, running, and swimming gear.
-
-
-            ## Key Takeaways'
-    v2Outlook.CurrentMosaicScore:
-      type: object
-      properties:
-        asOfDate:
-          description: Date at which the Mosaic Score was calculated.
-          type: string
-          example: '2025-02-15'
-        scoreInsights:
-          description: Insight into the Mosaic Score.
-          allOf:
-          - $ref: '#/components/schemas/v2Outlook.ScoreInsights'
-        scoreValue:
-          description: Value of the Mosaic Score.
-          type: number
-          example: 237
-    common.ErrorWithCode:
-      type: object
-      properties:
-        error:
-          type: string
-    v2Firmographics.Region:
-      type: object
-      properties:
-        region:
-          description: The name of the region for this geographical location.
-          type: string
-          example: New York Metro
-        regionId:
-          description: The CBI ID of the region; see https://api-docs.cbinsights.com/docs/reference/address/
-          type: integer
-          example: 5
-    v2Outlook.PointChange:
-      type: object
-      properties:
-        baseDateForPointChange:
-          type: string
-        pointChange:
-          type: number
     v2Firmographics.Address:
       type: object
       properties:
@@ -300,6 +242,21 @@ components:
           description: The organization's website.
           type: string
           example: cbinsights.com
+    v2Outlook.ScoreInsights:
+      type: object
+      properties:
+        negativeTags:
+          type: array
+          items:
+            type: string
+        percentile:
+          type: number
+        pointChange:
+          $ref: '#/components/schemas/v2Outlook.PointChange'
+        positiveTags:
+          type: array
+          items:
+            type: string
     v2Outlook.MaturityLevel:
       type: object
       properties:
@@ -319,21 +276,64 @@ components:
           description: Description of the stage of the company.
           type: string
           example: Major market presence
-    v2Outlook.ScoreInsights:
+    v2ScoutingReports.ScoutingReportResponse:
       type: object
       properties:
-        negativeTags:
-          type: array
-          items:
-            type: string
-        percentile:
-          type: number
+        orgInfo:
+          description: Basic information & CB Insights proprietary metrics regarding the organization.
+          allOf:
+          - $ref: '#/components/schemas/v2ScoutingReports.OrgInfo'
+        reportJson:
+          description: Scouting Report for the organization in JSON format. Please note that citation links are currently not included in the JSON version. Example is an excerpt.
+          type: string
+          example: '{"achievements_metrics_milestones":["Merged with Chain Reaction Cycles in 2016, creating a combined entity with revenues exceeding £300 million [7]"}'
+        reportMarkdown:
+          description: Scouting Report for the organization in Markdown format (after parsing the JSON string). Includes citations. Example is an excerpt.
+          type: string
+          example: '# Wiggle Company Report
+
+            Wiggle is an online retailer specializing in cycling, running, and swimming gear.
+
+
+            ## Key Takeaways'
+    common.ErrorWithCode:
+      type: object
+      properties:
+        error:
+          type: string
+    v2Outlook.PointChange:
+      type: object
+      properties:
+        baseDateForPointChange:
+          type: string
         pointChange:
-          $ref: '#/components/schemas/v2Outlook.PointChange'
-        positiveTags:
-          type: array
-          items:
-            type: string
+          type: number
+    v2Firmographics.Region:
+      type: object
+      properties:
+        region:
+          description: The name of the region for this geographical location.
+          type: string
+          example: New York Metro
+        regionId:
+          description: The CBI ID of the region; see https://api-docs.cbinsights.com/docs/reference/address/
+          type: integer
+          example: 5
+    v2Outlook.CurrentMosaicScore:
+      type: object
+      properties:
+        asOfDate:
+          description: Date at which the Mosaic Score was calculated.
+          type: string
+          example: '2025-02-15'
+        scoreInsights:
+          description: Insight into the Mosaic Score.
+          allOf:
+          - $ref: '#/components/schemas/v2Outlook.ScoreInsights'
+        scoreValue:
+          description: Value of the Mosaic Score.
+          type: number
+          example: 237
   securitySchemes:
     BearerAuth:
       description: Type "Bearer" followed by a space and JWT token.

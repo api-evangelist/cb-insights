@@ -1,0 +1,12 @@
+{
+ "url": "https://api-docs.cbinsights.com/v2/cbinsights_api_v2.json",
+ "requested_url": "http://api-docs.cbinsights.com/v2/cbinsights_api_v2.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 253683,
+ "sha256": "080031988ebc7c207955a0c5003f14204f9b852c7d3e48e379d2b354b18fbb7f",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}

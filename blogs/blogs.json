@@ -2,6 +2,20 @@
   "repo": "cb-insights",
   "feeds": [
     {
+      "source": "https://www.cbinsights.com/research/feed/",
+      "feed_url": "https://www.cbinsights.com/research/feed/",
+      "title": "",
+      "saved": 23,
+      "method": "feed"
+    },
+    {
+      "source": "https://www.cbinsights.com/research/",
+      "feed_url": "https://www.cbinsights.com/research/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    },
+    {
       "source": "https://www.cbinsights.com/company/support",
       "feed_url": "https://www.cbinsights.com/company/support",
       "title": "",
@@ -9,6 +23,6 @@
       "method": "none"
     }
   ],
-  "post_count": 0,
-  "fetched": "2026-10-03T12:30:02Z"
+  "post_count": 23,
+  "fetched": "2026-10-10T13:15:00Z"
 }

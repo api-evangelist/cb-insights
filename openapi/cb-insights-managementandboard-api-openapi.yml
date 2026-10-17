@@ -148,22 +148,14 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    v2ManagementAndBoard.ManagementAndBoardListRequestBody:
-      description: Search parameters to request available management and board information for one or more organizations
+    v2ManagementAndBoard.ManagementAndBoardRequestBody:
+      description: Search parameters to request available management and board information for one organization
       type: object
       properties:
         mosaicScoreVersion:
           description: Deprecated. Only Mosaic v2.1 is served.
           type: string
           example: v2.1
-        orgIds:
-          description: List of Org IDs to look up, the request must contain 1 - 100 Org IDs.
-          type: array
-          items:
-            type: integer
-          example:
-          - 129410
-          - 1034157
         titleIds:
           description: List of title IDs used to filter people; see https://api-docs.cbinsights.com/docs/reference/person_titles/
           type: array
@@ -183,30 +175,37 @@ components:
           description: CB Insights Organization ID.
           type: integer
           example: 129410
-    v2ManagementAndBoard.ManagementAndBoardRequestBody:
-      description: Search parameters to request available management and board information for one organization
+    v2ManagementAndBoard.Experience:
       type: object
       properties:
-        mosaicScoreVersion:
-          description: Deprecated. Only Mosaic v2.1 is served.
+        endDate:
+          description: The date when the individual ended this work experience, if applicable, in the format YYYY-MM-DD.
           type: string
-          example: v2.1
-        titleIds:
-          description: List of title IDs used to filter people; see https://api-docs.cbinsights.com/docs/reference/person_titles/
-          type: array
-          items:
-            type: integer
-          example:
-          - 50
-          - 75
-    v2ManagementAndBoard.ManagementAndBoardListResponse:
-      type: object
-      properties:
-        orgs:
-          description: List of Management and Board information for the requested Org IDs. If an Org ID has no data, it will be excluded from the response.
-          type: array
-          items:
-            $ref: '#/components/schemas/v2ManagementAndBoard.ManagementAndBoardOrg'
+          example: '2000-01-01'
+        isCurrent:
+          description: Indicates whether the individual currently occupies this position.
+          type: boolean
+          example: false
+        orgId:
+          description: The CBI organization ID of the organization for this work experience.
+          type: integer
+          example: 32423
+        orgName:
+          description: The name of the organization for this work experience.
+          type: string
+          example: ABC Corp
+        startDate:
+          description: The date when the individual started this work experience, in the format YYYY-MM-DD.
+          type: string
+          example: '1996-01-01'
+        title:
+          description: The individual's title during this work experience.
+          type: string
+          example: Consultant
+        titleId:
+          description: The CBI ID of the individual's title during this work experience; see https://api-docs.cbinsights.com/docs/reference/person_titles/
+          type: integer
+          example: 4637
     v2ManagementAndBoard.ManagementAndBoardResponse:
       type: object
       properties:
@@ -219,6 +218,37 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/v2ManagementAndBoard.Person'
+    v2ManagementAndBoard.Education:
+      type: object
+      properties:
+        degree:
+          description: The type of degree that the person received at this insitution.
+          type: string
+          example: Bachelor's Degree
+        degreeId:
+          description: The CBI ID of the degree type.
+          type: integer
+          example: 2327
+        fieldOfStudy:
+          description: The name of the field of study associated with the degree.
+          type: string
+          example: Economics
+        fieldOfStudyId:
+          description: The CBI ID of the field of study.
+          type: integer
+          example: 42426
+        graduationYear:
+          description: The year in which the individual graduated from this institution.
+          type: integer
+          example: 1996
+        institution:
+          description: The name of the educational institution.
+          type: string
+          example: Princeton University
+        institutionId:
+          description: The CBI ID of the institution.
+          type: integer
+          example: 4637
     common.ErrorWithCode:
       type: object
       properties:
@@ -265,68 +295,38 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/v2ManagementAndBoard.Experience'
-    v2ManagementAndBoard.Education:
+    v2ManagementAndBoard.ManagementAndBoardListResponse:
       type: object
       properties:
-        degree:
-          description: The type of degree that the person received at this insitution.
-          type: string
-          example: Bachelor's Degree
-        degreeId:
-          description: The CBI ID of the degree type.
-          type: integer
-          example: 2327
-        fieldOfStudy:
-          description: The name of the field of study associated with the degree.
-          type: string
-          example: Economics
-        fieldOfStudyId:
-          description: The CBI ID of the field of study.
-          type: integer
-          example: 42426
-        graduationYear:
-          description: The year in which the individual graduated from this institution.
-          type: integer
-          example: 1996
-        institution:
-          description: The name of the educational institution.
-          type: string
-          example: Princeton University
-        institutionId:
-          description: The CBI ID of the institution.
-          type: integer
-          example: 4637
-    v2ManagementAndBoard.Experience:
+        orgs:
+          description: List of Management and Board information for the requested Org IDs. If an Org ID has no data, it will be excluded from the response.
+          type: array
+          items:
+            $ref: '#/components/schemas/v2ManagementAndBoard.ManagementAndBoardOrg'
+    v2ManagementAndBoard.ManagementAndBoardListRequestBody:
+      description: Search parameters to request available management and board information for one or more organizations
       type: object
       properties:
-        endDate:
-          description: The date when the individual ended this work experience, if applicable, in the format YYYY-MM-DD.
+        mosaicScoreVersion:
+          description: Deprecated. Only Mosaic v2.1 is served.
           type: string
-          example: '2000-01-01'
-        isCurrent:
-          description: Indicates whether the individual currently occupies this position.
-          type: boolean
-          example: false
-        orgId:
-          description: The CBI organization ID of the organization for this work experience.
-          type: integer
-          example: 32423
-        orgName:
-          description: The name of the organization for this work experience.
-          type: string
-          example: ABC Corp
-        startDate:
-          description: The date when the individual started this work experience, in the format YYYY-MM-DD.
-          type: string
-          example: '1996-01-01'
-        title:
-          description: The individual's title during this work experience.
-          type: string
-          example: Consultant
-        titleId:
-          description: The CBI ID of the individual's title during this work experience; see https://api-docs.cbinsights.com/docs/reference/person_titles/
-          type: integer
-          example: 4637
+          example: v2.1
+        orgIds:
+          description: List of Org IDs to look up, the request must contain 1 - 100 Org IDs.
+          type: array
+          items:
+            type: integer
+          example:
+          - 129410
+          - 1034157
+        titleIds:
+          description: List of title IDs used to filter people; see https://api-docs.cbinsights.com/docs/reference/person_titles/
+          type: array
+          items:
+            type: integer
+          example:
+          - 50
+          - 75
   securitySchemes:
     BearerAuth:
       description: Type "Bearer" followed by a space and JWT token.

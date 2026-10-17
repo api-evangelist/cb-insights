@@ -140,6 +140,43 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    v2Firmographics.Region:
+      type: object
+      properties:
+        region:
+          description: The name of the region for this geographical location.
+          type: string
+          example: New York Metro
+        regionId:
+          description: The CBI ID of the region; see https://api-docs.cbinsights.com/docs/reference/address/
+          type: integer
+          example: 5
+    v2Outlook.PointChange:
+      type: object
+      properties:
+        baseDateForPointChange:
+          type: string
+        pointChange:
+          type: number
+    v2Outlook.MaturityLevel:
+      type: object
+      properties:
+        asOfDate:
+          description: The date at which the maturity level was calculated.
+          type: string
+          example: 02/21/2025
+        level:
+          description: The maturity level of the company.
+          type: integer
+          example: 5
+        stage:
+          description: The stage of the company.
+          type: string
+          example: Established
+        stageDescription:
+          description: Description of the stage of the company.
+          type: string
+          example: Major market presence
     v2Firmographics.Address:
       type: object
       properties:
@@ -188,6 +225,11 @@ components:
           description: The street address of the organization.
           type: string
           example: 498 Seventh Avenue 12th Floor
+    common.ErrorWithCode:
+      type: object
+      properties:
+        error:
+          type: string
     v2ScoutingReports.OrgInfo:
       type: object
       properties:
@@ -242,6 +284,21 @@ components:
           description: The organization's website.
           type: string
           example: cbinsights.com
+    v2Outlook.CurrentMosaicScore:
+      type: object
+      properties:
+        asOfDate:
+          description: Date at which the Mosaic Score was calculated.
+          type: string
+          example: '2025-02-15'
+        scoreInsights:
+          description: Insight into the Mosaic Score.
+          allOf:
+          - $ref: '#/components/schemas/v2Outlook.ScoreInsights'
+        scoreValue:
+          description: Value of the Mosaic Score.
+          type: number
+          example: 237
     v2Outlook.ScoreInsights:
       type: object
       properties:
@@ -257,25 +314,6 @@ components:
           type: array
           items:
             type: string
-    v2Outlook.MaturityLevel:
-      type: object
-      properties:
-        asOfDate:
-          description: The date at which the maturity level was calculated.
-          type: string
-          example: 02/21/2025
-        level:
-          description: The maturity level of the company.
-          type: integer
-          example: 5
-        stage:
-          description: The stage of the company.
-          type: string
-          example: Established
-        stageDescription:
-          description: Description of the stage of the company.
-          type: string
-          example: Major market presence
     v2ScoutingReports.ScoutingReportResponse:
       type: object
       properties:
@@ -296,44 +334,6 @@ components:
 
 
             ## Key Takeaways'
-    common.ErrorWithCode:
-      type: object
-      properties:
-        error:
-          type: string
-    v2Outlook.PointChange:
-      type: object
-      properties:
-        baseDateForPointChange:
-          type: string
-        pointChange:
-          type: number
-    v2Firmographics.Region:
-      type: object
-      properties:
-        region:
-          description: The name of the region for this geographical location.
-          type: string
-          example: New York Metro
-        regionId:
-          description: The CBI ID of the region; see https://api-docs.cbinsights.com/docs/reference/address/
-          type: integer
-          example: 5
-    v2Outlook.CurrentMosaicScore:
-      type: object
-      properties:
-        asOfDate:
-          description: Date at which the Mosaic Score was calculated.
-          type: string
-          example: '2025-02-15'
-        scoreInsights:
-          description: Insight into the Mosaic Score.
-          allOf:
-          - $ref: '#/components/schemas/v2Outlook.ScoreInsights'
-        scoreValue:
-          description: Value of the Mosaic Score.
-          type: number
-          example: 237
   securitySchemes:
     BearerAuth:
       description: Type "Bearer" followed by a space and JWT token.

@@ -838,3 +838,9 @@ components:
 externalDocs:
   description: CBI API v1 reference
   url: https://api-docs.cbinsights.com/
+x-provenance:
+  method: harvested
+  publisher: CB Insights
+  source: https://api-docs.cbinsights.com/v2/cbinsights_api_v2.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)

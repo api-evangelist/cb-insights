@@ -64,5 +64,163 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-CB Insights is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://forgeglobal.com/cb-insights_stock/
+CB Insights (CB Information Services, Inc.) is a New York-based private-market intelligence platform covering 12M+ private and public company profiles, funding deals, cap tables, M&A and IPO exits, business relationships, management and board data, and proprietary predictive scores (Mosaic, Commercial Maturity, Exit Probability, Competitor Score). The company exposes that data programmatically through the CB Insights API v2 — a token-authenticated REST API at api.cbinsights.com documented with a published Swagger 2.0 contract of 28 operations across Firmographics, Financial Transactions, Business Relationships, Management & Board, Outlook, Revenue, Strategy Map, Scouting Reports and the ChatCBI research LLM — plus a maintenance-mode v1 REST API, a hosted OAuth-protected MCP server at mcp.cbinsights.com listed in Claude, ChatGPT, Perplexity and Microsoft Copilot connector directories, a Snowflake Marketplace data share with Semantic Views and a Cortex Knowledge Extension, and Salesforce and Microsoft 365 Copilot connectors. Access is credit-metered and credential-gated: clientId/clientSecret are issued by CB Insights, exchanged for a 24-hour bearer token, and every data call debits an account credit ledger.
+
+**Areas:** Company · Market Intelligence · private-company-data · Venture Capital · Funding Data · investor-data · Company Data · People Data · BusinessRelationships · predictive-scoring · MCP · Agent-Native
+
+## CB Insights on APIs.io
+
+Everything profiled for CB Insights is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/cb-insights/](https://apis.io/providers/cb-insights/)** — or go straight to one of the APIs or properties below.
+
+### APIs (13)
+
+- [CB Insights API v1](https://apis.io/apis/cb-insights/cb-insights-api-v1/) — The original CB Insights REST API — 11 documented GET operations over organizations, deals (fundings, investments, portfolio exits), people, business…
+- [CB Insights MCP Server](https://apis.io/apis/cb-insights/cb-insights-mcp-server/) — Hosted, remote Model Context Protocol server at mcp.cbinsights.com, offered as the supported replacement for the deprecated self-hosted cbi-mcp-server…
+- [CB Insights Authorization API](https://apis.io/apis/cb-insights/cb-insights-authorization-api/) — The Authorization API from CB Insights — 1 operation(s) for authorization.
+- [CB Insights Business Relationships API](https://apis.io/apis/cb-insights/cb-insights-businessrelationships-api/) — This dataset contains information about partnerships, clients/vendors, licensing activity, and CBI-generated insights to predict future M&As and shifts in…
+- [CB Insights Chat CBI API](https://apis.io/apis/cb-insights/cb-insights-chatcbi-api/) — The ChatCBI API from CB Insights — 3 operation(s) for chatcbi.
+- [CB Insights Firmographics API](https://apis.io/apis/cb-insights/cb-insights-firmographics-api/) — This dataset contains profiles on private companies, public companies, and investors. Includes general information like location, headcount, and industry,…
+- [CB Insights Management And Board API](https://apis.io/apis/cb-insights/cb-insights-managementandboard-api/) — This dataset includes leadership teams, board members, and the Management factor of the Mosaic Score — our proprietary algorithm which evaluates leadership…
+- [CB Insights Organizations API](https://apis.io/apis/cb-insights/cb-insights-organizations-api/) — The Organizations API from CB Insights — 1 operation(s) for organizations.
+- [CB Insights Outlook API](https://apis.io/apis/cb-insights/cb-insights-outlook-api/) — This dataset contains proprietary data science analysis including Mosaic Score, Commercial Maturity, and Exit Probability. Proven to predict winners better…
+- [CB Insights Revenue API](https://apis.io/apis/cb-insights/cb-insights-revenue-api/) — The Revenue API from CB Insights — 2 operation(s) for revenue.
+- [CB Insights Scouting Reports API](https://apis.io/apis/cb-insights/cb-insights-scoutingreports-api/) — A CB Insights scouting report for a private company provides a comprehensive analysis of a business, including its market position, competitive landscape,…
+- [CB Insights Strategy Map API](https://apis.io/apis/cb-insights/cb-insights-strategymap-api/) — The StrategyMap API from CB Insights — 1 operation(s) for strategymap.
+- [CB Insights Financial Transactions API](https://apis.io/apis/cb-insights/cb-insights-financial-transactions-api/) — This dataset contains information about funding deals, cap table history, M&As, IPOs, and CBI-generated insights that extract key themes.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [CB Insights MCP Server](https://apis.io/servers/cb-insights/cb-insights-mcp-server/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Cb Insights Vocabulary](https://apis.io/vocabularies/cb-insights/cb-insights-vocabulary/)
+
+#### Collections (11)
+
+Postman and Open Collection request collections.
+
+- [CB Insights Authorization API](https://apis.io/collections/cb-insights/open-cb-insights-authorization-api/)
+- [CB Insights Business Relationships API](https://apis.io/collections/cb-insights/open-cb-insights-businessrelationships-api/)
+- [CB Insights Chat CBI API](https://apis.io/collections/cb-insights/open-cb-insights-chatcbi-api/)
+- [CB Insights Financial Transactions API](https://apis.io/collections/cb-insights/open-cb-insights-financialtransactions-api/)
+- [CB Insights Firmographics API](https://apis.io/collections/cb-insights/open-cb-insights-firmographics-api/)
+- [CB Insights Management And Board API](https://apis.io/collections/cb-insights/open-cb-insights-managementandboard-api/)
+- [CB Insights Organizations API](https://apis.io/collections/cb-insights/open-cb-insights-organizations-api/)
+- [CB Insights Outlook API](https://apis.io/collections/cb-insights/open-cb-insights-outlook-api/)
+- [CB Insights Revenue API](https://apis.io/collections/cb-insights/open-cb-insights-revenue-api/)
+- [CB Insights Scouting Reports API](https://apis.io/collections/cb-insights/open-cb-insights-scoutingreports-api/)
+- [CB Insights Strategy Map API](https://apis.io/collections/cb-insights/open-cb-insights-strategymap-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Cb Insights Api V2 Overlay](https://apis.io/overlays/cb-insights/cb-insights-api-v2-overlay/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Cb Insights Authentication](https://apis.io/security/cb-insights/cb-insights-authentication/)
+- [Cb Insights Domain Security](https://apis.io/security/cb-insights/cb-insights-domain-security/)
+- [Cb Insights Trust Center](https://apis.io/security/cb-insights/cb-insights-trust-center/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Cb Insights Scopes](https://apis.io/scopes/cb-insights/cb-insights-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Cb Insights Plans Pricing](https://apis.io/plans/cb-insights/cb-insights-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Cb Insights Rate Limits](https://apis.io/rate-limits/cb-insights/cb-insights-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.cbinsights.com/)
+- [Documentation](https://api-docs.cbinsights.com/portal/docs/intro)
+- [Getting started](https://api-docs.cbinsights.com/portal/docs/quick-start)
+- [API reference](https://api-docs.cbinsights.com/portal/docs/api/)
+- [Pricing](https://www.cbinsights.com/pricing)
+- [Sign up](https://api-docs.cbinsights.com/portal/signup)
+- [Support](https://www.cbinsights.com/company/support)
+- [Blog](https://www.cbinsights.com/research/)
+- [Compliance](https://www.cbinsights.com/security-and-privacy/)
+- [Trust centre](https://trust.cbinsights.com/)
+- [Terms of service](https://api-docs.cbinsights.com/portal/api-terms-of-use)
+- [Privacy policy](https://www.cbinsights.com/privacy-policy/)
+- [GitHub](https://github.com/cbinsights)
+
+## API Evangelist rating
+
+**Kin Score 55.3** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 68.3 |
+| Contract quality | 50.2 |
+| Contract governance | 33.3 |
+| Operational transparency | 39.5 |
+| Developer ergonomics | 58.9 |
+| Access clarity | 60.5 |
+
+**Agent readiness 53.0** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 39.2** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/cb-insights/](https://apis.io/providers/cb-insights/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for CB Insights: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/cb-insights/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
